@@ -13,13 +13,20 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField 'String', 'BASE_URL', "\"$config.baseUrl\""
+        buildConfigField 'String', 'API_KEY', "\"$config.apiKey\""
     }
-    
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    lintOptions {
+        disable 'InvalidPackage'
     }
 
     sourceSets {
@@ -29,10 +36,18 @@ android {
 }
 
 dependencies {
+    compile project(':core')
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlin"
+
+    compile "io.reactivex.rxjava2:rxandroid:$androidVersions.rxAndroid"
 
     compile "com.android.support:appcompat-v7:$androidVersions.support"
     compile "com.android.support.constraint:constraint-layout:$androidVersions.constraint"
+
+    compile "com.squareup.retrofit2:retrofit:$androidVersions.retrofit"
+    compile "com.squareup.retrofit2:converter-gson:$androidVersions.retrofit"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$androidVersions.retrofit"
+    compile "com.squareup.okhttp3:logging-interceptor:$androidVersions.loggingInterceptor"
 
     testCompile "junit:junit:$testVersions.junit"
 }
