@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.androidmess.helix.BuildConfig
 import com.androidmess.helix.R
-import com.androidmess.helix.common.model.data.MovieResult
+import com.androidmess.helix.discovery.model.data.DiscoverMovieViewModel
 import com.androidmess.helix.discovery.model.repository.RetrofitDiscoverRepository
 import com.androidmess.helix.discovery.presentation.DiscoveryPresenter
 import com.androidmess.helix.discovery.usecase.GetDiscoveryMoviesUseCase
@@ -64,9 +64,9 @@ class DiscoverActivity : AppCompatActivity(), DiscoverView {
         progressBar.visibility = if (show) View.VISIBLE else View.GONE
     }
 
-    override fun showMovies(movies: MovieResult) {
+    override fun showMovies(movies: List<DiscoverMovieViewModel>) {
         // FIXME Add RecyclerView
-        fakeContainer.text = movies.results.toString()
+        fakeContainer.text = movies.toString()
     }
 
     override fun showError(error: Throwable?) {

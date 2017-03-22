@@ -6,30 +6,30 @@ import com.google.gson.annotations.SerializedName
  * Movie model. More information here https://developers.themoviedb.org/3/companies/get-movies
  */
 data class Movie(@SerializedName("poster_path")
-                 val posterPath: String,
+                 val posterPath: String?,
                  @SerializedName("adult")
-                 val adult: Boolean,
+                 val adult: Boolean?,
                  @SerializedName("overview")
-                 val overview: String,
+                 val overview: String?,
                  @SerializedName("release_date")
-                 val releaseDate: String,
+                 val releaseDate: String?,
                  @SerializedName("genre_ids")
-                 val genreIds: List<Int>,
+                 val genreIds: List<Int>?,
                  @SerializedName("id")
-                 val id: Int,
+                 val id: Int?,
                  @SerializedName("original_title")
-                 val originalTitle: String,
+                 val originalTitle: String?,
                  @SerializedName("original_language")
-                 val originalLanguage: String,
+                 val originalLanguage: String?,
                  @SerializedName("title")
-                 val title: String,
+                 val title: String?,
                  @SerializedName("backdrop_path")
-                 val backdropPath: String,
+                 val backdropPath: String?,
                  @SerializedName("popularity")
-                 val popularity: Double,
+                 val popularity: Double?,
                  @SerializedName("vote_count")
-                 val voteCount: Int,
+                 val voteCount: Int?,
                  @SerializedName("video")
-                 val video: Boolean,
+                 val video: Boolean?,
                  @SerializedName("vote_average")
-                 val voteAverage: Double)
+                 val voteAverage: Double?)
