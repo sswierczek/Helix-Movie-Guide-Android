@@ -50,4 +50,5 @@ dependencies {
     compile "com.squareup.okhttp3:logging-interceptor:$androidVersions.loggingInterceptor"
 
     testCompile "junit:junit:$testVersions.junit"
+    testCompile "org.mockito:mockito-core:$testVersions.mockito"
 }

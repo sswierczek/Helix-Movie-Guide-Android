@@ -25,7 +25,8 @@ buildscript {
         ]
 
         testVersions = [
-                junit: '4.12'
+                junit: '4.12',
+                mockito: '2.8.47'
         ]
     }
 
