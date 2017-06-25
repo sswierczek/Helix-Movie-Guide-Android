@@ -37,7 +37,7 @@ android {
 
 dependencies {
     compile project(':core')
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlin"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
 
     compile "io.reactivex.rxjava2:rxandroid:$androidVersions.rxAndroid"
 
@@ -49,6 +49,10 @@ dependencies {
     compile "com.squareup.retrofit2:adapter-rxjava2:$androidVersions.retrofit"
     compile "com.squareup.okhttp3:logging-interceptor:$androidVersions.loggingInterceptor"
 
+    // to override any possible test dependencies conflicts
+    testCompile "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+
     testCompile "junit:junit:$testVersions.junit"
     testCompile "org.mockito:mockito-core:$testVersions.mockito"
+    testCompile "com.nhaarman:mockito-kotlin:$testVersions.mockitoKotlin"
 }

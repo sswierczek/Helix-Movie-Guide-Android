@@ -8,6 +8,7 @@ import com.androidmess.helix.R
 import com.androidmess.helix.discovery.model.data.DiscoverMovieViewModel
 import com.androidmess.helix.discovery.model.repository.RetrofitDiscoverRepository
 import com.androidmess.helix.discovery.presentation.DiscoveryPresenter
+import com.androidmess.helix.common.rx.AppSchedulersInjector
 import com.androidmess.helix.discovery.usecase.GetDiscoveryMoviesUseCase
 import kotlinx.android.synthetic.main.activity_discover.*
 import okhttp3.OkHttpClient
@@ -38,8 +39,9 @@ class DiscoverActivity : AppCompatActivity(), DiscoverView {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
+        val schedulersInjector = AppSchedulersInjector()
         val repository = RetrofitDiscoverRepository(retrofit, apiKey)
-        presenter = DiscoveryPresenter(GetDiscoveryMoviesUseCase(repository))
+        presenter = DiscoveryPresenter(schedulersInjector, GetDiscoveryMoviesUseCase(repository))
 
         // FIXME Add Base Activity to not call presenter methods
         presenter?.connect(view = this)
