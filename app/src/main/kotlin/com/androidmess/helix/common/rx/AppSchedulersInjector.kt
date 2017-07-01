@@ -5,7 +5,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 /**
- * Schedulers used in the app.
+ * Schedulers used across the app.
  */
 class AppSchedulersInjector : SchedulersInjector {
 

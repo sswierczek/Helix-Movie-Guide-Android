@@ -2,6 +2,11 @@ package com.androidmess.helix.discovery.model.data
 
 import com.androidmess.helix.common.model.data.Movie
 
+/**
+ * View model discover screen.
+ *
+ * Contains mapper from model->view model conversion.
+ */
 data class DiscoverMovieViewModel(val id: Int, val title: String, val imagePath: String) {
 
     companion object Mapper {
