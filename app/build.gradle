@@ -55,4 +55,5 @@ dependencies {
     testCompile "junit:junit:$testVersions.junit"
     testCompile "org.mockito:mockito-core:$testVersions.mockito"
     testCompile "com.nhaarman:mockito-kotlin:$testVersions.mockitoKotlin"
+    testCompile "org.hamcrest:hamcrest-all:$testVersions.hamcrest"
 }

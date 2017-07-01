@@ -25,9 +25,10 @@ buildscript {
         ]
 
         testVersions = [
-                junit: '4.12',
-                mockito: '2.8.47',
-                mockitoKotlin: '1.5.0'
+                junit        : '4.12',
+                mockito      : '2.8.47',
+                mockitoKotlin: '1.5.0',
+                hamcrest     : '1.3'
         ]
     }
 
