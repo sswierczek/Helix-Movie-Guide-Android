@@ -10,8 +10,11 @@ import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 
 class DiscoveryPresenter(schedulersInjector: SchedulersInjector,
-                         val getDiscoveryMoviesUseCase: GetDiscoveryMoviesUseCase)
+                         getDiscoveryMoviesUseCase: GetDiscoveryMoviesUseCase)
     : BaseMvpPresenter<DiscoverView>(schedulersInjector) {
+
+    // FIXME Find a way to move it to constructor and exclude from coverage reports
+    val getDiscoveryMoviesUseCase: GetDiscoveryMoviesUseCase = getDiscoveryMoviesUseCase
 
     // FIXME add loading next pages
     var page: Int = 1
