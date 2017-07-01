@@ -7,7 +7,7 @@ import org.junit.Before
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-abstract class BaseRxTest {
+abstract class BaseTest {
 
     @Mock
     lateinit var testSchedulerInjector: SchedulersInjector

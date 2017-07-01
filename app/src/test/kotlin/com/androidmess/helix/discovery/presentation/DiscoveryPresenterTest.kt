@@ -1,6 +1,6 @@
 package com.androidmess.helix.discovery.presentation
 
-import com.androidmess.helix.BaseRxTest
+import com.androidmess.helix.BaseTest
 import com.androidmess.helix.common.model.data.MovieResult
 import com.androidmess.helix.discovery.usecase.GetDiscoveryMoviesUseCase
 import com.androidmess.helix.discovery.view.DiscoverView
@@ -11,7 +11,7 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 
 @Suppress("IllegalIdentifier")
-class DiscoveryPresenterTest : BaseRxTest() {
+class DiscoveryPresenterTest : BaseTest() {
 
     @Mock
     lateinit var getDiscoveryMoviesUseCase: GetDiscoveryMoviesUseCase

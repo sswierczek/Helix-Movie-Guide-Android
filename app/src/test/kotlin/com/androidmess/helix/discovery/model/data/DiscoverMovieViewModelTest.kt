@@ -1,6 +1,6 @@
 package com.androidmess.helix.discovery.model.data
 
-import com.androidmess.helix.BaseRxTest
+import com.androidmess.helix.BaseTest
 import com.androidmess.helix.common.model.data.Movie
 import com.nhaarman.mockito_kotlin.whenever
 import org.hamcrest.MatcherAssert.assertThat
@@ -9,7 +9,7 @@ import org.junit.Test
 import org.mockito.Mock
 
 @Suppress("IllegalIdentifier")
-class DiscoverMovieViewModelTest : BaseRxTest() {
+class DiscoverMovieViewModelTest : BaseTest() {
 
     @Mock
     lateinit var movie: Movie
