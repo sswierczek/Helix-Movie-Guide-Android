@@ -16,6 +16,7 @@ task codeCoverageReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
                        '**/*$ViewBinder*.*',
                        '**/BuildConfig.*',
                        '**/Manifest*.*',
+                       '**/*SchedulersInjector*.*',
                        '**/*Activity.class']
     )
 
