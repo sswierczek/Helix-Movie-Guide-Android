@@ -8,6 +8,7 @@ import io.reactivex.schedulers.Schedulers
  * Schedulers used in the app.
  */
 class AppSchedulersInjector : SchedulersInjector {
+
     override fun ui(): Scheduler {
         return AndroidSchedulers.mainThread()
     }
