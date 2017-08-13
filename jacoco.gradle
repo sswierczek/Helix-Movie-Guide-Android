@@ -21,8 +21,7 @@ task codeCoverageReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
                        '**/*Activity.class',
                        '**/*Module.*',
                        '**/*Binder.*',
-                       '**/*Component.*',
-                       '**/*Subcomponent.*',
+                       '**/*Component.*'
             ]
     )
 

@@ -11,7 +11,7 @@ import dagger.android.AndroidInjector
                 DiscoverActivityModule::class
         )
 )
-interface DiscoverActivitySubcomponent : AndroidInjector<DiscoverActivity> {
+interface DiscoverActivityComponent : AndroidInjector<DiscoverActivity> {
 
     @Subcomponent.Builder
     abstract class Builder : AndroidInjector.Builder<DiscoverActivity>()

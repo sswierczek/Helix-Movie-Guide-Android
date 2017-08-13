@@ -8,12 +8,12 @@ import dagger.android.ActivityKey
 import dagger.android.AndroidInjector
 import dagger.multibindings.IntoMap
 
-@Module(subcomponents = arrayOf(DiscoverActivitySubcomponent::class))
+@Module(subcomponents = arrayOf(DiscoverActivityComponent::class))
 internal abstract class DiscoverActivityBinder {
 
     @Binds
     @IntoMap
     @ActivityKey(DiscoverActivity::class)
-    internal abstract fun bindYourActivityInjectorFactory(builder: DiscoverActivitySubcomponent.Builder):
+    internal abstract fun bindYourActivityInjectorFactory(builder: DiscoverActivityComponent.Builder):
             AndroidInjector.Factory<out Activity>
 }
