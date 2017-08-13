@@ -16,12 +16,13 @@ task codeCoverageReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
                        '**/*$ViewBinder*.*',
                        '**/BuildConfig.*',
                        '**/Manifest*.*',
-                       '**/*SchedulersInjector*.*',
+                       '**/*Injector*.*',
                        '**/*App*.class',
                        '**/*Activity.class',
                        '**/*Module.*',
                        '**/*Binder.*',
-                       '**/*Component.*'
+                       '**/*Component*',
+                       '**/*Factory.*'
             ]
     )
 
@@ -34,8 +35,8 @@ task codeCoverageReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
 
     reports {
         xml.enabled = true
-        // For Codecov.io
         xml.destination "${buildDir}/reports/jacoco/report.xml"
         html.enabled = true
+        html.destination "${buildDir}/reports/jacoco/html"
     }
 }
