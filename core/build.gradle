@@ -2,6 +2,7 @@ apply plugin: 'kotlin'
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+    compile "javax.inject:javax.inject:$versions.inject"
     compile "io.reactivex.rxjava2:rxjava:$versions.rxjava"
     compile "com.google.code.gson:gson:$versions.gson"
 }

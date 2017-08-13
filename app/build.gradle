@@ -4,12 +4,12 @@ apply plugin: 'kotlin-android-extensions'
 apply from: '../jacoco.gradle'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "com.androidmess.helix"
         minSdkVersion 19
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -38,6 +38,9 @@ android {
 dependencies {
     compile project(':core')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+
+    compile "com.google.dagger:dagger:$versions.dagger"
+    annotationProcessor "com.google.dagger:dagger-compiler:$versions.dagger"
 
     compile "io.reactivex.rxjava2:rxandroid:$androidVersions.rxAndroid"
 
