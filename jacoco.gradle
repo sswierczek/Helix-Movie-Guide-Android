@@ -16,8 +16,14 @@ task codeCoverageReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
                        '**/*$ViewBinder*.*',
                        '**/BuildConfig.*',
                        '**/Manifest*.*',
-                       '**/*SchedulersInjector*.*',
-                       '**/*Activity.class']
+                       '**/*Injector*.*',
+                       '**/*App*.class',
+                       '**/*Activity.class',
+                       '**/*Module.*',
+                       '**/*Binder.*',
+                       '**/*Component*',
+                       '**/*Factory.*'
+            ]
     )
 
     def coverageSourceDirs = [
@@ -29,8 +35,8 @@ task codeCoverageReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
 
     reports {
         xml.enabled = true
-        // For Codecov.io
         xml.destination "${buildDir}/reports/jacoco/report.xml"
         html.enabled = true
+        html.destination "${buildDir}/reports/jacoco/html"
     }
 }

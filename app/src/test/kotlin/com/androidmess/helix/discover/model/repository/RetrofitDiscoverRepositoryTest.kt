@@ -1,4 +1,4 @@
-package com.androidmess.helix.discovery.model.repository
+package com.androidmess.helix.discover.model.repository
 
 import com.androidmess.helix.BaseTest
 import com.nhaarman.mockito_kotlin.verify

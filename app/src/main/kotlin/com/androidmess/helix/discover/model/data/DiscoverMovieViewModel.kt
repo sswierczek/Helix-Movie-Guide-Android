@@ -1,4 +1,4 @@
-package com.androidmess.helix.discovery.model.data
+package com.androidmess.helix.discover.model.data
 
 import com.androidmess.helix.common.model.data.Movie
 

@@ -1,9 +1,9 @@
-package com.androidmess.helix.discovery.presentation
+package com.androidmess.helix.discover.presentation
 
 import com.androidmess.helix.BaseTest
 import com.androidmess.helix.common.model.data.MovieResult
-import com.androidmess.helix.discovery.usecase.GetDiscoveryMoviesUseCase
-import com.androidmess.helix.discovery.view.DiscoverView
+import com.androidmess.helix.discover.usecase.GetDiscoverMoviesUseCase
+import com.androidmess.helix.discover.view.DiscoverView
 import com.nhaarman.mockito_kotlin.*
 import io.reactivex.subjects.PublishSubject
 import org.junit.Test
@@ -11,10 +11,10 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 
 @Suppress("IllegalIdentifier")
-class DiscoveryPresenterTest : BaseTest() {
+class DiscoverPresenterTest : BaseTest() {
 
     @Mock
-    lateinit var getDiscoveryMoviesUseCase: GetDiscoveryMoviesUseCase
+    lateinit var getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase
 
     @Mock
     lateinit var view: DiscoverView
@@ -23,13 +23,13 @@ class DiscoveryPresenterTest : BaseTest() {
     lateinit var data: MovieResult
 
     @InjectMocks
-    lateinit var presenter: DiscoveryPresenter
+    lateinit var presenter: DiscoverPresenter
 
     val dataObservable: PublishSubject<MovieResult> = PublishSubject.create<MovieResult>()
 
     override fun setUp() {
         super.setUp()
-        whenever(getDiscoveryMoviesUseCase.execute(any())).thenReturn(dataObservable)
+        whenever(getDiscoverMoviesUseCase.execute(any())).thenReturn(dataObservable)
     }
 
     @Test
