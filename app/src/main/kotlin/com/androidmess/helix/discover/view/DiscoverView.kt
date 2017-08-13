@@ -1,7 +1,7 @@
-package com.androidmess.helix.discovery.view
+package com.androidmess.helix.discover.view
 
 import com.androidmess.helix.common.presentation.Mvp
-import com.androidmess.helix.discovery.model.data.DiscoverMovieViewModel
+import com.androidmess.helix.discover.model.data.DiscoverMovieViewModel
 
 interface DiscoverView : Mvp.View {
 

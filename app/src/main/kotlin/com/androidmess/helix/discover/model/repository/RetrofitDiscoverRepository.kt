@@ -1,4 +1,4 @@
-package com.androidmess.helix.discovery.model.repository
+package com.androidmess.helix.discover.model.repository
 
 import com.androidmess.helix.common.model.data.MovieResult
 import com.androidmess.helix.common.model.repository.Repository

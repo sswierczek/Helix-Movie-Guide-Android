@@ -1,20 +1,20 @@
-package com.androidmess.helix.discovery.presentation
+package com.androidmess.helix.discover.presentation
 
 import com.androidmess.helix.common.model.data.MovieResult
 import com.androidmess.helix.common.presentation.base.BaseMvpPresenter
 import com.androidmess.helix.common.rx.SchedulersInjector
-import com.androidmess.helix.discovery.model.data.DiscoverMovieViewModel
-import com.androidmess.helix.discovery.usecase.GetDiscoveryMoviesUseCase
-import com.androidmess.helix.discovery.view.DiscoverView
+import com.androidmess.helix.discover.model.data.DiscoverMovieViewModel
+import com.androidmess.helix.discover.usecase.GetDiscoverMoviesUseCase
+import com.androidmess.helix.discover.view.DiscoverView
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 
-class DiscoveryPresenter(schedulersInjector: SchedulersInjector,
-                         getDiscoveryMoviesUseCase: GetDiscoveryMoviesUseCase)
+class DiscoverPresenter(schedulersInjector: SchedulersInjector,
+                        getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase)
     : BaseMvpPresenter<DiscoverView>(schedulersInjector) {
 
     // FIXME Find a way to move it to constructor and exclude from coverage reports
-    val getDiscoveryMoviesUseCase: GetDiscoveryMoviesUseCase = getDiscoveryMoviesUseCase
+    val getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase = getDiscoverMoviesUseCase
 
     // FIXME add loading next pages
     var page: Int = 1
@@ -22,7 +22,7 @@ class DiscoveryPresenter(schedulersInjector: SchedulersInjector,
 
     override fun connect(view: DiscoverView) {
         super.connect(view)
-        val discoverDisposable = getDiscoveryMoviesUseCase
+        val discoverDisposable = getDiscoverMoviesUseCase
                 .execute(page)
                 .observeOn(schedulersInjector.ui())
                 .doOnSubscribe { view.showLoading(true) }

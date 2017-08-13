@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply from: '../jacoco.gradle'
 
 android {
@@ -35,12 +36,20 @@ android {
     }
 }
 
+kapt {
+    generateStubs = true
+}
+
 dependencies {
     compile project(':core')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
 
     compile "com.google.dagger:dagger:$versions.dagger"
-    annotationProcessor "com.google.dagger:dagger-compiler:$versions.dagger"
+    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
+
+    compile "com.google.dagger:dagger-android:$versions.dagger"
+    compile "com.google.dagger:dagger-android-support:$versions.dagger"
+    kapt "com.google.dagger:dagger-android-processor:$versions.dagger"
 
     compile "io.reactivex.rxjava2:rxandroid:$androidVersions.rxAndroid"
 

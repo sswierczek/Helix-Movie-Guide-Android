@@ -1,15 +1,16 @@
-package com.androidmess.helix.discovery.view
+package com.androidmess.helix.discover.view
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.androidmess.helix.BuildConfig
 import com.androidmess.helix.R
-import com.androidmess.helix.discovery.model.data.DiscoverMovieViewModel
-import com.androidmess.helix.discovery.model.repository.RetrofitDiscoverRepository
-import com.androidmess.helix.discovery.presentation.DiscoveryPresenter
 import com.androidmess.helix.common.rx.AppSchedulersInjector
-import com.androidmess.helix.discovery.usecase.GetDiscoveryMoviesUseCase
+import com.androidmess.helix.discover.model.data.DiscoverMovieViewModel
+import com.androidmess.helix.discover.model.repository.RetrofitDiscoverRepository
+import com.androidmess.helix.discover.presentation.DiscoverPresenter
+import com.androidmess.helix.discover.usecase.GetDiscoverMoviesUseCase
+import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_discover.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,9 +20,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class DiscoverActivity : AppCompatActivity(), DiscoverView {
 
-    var presenter: DiscoveryPresenter? = null
+    var presenter: DiscoverPresenter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_discover)
 
@@ -41,7 +43,7 @@ class DiscoverActivity : AppCompatActivity(), DiscoverView {
                 .build()
         val schedulersInjector = AppSchedulersInjector()
         val repository = RetrofitDiscoverRepository(retrofit, apiKey)
-        presenter = DiscoveryPresenter(schedulersInjector, GetDiscoveryMoviesUseCase(repository))
+        presenter = DiscoverPresenter(schedulersInjector, GetDiscoverMoviesUseCase(repository))
 
         // FIXME Add Base Activity to not call presenter methods
         presenter?.connect(view = this)
