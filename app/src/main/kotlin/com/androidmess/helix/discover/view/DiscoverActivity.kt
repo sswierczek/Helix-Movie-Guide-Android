@@ -2,7 +2,8 @@ package com.androidmess.helix.discover.view
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.androidmess.helix.R
 import com.androidmess.helix.common.ui.show
@@ -18,7 +19,9 @@ class DiscoverActivity : AppCompatActivity(), DiscoverView {
     @Inject
     lateinit var presenter: DiscoverPresenter
 
-    lateinit var discoverDataAdapter: DiscoverAdapter
+    private lateinit var dataAdapter: DiscoverAdapter
+
+    private lateinit var layoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -32,10 +35,21 @@ class DiscoverActivity : AppCompatActivity(), DiscoverView {
 
     private fun setupDataContainer() {
         // FIXME Add tablet support
+        layoutManager = LinearLayoutManager(this)
+        dataAdapter = DiscoverAdapter()
         discoverDataContainer.setHasFixedSize(true)
-        discoverDataContainer.layoutManager = GridLayoutManager(this, 2)
-        discoverDataAdapter = DiscoverAdapter()
-        discoverDataContainer.adapter = discoverDataAdapter
+        discoverDataContainer.layoutManager = layoutManager
+        discoverDataContainer.adapter = dataAdapter
+        discoverDataContainer.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                val visibleItemCount = layoutManager.childCount;
+                val totalItemCount = layoutManager.itemCount;
+                val pastVisibleItems = layoutManager.findFirstVisibleItemPosition();
+                if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
+                    presenter.scrolledToBottom()
+                }
+            }
+        })
     }
 
     override fun onStart() {
@@ -58,7 +72,7 @@ class DiscoverActivity : AppCompatActivity(), DiscoverView {
     }
 
     override fun showMovies(movies: List<DiscoverMovieViewModel>) {
-        discoverDataAdapter.replaceData(movies)
+        dataAdapter.addData(movies)
     }
 
     override fun showError(error: Throwable?) {

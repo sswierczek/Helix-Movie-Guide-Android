@@ -24,8 +24,7 @@ class DiscoverAdapter : RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
     override fun getItemCount(): Int
             = data.size
 
-    fun replaceData(movies: List<DiscoverMovieViewModel>) {
-        data.clear()
+    fun addData(movies: List<DiscoverMovieViewModel>) {
         data.addAll(movies)
         notifyDataSetChanged()
     }

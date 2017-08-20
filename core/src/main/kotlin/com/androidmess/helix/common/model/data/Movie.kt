@@ -23,8 +23,6 @@ data class Movie(@SerializedName("poster_path")
                  val originalLanguage: String,
                  @SerializedName("title")
                  val title: String,
-                 @SerializedName("backdrop_path")
-                 val backdropPath: String,
                  @SerializedName("popularity")
                  val popularity: Double,
                  @SerializedName("vote_count")

@@ -92,4 +92,15 @@ class DiscoverPresenterTest : BaseTest() {
 
         verify(view, never()).showMovies(any())
     }
+
+    @Test
+    fun `Should load next page when scrolled to bottom`() {
+        val nextPage = 2
+        presenter.connect(view)
+        dataObservable.onComplete()
+
+        presenter.scrolledToBottom()
+
+        verify(getDiscoverMoviesUseCase).execute(nextPage)
+    }
 }
