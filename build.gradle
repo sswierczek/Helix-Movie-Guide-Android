@@ -15,7 +15,7 @@ buildscript {
                 kategory: '0.3.10',
                 inject  : '1',
                 dagger  : '2.11',
-                rxjava  : '2.0.7',
+                rxjava  : '2.1.5',
                 gson    : '2.8.0'
         ]
 
