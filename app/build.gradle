@@ -36,38 +36,35 @@ android {
     }
 }
 
-kapt {
-    generateStubs = true
-}
-
 dependencies {
-    compile project(':core')
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+    implementation project(':core')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
 
-    compile "io.kategory:kategory:$versions.kategory"
+    implementation "io.kategory:kategory:$versions.kategory"
 
-    compile "com.google.dagger:dagger:$versions.dagger"
+    implementation "com.google.dagger:dagger:$versions.dagger"
     kapt "com.google.dagger:dagger-compiler:$versions.dagger"
 
-    compile "com.google.dagger:dagger-android:$versions.dagger"
-    compile "com.google.dagger:dagger-android-support:$versions.dagger"
+    implementation "com.google.dagger:dagger-android:$versions.dagger"
+    implementation "com.google.dagger:dagger-android-support:$versions.dagger"
     kapt "com.google.dagger:dagger-android-processor:$versions.dagger"
 
-    compile "io.reactivex.rxjava2:rxandroid:$androidVersions.rxAndroid"
+    implementation "io.reactivex.rxjava2:rxandroid:$androidVersions.rxAndroid"
 
-    compile "com.android.support:appcompat-v7:$androidVersions.support"
-    compile "com.android.support.constraint:constraint-layout:$androidVersions.constraint"
+    implementation "com.android.support:appcompat-v7:$androidVersions.support"
+    implementation "com.android.support.constraint:constraint-layout:$androidVersions.constraint"
 
-    compile "com.squareup.retrofit2:retrofit:$androidVersions.retrofit"
-    compile "com.squareup.retrofit2:converter-gson:$androidVersions.retrofit"
-    compile "com.squareup.retrofit2:adapter-rxjava2:$androidVersions.retrofit"
-    compile "com.squareup.okhttp3:logging-interceptor:$androidVersions.loggingInterceptor"
+    implementation "com.squareup.retrofit2:retrofit:$androidVersions.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$androidVersions.retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$androidVersions.retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$androidVersions.loggingInterceptor"
 
     // to override any possible test dependencies conflicts
-    testCompile "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+    testImplementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
 
-    testCompile "junit:junit:$testVersions.junit"
-    testCompile "org.mockito:mockito-core:$testVersions.mockito"
-    testCompile "com.nhaarman:mockito-kotlin:$testVersions.mockitoKotlin"
-    testCompile "org.hamcrest:hamcrest-all:$testVersions.hamcrest"
+    testImplementation "junit:junit:$testVersions.junit"
+    testImplementation "org.mockito:mockito-core:$testVersions.mockito"
+    testImplementation "com.nhaarman:mockito-kotlin:$testVersions.mockitoKotlin"
+    testImplementation "org.hamcrest:hamcrest-all:$testVersions.hamcrest"
 }
