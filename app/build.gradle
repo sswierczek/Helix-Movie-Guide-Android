@@ -44,6 +44,8 @@ dependencies {
     compile project(':core')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
 
+    compile "io.kategory:kategory:$versions.kategory"
+
     compile "com.google.dagger:dagger:$versions.dagger"
     kapt "com.google.dagger:dagger-compiler:$versions.dagger"
 

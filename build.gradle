@@ -11,11 +11,12 @@ buildscript {
 
     ext {
         versions = [
-                kotlin: '1.1.51',
-                inject: '1',
-                dagger: '2.11',
-                rxjava: '2.0.7',
-                gson  : '2.8.0'
+                kotlin  : '1.1.51',
+                kategory: '0.3.10',
+                inject  : '1',
+                dagger  : '2.11',
+                rxjava  : '2.0.7',
+                gson    : '2.8.0'
         ]
 
         androidVersions = [
