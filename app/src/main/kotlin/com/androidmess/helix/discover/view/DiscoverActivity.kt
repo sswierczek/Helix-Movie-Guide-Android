@@ -2,8 +2,10 @@ package com.androidmess.helix.discover.view
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.GridLayoutManager
 import android.view.View
 import com.androidmess.helix.R
+import com.androidmess.helix.common.ui.show
 import com.androidmess.helix.discover.model.data.DiscoverMovieViewModel
 import com.androidmess.helix.discover.presentation.DiscoverPresenter
 import dagger.android.AndroidInjection
@@ -16,13 +18,24 @@ class DiscoverActivity : AppCompatActivity(), DiscoverView {
     @Inject
     lateinit var presenter: DiscoverPresenter
 
+    lateinit var discoverDataAdapter: DiscoverAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_discover)
+        setupDataContainer()
 
         // FIXME Add Base Activity to not call presenter methods
         presenter.connect(view = this)
+    }
+
+    private fun setupDataContainer() {
+        // FIXME Add tablet support
+        discoverDataContainer.setHasFixedSize(true)
+        discoverDataContainer.layoutManager = GridLayoutManager(this, 2)
+        discoverDataAdapter = DiscoverAdapter()
+        discoverDataContainer.adapter = discoverDataAdapter
     }
 
     override fun onStart() {
@@ -41,16 +54,14 @@ class DiscoverActivity : AppCompatActivity(), DiscoverView {
     }
 
     override fun showLoading(show: Boolean) {
-        progressBar.visibility = if (show) View.VISIBLE else View.GONE
+        discoverProgress.show(isVisible = show)
     }
 
     override fun showMovies(movies: List<DiscoverMovieViewModel>) {
-        // FIXME Add RecyclerView
-        fakeContainer.text = movies.toString()
+        discoverDataAdapter.replaceData(movies)
     }
 
     override fun showError(error: Throwable?) {
-        // FIXME Add error messages handling
-        fakeContainer.text = error.toString()
+        discoverError.visibility = View.VISIBLE
     }
 }

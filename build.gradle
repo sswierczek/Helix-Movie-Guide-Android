@@ -2,8 +2,9 @@ def apiProperties = rootProject.file('secure/api.properties')
 
 ext {
     config = [
-            baseUrl: "http://api.themoviedb.org/3/",
-            apiKey : getProperty('apiKey', apiProperties)
+            baseUrl       : "http://api.themoviedb.org/3/",
+            apiKey        : getProperty('apiKey', apiProperties),
+            poeditorApiKey: getProperty('poeditorApiKey', apiProperties)
     ]
 }
 
@@ -24,7 +25,8 @@ buildscript {
                 support           : '26.1.0',
                 constraint        : '1.0.2',
                 retrofit          : '2.2.0',
-                loggingInterceptor: '3.6.0'
+                loggingInterceptor: '3.6.0',
+                picasso             : '2.5.2'
         ]
 
         testVersions = [
@@ -42,6 +44,7 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.0'
+        classpath 'be.lukin.poeditor:gradle:0.3.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$project.versions.kotlin"
     }
 }

@@ -1,3 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Helix Movie Guide</string>
+    <string name="feed_fetch_error">"Error fetching feed"</string>
+    <string name="simple_error_action_button_text">"OK"</string>
+    <string name="discover_screen_title">"Discover"</string>
+    <string name="discover_search_hint">"Search…"</string>
+    <string name="details_cannot_load_trailers">"Error during loading movie trailers"</string>
+    <string name="app_name">"Helix Movie Guide"</string>
 </resources>
