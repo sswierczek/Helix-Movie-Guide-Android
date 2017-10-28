@@ -10,13 +10,17 @@ import java.lang.ref.WeakReference
 abstract class BaseMvpPresenter<VIEW : Mvp.View>(val schedulersInjector: SchedulersInjector)
     : Mvp.Presenter<VIEW> {
 
-    protected var view: WeakReference<VIEW>? = null
+    private lateinit var view: WeakReference<VIEW>
 
     override fun connect(view: VIEW) {
         this.view = WeakReference(view)
     }
 
     override fun disconnect() {
-        this.view?.clear()
+        this.view.clear()
+    }
+
+    protected fun getView(): VIEW? {
+        return view.get()
     }
 }
