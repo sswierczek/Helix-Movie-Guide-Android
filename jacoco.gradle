@@ -7,24 +7,23 @@ jacoco {
 task codeCoverageReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
     group = "Reporting"
     description = "Generate Jacoco coverage reports..."
-
-    classDirectories = fileTree(
-            dir: "${project.buildDir}/intermediates/classes/debug",
-            excludes: ['**/R.class',
-                       '**/R$*.class',
-                       '**/*$ViewInjector*.*',
-                       '**/*$ViewBinder*.*',
-                       '**/BuildConfig.*',
-                       '**/Manifest*.*',
-                       '**/*Injector*.*',
-                       '**/*App*.class',
-                       '**/*Activity.class',
-                       '**/*Module.*',
-                       '**/*Binder.*',
-                       '**/*Component*',
-                       '**/*Factory.*'
-            ]
-    )
+    def fileFilter = ['**/R.class',
+                      '**/R$*.class',
+                      '**/*$ViewInjector*.*',
+                      '**/*$ViewBinder*.*',
+                      '**/BuildConfig.*',
+                      '**/Manifest*.*',
+                      '**/*Injector*.*',
+                      '**/*App*.class',
+                      '**/*Activity.class',
+                      '**/*Module.*',
+                      '**/*Binder.*',
+                      '**/*Component*',
+                      '**/*Factory.*'
+    ]
+    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
+    def kotlinDebugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
+    classDirectories = files([debugTree], [kotlinDebugTree])
 
     def coverageSourceDirs = [
             "src/main/java"
