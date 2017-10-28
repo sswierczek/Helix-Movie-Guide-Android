@@ -2,6 +2,7 @@ package com.androidmess.helix.discover.view
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -34,17 +35,18 @@ class DiscoverActivity : AppCompatActivity(), DiscoverView {
     }
 
     private fun setupDataContainer() {
-        // FIXME Add tablet support
-        layoutManager = LinearLayoutManager(this)
-        dataAdapter = DiscoverAdapter()
+        val spanCount = resources.getInteger(R.integer.discover_view_span_count)
+        layoutManager = GridLayoutManager(this, spanCount)
+        dataAdapter = DiscoverAdapter(this)
+        dataAdapter.setSpanCount(spanCount)
         discoverDataContainer.setHasFixedSize(true)
         discoverDataContainer.layoutManager = layoutManager
         discoverDataContainer.adapter = dataAdapter
         discoverDataContainer.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
-                val visibleItemCount = layoutManager.childCount;
-                val totalItemCount = layoutManager.itemCount;
-                val pastVisibleItems = layoutManager.findFirstVisibleItemPosition();
+                val visibleItemCount = layoutManager.childCount
+                val totalItemCount = layoutManager.itemCount
+                val pastVisibleItems = layoutManager.findFirstVisibleItemPosition()
                 if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
                     presenter.scrolledToBottom()
                 }
