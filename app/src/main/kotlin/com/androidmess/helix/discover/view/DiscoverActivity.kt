@@ -3,7 +3,6 @@ package com.androidmess.helix.discover.view
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.androidmess.helix.R
@@ -20,9 +19,11 @@ class DiscoverActivity : AppCompatActivity(), DiscoverView {
     @Inject
     lateinit var presenter: DiscoverPresenter
 
-    private lateinit var dataAdapter: DiscoverAdapter
+    @Inject
+    lateinit var dataAdapter: DiscoverAdapter
 
-    private lateinit var layoutManager: LinearLayoutManager
+    @Inject
+    lateinit var layoutManager: GridLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -35,10 +36,6 @@ class DiscoverActivity : AppCompatActivity(), DiscoverView {
     }
 
     private fun setupDataContainer() {
-        val spanCount = resources.getInteger(R.integer.discover_view_span_count)
-        layoutManager = GridLayoutManager(this, spanCount)
-        dataAdapter = DiscoverAdapter(this)
-        dataAdapter.setSpanCount(spanCount)
         discoverDataContainer.setHasFixedSize(true)
         discoverDataContainer.layoutManager = layoutManager
         discoverDataContainer.adapter = dataAdapter

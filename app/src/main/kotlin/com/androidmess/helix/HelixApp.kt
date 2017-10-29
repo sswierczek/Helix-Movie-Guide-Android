@@ -3,6 +3,7 @@ package com.androidmess.helix
 import android.app.Activity
 import android.app.Application
 import com.androidmess.helix.di.DaggerHelixAppComponent
+import com.androidmess.helix.di.HelixAppModule
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -15,7 +16,9 @@ class HelixApp : Application(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
-        DaggerHelixAppComponent.create()
+        DaggerHelixAppComponent.builder()
+                .helixAppModule(HelixAppModule(this))
+                .build()
                 .inject(this)
     }
 
