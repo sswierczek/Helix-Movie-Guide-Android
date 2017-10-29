@@ -70,7 +70,7 @@ dependencies {
     testImplementation "junit:junit:$testVersions.junit"
     testImplementation "org.mockito:mockito-core:$testVersions.mockito"
     testImplementation "com.nhaarman:mockito-kotlin:$testVersions.mockitoKotlin"
-    testImplementation "org.hamcrest:hamcrest-all:$testVersions.hamcrest"
+    testImplementation "org.amshove.kluent:kluent-android:$testVersions.kluent"
 }
 
 poeditor {
