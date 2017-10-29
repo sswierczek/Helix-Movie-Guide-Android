@@ -1,4 +1,4 @@
-package com.androidmess.helix.common.ui
+package com.androidmess.helix.common.ui.recyclerview
 
 import com.androidmess.helix.BaseTest
 import org.amshove.kluent.shouldEqual

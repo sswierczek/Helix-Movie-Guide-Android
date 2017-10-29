@@ -1,4 +1,4 @@
-package com.androidmess.helix.common.ui
+package com.androidmess.helix.common.ui.recyclerview
 
 class RecyclerViewItemSizeCalculator(private val screenWidth: Int) {
 

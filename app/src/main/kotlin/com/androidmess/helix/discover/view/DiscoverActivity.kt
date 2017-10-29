@@ -3,9 +3,9 @@ package com.androidmess.helix.discover.view
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.androidmess.helix.R
+import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
 import com.androidmess.helix.common.ui.show
 import com.androidmess.helix.discover.model.data.DiscoverMovieViewModel
 import com.androidmess.helix.discover.presentation.DiscoverPresenter
@@ -25,6 +25,9 @@ class DiscoverActivity : AppCompatActivity(), DiscoverView {
     @Inject
     lateinit var layoutManager: GridLayoutManager
 
+    @Inject
+    lateinit var onScrolledToBottomDetector: RecyclerViewOnScrolledToBottomDetector
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
@@ -36,19 +39,11 @@ class DiscoverActivity : AppCompatActivity(), DiscoverView {
     }
 
     private fun setupDataContainer() {
+        onScrolledToBottomDetector.onScrolledToBottom = { presenter.scrolledToBottom() }
         discoverDataContainer.setHasFixedSize(true)
         discoverDataContainer.layoutManager = layoutManager
         discoverDataContainer.adapter = dataAdapter
-        discoverDataContainer.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
-                val visibleItemCount = layoutManager.childCount
-                val totalItemCount = layoutManager.itemCount
-                val pastVisibleItems = layoutManager.findFirstVisibleItemPosition()
-                if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
-                    presenter.scrolledToBottom()
-                }
-            }
-        })
+        discoverDataContainer.addOnScrollListener(onScrolledToBottomDetector)
     }
 
     override fun onStart() {

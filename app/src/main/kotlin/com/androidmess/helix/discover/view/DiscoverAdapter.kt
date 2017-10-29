@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.androidmess.helix.R
-import com.androidmess.helix.common.ui.RecyclerViewItemSizeCalculator
 import com.androidmess.helix.common.ui.inflate
 import com.androidmess.helix.common.ui.load
+import com.androidmess.helix.common.ui.recyclerview.RecyclerViewItemSizeCalculator
 import com.androidmess.helix.discover.model.data.DiscoverMovieViewModel
 import kotlinx.android.synthetic.main.discover_list_item.view.*
 
