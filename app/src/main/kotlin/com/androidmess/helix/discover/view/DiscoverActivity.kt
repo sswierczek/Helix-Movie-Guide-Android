@@ -7,7 +7,7 @@ import android.view.View
 import com.androidmess.helix.R
 import com.androidmess.helix.common.debug.L
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
-import com.androidmess.helix.common.ui.show
+import com.androidmess.helix.common.ui.view.show
 import com.androidmess.helix.discover.model.data.DiscoverMovieViewModel
 import com.androidmess.helix.discover.presentation.DiscoverPresenter
 import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents

@@ -3,8 +3,8 @@ package com.androidmess.helix.discover.di
 import android.content.Context
 import android.support.v7.widget.GridLayoutManager
 import com.androidmess.helix.R
+import com.androidmess.helix.common.app.getScreenWidth
 import com.androidmess.helix.common.rx.SchedulersInjector
-import com.androidmess.helix.common.ui.getScreenWidth
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewItemSizeCalculator
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
 import com.androidmess.helix.di.scopes.ActivityScope
