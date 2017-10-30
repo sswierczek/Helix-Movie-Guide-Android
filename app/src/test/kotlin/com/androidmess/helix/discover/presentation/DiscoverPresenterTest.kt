@@ -103,4 +103,14 @@ class DiscoverPresenterTest : BaseTest() {
 
         verify(getDiscoverMoviesUseCase).execute(nextPage)
     }
+
+    @Test
+    fun `Should not load next page when previous fetch is still in progress`() {
+        val firstPage = 1
+        presenter.connect(view)
+
+        presenter.scrolledToBottom()
+
+        verify(getDiscoverMoviesUseCase).execute(firstPage)
+    }
 }
