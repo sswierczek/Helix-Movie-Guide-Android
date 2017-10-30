@@ -5,10 +5,12 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
 import com.androidmess.helix.R
+import com.androidmess.helix.common.debug.L
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
 import com.androidmess.helix.common.ui.show
 import com.androidmess.helix.discover.model.data.DiscoverMovieViewModel
 import com.androidmess.helix.discover.presentation.DiscoverPresenter
+import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_discover.*
 import javax.inject.Inject
@@ -28,6 +30,9 @@ class DiscoverActivity : AppCompatActivity(), DiscoverView {
     @Inject
     lateinit var onScrolledToBottomDetector: RecyclerViewOnScrolledToBottomDetector
 
+    @Inject
+    lateinit var l: L
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
@@ -39,11 +44,16 @@ class DiscoverActivity : AppCompatActivity(), DiscoverView {
     }
 
     private fun setupDataContainer() {
-        onScrolledToBottomDetector.onScrolledToBottom = { presenter.scrolledToBottom() }
+        onScrolledToBottomDetector
+                .scrollEvents(discoverDataContainer.scrollEvents())
+                .observe()
+                .subscribe {
+                    l.d("On scrolled to bottom...")
+                    presenter.scrolledToBottom()
+                }
         discoverDataContainer.setHasFixedSize(true)
         discoverDataContainer.layoutManager = layoutManager
         discoverDataContainer.adapter = dataAdapter
-        discoverDataContainer.addOnScrollListener(onScrolledToBottomDetector)
     }
 
     override fun onStart() {

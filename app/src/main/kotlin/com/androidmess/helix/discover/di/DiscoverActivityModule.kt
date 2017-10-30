@@ -34,8 +34,9 @@ class DiscoverActivityModule {
 
     @ActivityScope
     @Provides
-    fun provideRecyclerViewOnScrolledToBottomDetector(layoutManager: GridLayoutManager): RecyclerViewOnScrolledToBottomDetector {
-        return RecyclerViewOnScrolledToBottomDetector(layoutManager)
+    fun provideRecyclerViewOnScrolledToBottomDetector(schedulersInjector: SchedulersInjector,
+                                                      layoutManager: GridLayoutManager): RecyclerViewOnScrolledToBottomDetector {
+        return RecyclerViewOnScrolledToBottomDetector(schedulersInjector, layoutManager)
     }
 
     @ActivityScope
