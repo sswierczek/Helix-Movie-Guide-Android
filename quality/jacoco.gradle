@@ -1,7 +1,7 @@
 apply plugin: 'jacoco'
 
 jacoco {
-    toolVersion = "0.7.9"
+    toolVersion = "$rootProject.ext.quality.jacoco"
 }
 
 task codeCoverageReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {

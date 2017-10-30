@@ -4,7 +4,11 @@ import com.androidmess.helix.BaseTest
 import com.androidmess.helix.common.model.data.MovieResult
 import com.androidmess.helix.discover.usecase.GetDiscoverMoviesUseCase
 import com.androidmess.helix.discover.view.DiscoverView
-import com.nhaarman.mockito_kotlin.*
+import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.never
+import com.nhaarman.mockito_kotlin.verify
+import com.nhaarman.mockito_kotlin.verifyZeroInteractions
+import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.subjects.PublishSubject
 import org.junit.Test
 import org.mockito.InjectMocks

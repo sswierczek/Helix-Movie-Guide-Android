@@ -2,7 +2,6 @@ package com.androidmess.helix.common.rx
 
 import io.reactivex.Scheduler
 
-
 /**
  * Abstraction for Schedulers for easier testing.
  *

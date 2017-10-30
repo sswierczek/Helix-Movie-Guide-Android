@@ -1,9 +1,8 @@
-package com.androidmess.helix.common.debug;
+package com.androidmess.helix.common.debug
 
 import com.androidmess.helix.BuildConfig
 import timber.log.Timber
 import timber.log.Timber.DebugTree
-
 
 class TimberL : L {
 
