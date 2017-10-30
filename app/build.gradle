@@ -42,6 +42,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
 
+    implementation "com.jakewharton.timber:timber:$androidVersions.timber"
+
     implementation "io.kategory:kategory:$versions.kategory"
 
     implementation "com.google.dagger:dagger:$versions.dagger"
@@ -56,6 +58,9 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$androidVersions.support"
     implementation "com.android.support.constraint:constraint-layout:$androidVersions.constraint"
     implementation "com.android.support:recyclerview-v7:$androidVersions.support"
+
+    implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:$androidVersions.rxbinding"
+    implementation "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$androidVersions.rxbinding"
 
     implementation "com.squareup.retrofit2:retrofit:$androidVersions.retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$androidVersions.retrofit"

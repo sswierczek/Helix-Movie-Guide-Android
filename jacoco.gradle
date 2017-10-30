@@ -20,8 +20,10 @@ task codeCoverageReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
                       '**/*Module.*',
                       '**/*Binder.*',
                       '**/*Component*',
-                      '**/*Factory.*'
+                      '**/*Factory.*',
+                      '**/TimberL.*'
     ]
+
     def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
     def kotlinDebugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
     classDirectories = files([debugTree], [kotlinDebugTree])
