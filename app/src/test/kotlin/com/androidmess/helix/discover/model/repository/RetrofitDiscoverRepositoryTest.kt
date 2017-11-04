@@ -1,27 +1,28 @@
 package com.androidmess.helix.discover.model.repository
 
 import com.androidmess.helix.BaseTest
+import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.whenever
+import org.junit.Before
 import org.junit.Test
-import org.mockito.Mock
 import retrofit2.Retrofit
 
-@Suppress("IllegalIdentifier")
+@Suppress("IllegalIdentifier", "MemberVisibilityCanPrivate")
 class RetrofitDiscoverRepositoryTest : BaseTest() {
 
-    val TEST_API_KEY = "test_api_key1234"
+    companion object {
+        const val TEST_API_KEY = "test_api_key1234"
+    }
 
-    @Mock
-    lateinit var retrofit: Retrofit
+    val retrofit: Retrofit = mock()
 
-    @Mock
-    lateinit var retrofitService: RetrofitDiscoverService
+    val retrofitService: RetrofitDiscoverService = mock()
 
     lateinit var repository: RetrofitDiscoverRepository
 
-    override fun setUp() {
-        super.setUp()
+    @Before
+    fun setUp() {
         whenever(retrofit.create(RetrofitDiscoverService::class.java)).thenReturn(retrofitService)
         repository = RetrofitDiscoverRepository(retrofit, TEST_API_KEY)
     }

@@ -7,7 +7,7 @@ import java.lang.ref.WeakReference
 /**
  * Presenter that provides basic implementation for handling views.
  */
-abstract class BaseMvpPresenter<VIEW : Mvp.View>(val schedulersInjector: SchedulersInjector)
+abstract class BaseMvpPresenter<VIEW : Mvp.View>(protected val schedulers: SchedulersInjector)
     : Mvp.Presenter<VIEW> {
 
     private lateinit var view: WeakReference<VIEW>

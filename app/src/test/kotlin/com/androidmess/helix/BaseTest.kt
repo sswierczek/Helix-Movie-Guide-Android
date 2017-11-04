@@ -1,25 +1,24 @@
 package com.androidmess.helix
 
 import com.androidmess.helix.common.rx.SchedulersInjector
-import com.nhaarman.mockito_kotlin.whenever
+import io.reactivex.Scheduler
 import io.reactivex.schedulers.Schedulers
-import org.junit.Before
-import org.mockito.Mock
-import org.mockito.MockitoAnnotations
 
 abstract class BaseTest {
 
-    @Mock
-    lateinit var testSchedulerInjector: SchedulersInjector
+    private val testScheduler = Schedulers.trampoline()
 
-    val testScheduler = Schedulers.trampoline()
+    val testSchedulers: SchedulersInjector = object : SchedulersInjector {
+        override fun ui(): Scheduler {
+            return testScheduler
+        }
 
-    @Before
-    open fun setUp() {
-        MockitoAnnotations.initMocks(this)
-        // Used mock instead of implementation to use with InjectMocks annotation
-        whenever(testSchedulerInjector.ui()).thenReturn(testScheduler)
-        whenever(testSchedulerInjector.io()).thenReturn(testScheduler)
-        whenever(testSchedulerInjector.computation()).thenReturn(testScheduler)
+        override fun io(): Scheduler {
+            return testScheduler
+        }
+
+        override fun computation(): Scheduler {
+            return testScheduler
+        }
     }
 }

@@ -5,34 +5,30 @@ import com.androidmess.helix.common.model.data.MovieResult
 import com.androidmess.helix.discover.usecase.GetDiscoverMoviesUseCase
 import com.androidmess.helix.discover.view.DiscoverView
 import com.nhaarman.mockito_kotlin.any
+import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.never
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyZeroInteractions
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.subjects.PublishSubject
+import org.junit.Before
 import org.junit.Test
-import org.mockito.InjectMocks
-import org.mockito.Mock
 
-@Suppress("IllegalIdentifier")
+@Suppress("IllegalIdentifier", "MemberVisibilityCanPrivate")
 class DiscoverPresenterTest : BaseTest() {
 
-    @Mock
-    lateinit var getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase
+    val getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase = mock()
 
-    @Mock
-    lateinit var view: DiscoverView
+    val view: DiscoverView = mock()
 
-    @Mock
-    lateinit var data: MovieResult
+    val data: MovieResult = mock()
 
-    @InjectMocks
-    lateinit var presenter: DiscoverPresenter
+    val presenter: DiscoverPresenter = DiscoverPresenter(testSchedulers, getDiscoverMoviesUseCase)
 
     val dataObservable: PublishSubject<MovieResult> = PublishSubject.create<MovieResult>()
 
-    override fun setUp() {
-        super.setUp()
+    @Before
+    fun setUp() {
         whenever(getDiscoverMoviesUseCase.execute(any())).thenReturn(dataObservable)
     }
 

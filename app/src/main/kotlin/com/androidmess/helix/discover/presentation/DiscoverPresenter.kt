@@ -9,12 +9,10 @@ import com.androidmess.helix.discover.view.DiscoverView
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 
-class DiscoverPresenter(schedulersInjector: SchedulersInjector,
-                        getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase)
-    : BaseMvpPresenter<DiscoverView>(schedulersInjector) {
+class DiscoverPresenter(schedulers: SchedulersInjector,
+                        private val getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase)
+    : BaseMvpPresenter<DiscoverView>(schedulers) {
 
-    // FIXME Find a way to move it to constructor and exclude from coverage reports
-    private val getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase = getDiscoverMoviesUseCase
     private var isLoading: Boolean = false // FIXME Introduce state
     private var page: Int = 1
     private var disposables: CompositeDisposable = CompositeDisposable()
@@ -50,11 +48,11 @@ class DiscoverPresenter(schedulersInjector: SchedulersInjector,
         isLoading = true
         val discoverDisposable = getDiscoverMoviesUseCase
                 .execute(page)
-                .subscribeOn(schedulersInjector.io())
+                .subscribeOn(schedulers.io())
                 .flatMapIterable(MovieResult::results)
                 .flatMap { Observable.just(DiscoverMovieViewModel.Mapper.fromMovie(it)) }
                 .toList()
-                .observeOn(schedulersInjector.ui())
+                .observeOn(schedulers.ui())
                 .doOnSubscribe { getView()?.showLoading(true) }
                 .doFinally { getView()?.showLoading(false) }
                 .subscribe({
