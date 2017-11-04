@@ -1,6 +1,7 @@
 package com.androidmess.helix.common.network.di
 
-import com.androidmess.helix.BuildConfig
+import com.androidmess.helix.common.app.AppConfig
+import com.androidmess.helix.common.network.NetworkConfig
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -15,9 +16,17 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttp(): OkHttpClient {
+    fun provideNetworkConfig(): NetworkConfig {
+        return NetworkConfig()
+    }
+
+    @Provides
+    @Singleton
+    fun provideOkHttp(appConfig: AppConfig): OkHttpClient {
         val logging = HttpLoggingInterceptor()
-        logging.level = HttpLoggingInterceptor.Level.BODY
+        val levelBody = HttpLoggingInterceptor.Level.BODY
+        val levelNone = HttpLoggingInterceptor.Level.NONE
+        logging.level = if (appConfig.isDebug) levelBody else levelNone
         return OkHttpClient.Builder()
                 .addInterceptor(logging)
                 .build()
@@ -25,9 +34,9 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okClient: OkHttpClient): Retrofit {
+    fun provideRetrofit(okClient: OkHttpClient, networkConfig: NetworkConfig): Retrofit {
         return Retrofit.Builder()
-                .baseUrl(BuildConfig.BASE_URL) // FIXME Add config
+                .baseUrl(networkConfig.baseUrl)
                 .client(okClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

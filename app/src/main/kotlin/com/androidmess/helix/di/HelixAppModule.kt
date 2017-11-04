@@ -2,6 +2,7 @@ package com.androidmess.helix.di
 
 import android.app.Application
 import android.content.Context
+import com.androidmess.helix.common.app.AppConfig
 import com.androidmess.helix.common.debug.L
 import com.androidmess.helix.common.debug.TimberL
 import com.androidmess.helix.common.rx.AppSchedulersInjector
@@ -15,8 +16,14 @@ class HelixAppModule(private val application: Application) {
 
     @Provides
     @Singleton
-    fun provideL(): L {
-        return TimberL()
+    fun provideAppConfig(): AppConfig {
+        return AppConfig()
+    }
+
+    @Provides
+    @Singleton
+    fun provideL(appConfig: AppConfig): L {
+        return TimberL(appConfig)
     }
 
     @Provides

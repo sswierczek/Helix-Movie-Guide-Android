@@ -1,7 +1,7 @@
 package com.androidmess.helix.discover.model.di
 
-import com.androidmess.helix.BuildConfig
 import com.androidmess.helix.common.model.repository.Repository
+import com.androidmess.helix.common.network.NetworkConfig
 import com.androidmess.helix.discover.model.repository.RetrofitDiscoverRepository
 import com.androidmess.helix.discover.usecase.GetDiscoverMoviesUseCase
 import dagger.Module
@@ -14,8 +14,8 @@ class DiscoverModelModule {
 
     @Provides
     @Singleton
-    fun providesRepositoryDiscover(retrofit: Retrofit): Repository.Discover {
-        return RetrofitDiscoverRepository(retrofit, BuildConfig.API_KEY) // FIXME Add config
+    fun providesRepositoryDiscover(retrofit: Retrofit, networkConfig: NetworkConfig): Repository.Discover {
+        return RetrofitDiscoverRepository(retrofit, networkConfig.apiKey)
     }
 
     @Provides

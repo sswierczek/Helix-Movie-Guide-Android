@@ -1,13 +1,13 @@
 package com.androidmess.helix.common.debug
 
-import com.androidmess.helix.BuildConfig
+import com.androidmess.helix.common.app.AppConfig
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 
-class TimberL : L {
+class TimberL(private val appConfig: AppConfig) : L {
 
     override fun init() {
-        if (BuildConfig.DEBUG) { // FIXME add config
+        if (appConfig.isDebug) {
             Timber.plant(DebugTree())
         }
     }

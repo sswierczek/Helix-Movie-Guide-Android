@@ -11,7 +11,7 @@ task codeCoverageReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
                       '**/R$*.class',
                       '**/*$ViewInjector*.*',
                       '**/*$ViewBinder*.*',
-                      '**/BuildConfig.*',
+                      '**/*Config.*',
                       '**/Manifest*.*',
                       '**/*Injector*.*',
                       '**/*App*.class',
@@ -22,8 +22,7 @@ task codeCoverageReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
                       '**/*Component*',
                       '**/*Factory.*',
                       '**/TimberL.*',
-                      '**/*View*Extensions.*',
-                      '**/ContextExtensions.*'
+                      '**/*Extensions.*',
     ]
 
     def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
