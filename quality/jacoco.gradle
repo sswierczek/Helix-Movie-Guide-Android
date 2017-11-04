@@ -7,30 +7,29 @@ jacoco {
 task codeCoverageReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
     group = "Reporting"
     description = "Generate Jacoco coverage reports..."
-    def fileFilter = ['**/R.class',
-                      '**/R$*.class',
-                      '**/*$ViewInjector*.*',
-                      '**/*$ViewBinder*.*',
-                      '**/*Config.*',
-                      '**/Manifest*.*',
-                      '**/*Injector*.*',
-                      '**/*App*.class',
-                      '**/*Activity.class',
-                      '**/*Adapter.class',
-                      '**/*Module.*',
-                      '**/*Binder.*',
-                      '**/*Component*',
-                      '**/*Factory.*',
-                      '**/TimberL.*',
-                      '**/*Extensions.*',
-    ]
-
-    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
-    def kotlinDebugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
-    classDirectories = files([debugTree], [kotlinDebugTree])
+    classDirectories = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug",
+            excludes: ['**/R.class',
+                       '**/R$*.class',
+                       '**/*$ViewInjector*.*',
+                       '**/*$ViewBinder*.*',
+                       '**/*Config.*',
+                       '**/Manifest*.*',
+                       '**/*Injector*.*',
+                       '**/*App*.*',
+                       '**/*Activity.*',
+                       '**/*Adapter.*',
+                       '**/*ViewHolder.*',
+                       '**/*Module.*',
+                       '**/*Binder.*',
+                       '**/*Component*',
+                       '**/*Factory.*',
+                       '**/*ViewModel.*',
+                       '**/TimberL.*',
+                       '**/*Extensions*.*',
+            ])
 
     def coverageSourceDirs = [
-            "src/main/java"
+            "src/main/kotlin"
     ]
     additionalSourceDirs = files(coverageSourceDirs)
     sourceDirectories = files(coverageSourceDirs)
