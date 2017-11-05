@@ -16,7 +16,7 @@ task codeCoverageReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
                        '**/Manifest*.*',
                        '**/*Injector*.*',
                        '**/*App*.*',
-                       '**/*Activity.*',
+                       '**/*Activity*.*',
                        '**/*Adapter.*',
                        '**/*ViewHolder.*',
                        '**/*Module.*',
