@@ -30,18 +30,19 @@ class DiscoverPresenterTest : BaseTest() {
     @Before
     fun setUp() {
         whenever(getDiscoverMoviesUseCase.execute(any())).thenReturn(dataObservable)
+        presenter.connect(view)
     }
 
     @Test
     fun `Should show loading when starting to fetch data`() {
-        presenter.connect(view)
+        presenter.visible()
 
         verify(view).showLoading(true)
     }
 
     @Test
     fun `Should hide loading when data arrived`() {
-        presenter.connect(view)
+        presenter.visible()
 
         dataObservable.onComplete()
 
@@ -51,7 +52,7 @@ class DiscoverPresenterTest : BaseTest() {
     @Test
     fun `Should show error when data loading error occurred`() {
         val error = Throwable("test error")
-        presenter.connect(view)
+        presenter.visible()
 
         dataObservable.onError(error)
 
@@ -60,19 +61,12 @@ class DiscoverPresenterTest : BaseTest() {
 
     @Test
     fun `Should show data in view when finished fetching`() {
-        presenter.connect(view)
+        presenter.visible()
 
         dataObservable.onNext(data)
         dataObservable.onComplete()
 
         verify(view).showMovies(any())
-    }
-
-    @Test
-    fun `Should does nothing when view is visible`() {
-        presenter.visible()
-
-        verifyZeroInteractions(view)
     }
 
     @Test
@@ -84,7 +78,6 @@ class DiscoverPresenterTest : BaseTest() {
 
     @Test
     fun `Should send nothing to view when disconnected`() {
-        presenter.connect(view)
         presenter.disconnect()
 
         dataObservable.onNext(data)
@@ -96,7 +89,7 @@ class DiscoverPresenterTest : BaseTest() {
     @Test
     fun `Should load next page when scrolled to bottom`() {
         val nextPage = 2
-        presenter.connect(view)
+        presenter.visible()
         dataObservable.onComplete()
 
         presenter.scrolledToBottom()
@@ -107,7 +100,7 @@ class DiscoverPresenterTest : BaseTest() {
     @Test
     fun `Should not load next page when previous fetch is still in progress`() {
         val firstPage = 1
-        presenter.connect(view)
+        presenter.visible()
 
         presenter.scrolledToBottom()
 

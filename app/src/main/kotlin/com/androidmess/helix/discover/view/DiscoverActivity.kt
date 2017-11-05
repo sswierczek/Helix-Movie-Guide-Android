@@ -1,11 +1,12 @@
 package com.androidmess.helix.discover.view
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
 import com.androidmess.helix.R
+import com.androidmess.helix.common.activity.CompositeAppCompatActivity
 import com.androidmess.helix.common.debug.L
+import com.androidmess.helix.common.mvp.plugin.PresenterCompositeActivityPlugin
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
 import com.androidmess.helix.common.ui.view.show
 import com.androidmess.helix.discover.model.data.DiscoverMovieViewModel
@@ -15,7 +16,7 @@ import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_discover.*
 import javax.inject.Inject
 
-class DiscoverActivity : AppCompatActivity(), DiscoverView {
+class DiscoverActivity : CompositeAppCompatActivity(), DiscoverView {
 
     // FIXME Add presenter persistence
     @Inject
@@ -35,12 +36,10 @@ class DiscoverActivity : AppCompatActivity(), DiscoverView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
+        registerPlugin(PresenterCompositeActivityPlugin(this, presenter))
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_discover)
         setupDataContainer()
-
-        // FIXME Add Base Activity to not call presenter methods
-        presenter.connect(view = this)
     }
 
     private fun setupDataContainer() {
@@ -54,21 +53,6 @@ class DiscoverActivity : AppCompatActivity(), DiscoverView {
         discoverDataContainer.setHasFixedSize(true)
         discoverDataContainer.layoutManager = layoutManager
         discoverDataContainer.adapter = dataAdapter
-    }
-
-    override fun onStart() {
-        super.onStart()
-        // FIXME Add Base Activity to not call presenter methods
-        presenter.visible()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        // FIXME Add Base Activity to not call presenter methods
-        presenter.invisible()
-        if (isFinishing) {
-            presenter.disconnect()
-        }
     }
 
     override fun showLoading(show: Boolean) {
