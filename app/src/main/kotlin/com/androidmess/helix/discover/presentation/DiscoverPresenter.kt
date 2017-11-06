@@ -25,7 +25,8 @@ class DiscoverPresenter(schedulers: SchedulersInjector,
         fetchPage(page)
     }
 
-    override fun visible() {
+    override fun visible(view: DiscoverView) {
+        super.visible(view)
         fetchPage(page)
     }
 

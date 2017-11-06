@@ -23,6 +23,7 @@ buildscript {
         androidVersions = [
                 timber            : '4.6.0',
                 rxAndroid         : '2.0.1',
+                arch              : '1.0.0',
                 support           : '26.1.0',
                 constraint        : '1.0.2',
                 retrofit          : '2.2.0',

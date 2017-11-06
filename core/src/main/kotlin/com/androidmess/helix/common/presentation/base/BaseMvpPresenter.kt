@@ -16,6 +16,10 @@ abstract class BaseMvpPresenter<VIEW : Mvp.View>(protected val schedulers: Sched
         this.view = WeakReference(view)
     }
 
+    override fun visible(view: VIEW) {
+        this.view = WeakReference(view)
+    }
+
     override fun disconnect() {
         this.view.clear()
     }

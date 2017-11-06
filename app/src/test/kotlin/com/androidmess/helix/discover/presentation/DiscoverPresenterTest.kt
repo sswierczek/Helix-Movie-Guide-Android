@@ -35,14 +35,14 @@ class DiscoverPresenterTest : BaseTest() {
 
     @Test
     fun `Should show loading when starting to fetch data`() {
-        presenter.visible()
+        presenter.visible(view)
 
         verify(view).showLoading(true)
     }
 
     @Test
     fun `Should hide loading when data arrived`() {
-        presenter.visible()
+        presenter.visible(view)
 
         dataObservable.onComplete()
 
@@ -52,7 +52,7 @@ class DiscoverPresenterTest : BaseTest() {
     @Test
     fun `Should show error when data loading error occurred`() {
         val error = Throwable("test error")
-        presenter.visible()
+        presenter.visible(view)
 
         dataObservable.onError(error)
 
@@ -61,7 +61,7 @@ class DiscoverPresenterTest : BaseTest() {
 
     @Test
     fun `Should show data in view when finished fetching`() {
-        presenter.visible()
+        presenter.visible(view)
 
         dataObservable.onNext(data)
         dataObservable.onComplete()
@@ -89,7 +89,7 @@ class DiscoverPresenterTest : BaseTest() {
     @Test
     fun `Should load next page when scrolled to bottom`() {
         val nextPage = 2
-        presenter.visible()
+        presenter.visible(view)
         dataObservable.onComplete()
 
         presenter.scrolledToBottom()
@@ -100,7 +100,7 @@ class DiscoverPresenterTest : BaseTest() {
     @Test
     fun `Should not load next page when previous fetch is still in progress`() {
         val firstPage = 1
-        presenter.visible()
+        presenter.visible(view)
 
         presenter.scrolledToBottom()
 

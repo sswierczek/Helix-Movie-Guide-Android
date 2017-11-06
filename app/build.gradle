@@ -62,6 +62,8 @@ dependencies {
 
     implementation "io.reactivex.rxjava2:rxandroid:$androidVersions.rxAndroid"
 
+    implementation "android.arch.lifecycle:extensions:$androidVersions.arch"
+
     implementation "com.android.support:appcompat-v7:$androidVersions.support"
     implementation "com.android.support.constraint:constraint-layout:$androidVersions.constraint"
     implementation "com.android.support:recyclerview-v7:$androidVersions.support"

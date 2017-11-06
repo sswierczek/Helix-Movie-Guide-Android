@@ -18,7 +18,6 @@ import javax.inject.Inject
 
 class DiscoverActivity : CompositeAppCompatActivity(), DiscoverView {
 
-    // FIXME Add presenter persistence
     @Inject
     lateinit var presenter: DiscoverPresenter
 
@@ -35,9 +34,9 @@ class DiscoverActivity : CompositeAppCompatActivity(), DiscoverView {
     lateinit var l: L
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
         registerPlugin(PresenterCompositeActivityPlugin(this, presenter))
-        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_discover)
         setupDataContainer()
     }

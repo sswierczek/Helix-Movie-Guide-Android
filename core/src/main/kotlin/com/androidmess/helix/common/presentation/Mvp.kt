@@ -17,7 +17,7 @@ interface Mvp {
         /**
          * View is visible
          */
-        fun visible()
+        fun visible(view: VIEW)
 
         /**
          * View is invisible

@@ -21,7 +21,7 @@ class PresenterCompositeActivityPlugin<VIEW : Mvp.View>(private val view: VIEW,
     }
 
     override fun onStart() {
-        presenter.visible()
+        presenter.visible(view)
     }
 
     override fun onStop(isFinishing: Boolean) {
