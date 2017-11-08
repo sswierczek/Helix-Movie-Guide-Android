@@ -4,8 +4,8 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.support.v7.widget.GridLayoutManager
 import com.androidmess.helix.R
+import com.androidmess.helix.common.activity.persistance.ActivityPersistence
 import com.androidmess.helix.common.app.getScreenWidth
-import com.androidmess.helix.common.mvp.persistance.PresenterPersistentContainer
 import com.androidmess.helix.common.rx.SchedulersInjector
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewItemSizeCalculator
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
@@ -22,19 +22,21 @@ class DiscoverActivityModule {
 
     @ActivityScope
     @Provides
-    fun providePresenterPersistentContainer(activity: DiscoverActivity): PresenterPersistentContainer {
-        return ViewModelProviders.of(activity).get(PresenterPersistentContainer::class.java)
+    fun provideActivityPersistence(activity: DiscoverActivity): ActivityPersistence {
+        return ViewModelProviders.of(activity).get(ActivityPersistence::class.java)
     }
 
     @ActivityScope
     @Provides
-    fun providesDiscoverPresenter(persistentContainer: PresenterPersistentContainer,
+    fun providesDiscoverPresenter(activityPersistence: ActivityPersistence,
                                   schedulersInjector: SchedulersInjector,
                                   getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase): DiscoverPresenter {
-        if (persistentContainer.presenter == null) {
-            persistentContainer.presenter = DiscoverPresenter(schedulersInjector, getDiscoverMoviesUseCase)
+        var presenter = activityPersistence.get(DiscoverPresenter::class)
+        if (presenter == null) {
+            presenter = DiscoverPresenter(schedulersInjector, getDiscoverMoviesUseCase)
+            activityPersistence.put(presenter)
         }
-        return persistentContainer.presenter as DiscoverPresenter
+        return presenter as DiscoverPresenter
     }
 
     @ActivityScope
