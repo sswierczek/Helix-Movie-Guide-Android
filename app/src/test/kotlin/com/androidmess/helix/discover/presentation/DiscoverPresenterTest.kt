@@ -3,7 +3,6 @@ package com.androidmess.helix.discover.presentation
 import com.androidmess.helix.BaseTest
 import com.androidmess.helix.common.model.data.MovieResult
 import com.androidmess.helix.discover.usecase.GetDiscoverMoviesUseCase
-import com.androidmess.helix.discover.view.DiscoverView
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.never
