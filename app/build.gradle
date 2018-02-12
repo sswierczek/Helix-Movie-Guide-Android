@@ -7,12 +7,13 @@ apply from: '../quality/jacoco.gradle'
 apply from: '../quality/ktlint.gradle'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.3"
+
     defaultConfig {
         applicationId "com.androidmess.helix"
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -51,8 +52,6 @@ dependencies {
 
     implementation "com.jakewharton.timber:timber:$androidVersions.timber"
 
-    implementation "io.kategory:kategory:$versions.kategory"
-
     implementation "com.google.dagger:dagger:$versions.dagger"
     kapt "com.google.dagger:dagger-compiler:$versions.dagger"
 
@@ -64,7 +63,9 @@ dependencies {
 
     implementation "android.arch.lifecycle:extensions:$androidVersions.arch"
 
+    implementation "com.android.support:support-v4:$androidVersions.support"
     implementation "com.android.support:appcompat-v7:$androidVersions.support"
+    implementation "com.android.support:support-media-compat:$androidVersions.support"
     implementation "com.android.support.constraint:constraint-layout:$androidVersions.constraint"
     implementation "com.android.support:recyclerview-v7:$androidVersions.support"
 

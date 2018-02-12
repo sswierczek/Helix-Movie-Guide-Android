@@ -12,19 +12,18 @@ buildscript {
 
     ext {
         versions = [
-                kotlin  : '1.1.51',
-                kategory: '0.3.10',
-                inject  : '1',
-                dagger  : '2.11',
-                rxjava  : '2.1.5',
-                gson    : '2.8.0'
+                kotlin: '1.2.21',
+                inject: '1',
+                dagger: '2.13',
+                rxjava: '2.1.5',
+                gson  : '2.8.0'
         ]
 
         androidVersions = [
                 timber            : '4.6.0',
                 rxAndroid         : '2.0.1',
-                arch              : '1.0.0',
-                support           : '26.1.0',
+                arch              : '1.1.0',
+                support           : '27.0.2',
                 constraint        : '1.0.2',
                 retrofit          : '2.2.0',
                 loggingInterceptor: '3.6.0',
@@ -51,7 +50,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0'
+        classpath 'com.android.tools.build:gradle:3.0.1'
         classpath 'be.lukin.poeditor:gradle:0.3.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$project.versions.kotlin"
 
