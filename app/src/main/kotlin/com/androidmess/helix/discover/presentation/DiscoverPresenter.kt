@@ -1,7 +1,8 @@
 package com.androidmess.helix.discover.presentation
 
 import android.arch.lifecycle.ViewModel
-import android.databinding.ObservableField
+import android.databinding.ObservableBoolean
+import com.androidmess.helix.common.databinding.extensions.addOnPropertyChanged
 import com.androidmess.helix.common.model.data.MovieResult
 import com.androidmess.helix.common.rx.SchedulersInjector
 import com.androidmess.helix.discover.model.data.DiscoverMovieViewModel
@@ -14,9 +15,11 @@ import io.reactivex.subjects.PublishSubject
 class DiscoverPresenter(private val schedulers: SchedulersInjector,
                         private val getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase) : ViewModel() {
 
-    val progress = ObservableField<Boolean>()
+    val scroll = ObservableBoolean()
 
-    val error = ObservableField<Boolean>()
+    val progress = ObservableBoolean()
+
+    val error = ObservableBoolean()
 
     val data = PublishSubject.create<List<DiscoverMovieViewModel>>()
 
@@ -24,21 +27,25 @@ class DiscoverPresenter(private val schedulers: SchedulersInjector,
     private var page: Int = 1
     private var disposables: CompositeDisposable = CompositeDisposable()
 
-    fun scrolledToBottom() {
-        if (isLoading) {
-            return
-        }
-        page += 1
-        fetchPage(page)
+    init {
+        disposables.add(scroll.addOnPropertyChanged { scrolledToBottom() })
     }
 
-    fun start() {
+    fun startFetchingData() {
         fetchPage(page)
     }
 
     override fun onCleared() {
         super.onCleared()
         disposables.clear()
+    }
+
+    private fun scrolledToBottom() {
+        if (isLoading) {
+            return
+        }
+        page += 1
+        fetchPage(page)
     }
 
     private fun fetchPage(page: Int) {
