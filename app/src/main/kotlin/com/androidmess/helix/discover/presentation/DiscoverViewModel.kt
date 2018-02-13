@@ -21,7 +21,7 @@ class DiscoverViewModel(private val schedulers: SchedulersInjector,
 
     val error = ObservableBoolean()
 
-    val moviesData: PublishSubject<DiscoverMovieViewModel> = PublishSubject.create()
+    val data: PublishSubject<DiscoverMovieViewModel> = PublishSubject.create()
 
     private var isLoading: Boolean = false // FIXME Introduce state
     private var page: Int = 1
@@ -60,7 +60,7 @@ class DiscoverViewModel(private val schedulers: SchedulersInjector,
                 .doFinally { progress.set(false) }
                 .subscribe({
                     isLoading = false
-                    moviesData.onNext(it)
+                    data.onNext(it)
                 }, { error.set(true) })
         disposables.add(discoverDisposable)
     }

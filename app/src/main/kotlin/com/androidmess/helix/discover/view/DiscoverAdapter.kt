@@ -12,7 +12,7 @@ import com.androidmess.helix.discover.model.data.DiscoverMovieViewModel
 class DiscoverAdapter(private val itemSizeCalculator: RecyclerViewItemSizeCalculator)
     : RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
 
-    private val data: MutableList<DiscoverMovieViewModel> = ArrayList()
+    val data: MutableList<DiscoverMovieViewModel> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = parent.inflate(R.layout.discover_list_item, false)
@@ -24,11 +24,6 @@ class DiscoverAdapter(private val itemSizeCalculator: RecyclerViewItemSizeCalcul
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(data[position])
 
     override fun getItemCount(): Int = data.size
-
-    fun addMovie(movie: DiscoverMovieViewModel) {
-        data.add(movie)
-        notifyItemInserted(data.size - 1)
-    }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 

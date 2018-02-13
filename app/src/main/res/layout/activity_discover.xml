@@ -12,9 +12,14 @@
         <variable
             name="viewModel"
             type="com.androidmess.helix.discover.presentation.DiscoverViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.androidmess.helix.discover.view.DiscoverAdapter" />
     </data>
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/discoverMainView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/default_background_color">
@@ -23,7 +28,9 @@
             android:id="@+id/discoverDataContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@null" />
+            android:background="@null"
+            bind:adapterData="@{adapter.data}"
+            bind:modelData="@{viewModel.data}" />
 
         <TextView
             android:id="@+id/discoverError"

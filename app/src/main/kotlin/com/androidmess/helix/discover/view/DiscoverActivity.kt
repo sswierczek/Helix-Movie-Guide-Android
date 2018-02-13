@@ -2,6 +2,7 @@ package com.androidmess.helix.discover.view
 
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import com.androidmess.helix.BR
 import com.androidmess.helix.R
 import com.androidmess.helix.common.activity.CompositeAppCompatActivity
 import com.androidmess.helix.common.databinding.DataBindingActivityPlugin
@@ -31,11 +32,13 @@ class DiscoverActivity : CompositeAppCompatActivity() {
         setupDataBinding()
         super.onCreate(savedInstanceState)
         setupDataContainer()
-        observeData()
+        viewModel.startFetchingData()
     }
 
     private fun setupDataBinding() {
-        registerPlugin(DataBindingActivityPlugin(this, viewModel, R.layout.activity_discover))
+        val plugin = DataBindingActivityPlugin(this, viewModel, R.layout.activity_discover)
+        plugin.addBinding(BR.adapter, dataAdapter)
+        registerPlugin(plugin)
     }
 
     private fun setupDataContainer() {
@@ -49,12 +52,5 @@ class DiscoverActivity : CompositeAppCompatActivity() {
         discoverDataContainer.setHasFixedSize(true)
         discoverDataContainer.layoutManager = layoutManager
         discoverDataContainer.adapter = dataAdapter
-    }
-
-    private fun observeData() {
-        viewModel.moviesData.subscribe({
-            dataAdapter.addMovie(it)
-        })
-        viewModel.startFetchingData()
     }
 }
