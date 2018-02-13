@@ -27,7 +27,7 @@ class DiscoverAdapter(private val itemSizeCalculator: RecyclerViewItemSizeCalcul
 
     fun addData(movies: List<DiscoverMovieViewModel>) {
         data.addAll(movies)
-        notifyDataSetChanged()
+        notifyItemRangeInserted(data.size - 1, movies.size)
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
