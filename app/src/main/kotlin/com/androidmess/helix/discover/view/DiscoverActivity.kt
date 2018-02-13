@@ -30,14 +30,14 @@ class DiscoverActivity : CompositeAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
+        setupDataBinding()
+        setupDataContainer()
+        observeData()
+    }
+
+    private fun setupDataBinding() {
         val binding: ActivityDiscoverBinding = DataBindingUtil.setContentView(this, R.layout.activity_discover)
         binding.viewModel = viewModel
-        setupDataContainer()
-
-        viewModel.data.subscribe({
-            dataAdapter.addData(it)
-        })
-        viewModel.startFetchingData()
     }
 
     private fun setupDataContainer() {
@@ -51,5 +51,12 @@ class DiscoverActivity : CompositeAppCompatActivity() {
         discoverDataContainer.setHasFixedSize(true)
         discoverDataContainer.layoutManager = layoutManager
         discoverDataContainer.adapter = dataAdapter
+    }
+
+    private fun observeData() {
+        viewModel.moviesData.subscribe({
+            dataAdapter.addMovie(it)
+        })
+        viewModel.startFetchingData()
     }
 }
