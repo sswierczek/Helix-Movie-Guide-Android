@@ -7,7 +7,7 @@ import com.androidmess.helix.R
 import com.androidmess.helix.common.activity.CompositeAppCompatActivity
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
 import com.androidmess.helix.databinding.ActivityDiscoverBinding
-import com.androidmess.helix.discover.presentation.DiscoverPresenter
+import com.androidmess.helix.discover.presentation.DiscoverViewModel
 import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_discover.*
@@ -16,7 +16,7 @@ import javax.inject.Inject
 class DiscoverActivity : CompositeAppCompatActivity() {
 
     @Inject
-    lateinit var presenter: DiscoverPresenter
+    lateinit var viewModel: DiscoverViewModel
 
     @Inject
     lateinit var dataAdapter: DiscoverAdapter
@@ -31,13 +31,13 @@ class DiscoverActivity : CompositeAppCompatActivity() {
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
         val binding: ActivityDiscoverBinding = DataBindingUtil.setContentView(this, R.layout.activity_discover)
-        binding.presenter = presenter
+        binding.viewModel = viewModel
         setupDataContainer()
 
-        presenter.data.subscribe({
+        viewModel.data.subscribe({
             dataAdapter.addData(it)
         })
-        presenter.startFetchingData()
+        viewModel.startFetchingData()
     }
 
     private fun setupDataContainer() {
@@ -46,7 +46,7 @@ class DiscoverActivity : CompositeAppCompatActivity() {
                 .scrollEvents(discoverDataContainer.scrollEvents())
                 .observe()
                 .subscribe {
-                    presenter.scroll.notifyChange()
+                    viewModel.scroll.notifyChange()
                 }
         discoverDataContainer.setHasFixedSize(true)
         discoverDataContainer.layoutManager = layoutManager

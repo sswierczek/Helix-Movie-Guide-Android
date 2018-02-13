@@ -10,8 +10,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="presenter"
-            type="com.androidmess.helix.discover.presentation.DiscoverPresenter" />
+            name="viewModel"
+            type="com.androidmess.helix.discover.presentation.DiscoverViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -35,7 +35,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            bind:show="@{presenter.error}"
+            bind:show="@{viewModel.error}"
             tools:visibility="visible" />
 
         <ProgressBar
@@ -47,7 +47,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            bind:show="@{presenter.progress}"
+            bind:show="@{viewModel.progress}"
             tools:visibility="visible" />
 
     </android.support.constraint.ConstraintLayout>

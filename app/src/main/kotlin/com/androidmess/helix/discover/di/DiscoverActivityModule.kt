@@ -9,7 +9,7 @@ import com.androidmess.helix.common.rx.SchedulersInjector
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewItemSizeCalculator
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
 import com.androidmess.helix.di.scopes.ActivityScope
-import com.androidmess.helix.discover.presentation.DiscoverPresenter
+import com.androidmess.helix.discover.presentation.DiscoverViewModel
 import com.androidmess.helix.discover.usecase.GetDiscoverMoviesUseCase
 import com.androidmess.helix.discover.view.DiscoverActivity
 import com.androidmess.helix.discover.view.DiscoverAdapter
@@ -28,9 +28,9 @@ class DiscoverActivityModule {
 
     @ActivityScope
     @Provides
-    fun providesDiscoverPresenter(activity: DiscoverActivity,
-                                  factory: DiscoverPresenterFactory): DiscoverPresenter {
-        return ViewModelProviders.of(activity, factory).get(DiscoverPresenter::class.java)
+    fun providesDiscoverViewModel(activity: DiscoverActivity,
+                                  factory: DiscoverPresenterFactory): DiscoverViewModel {
+        return ViewModelProviders.of(activity, factory).get(DiscoverViewModel::class.java)
     }
 
     @ActivityScope

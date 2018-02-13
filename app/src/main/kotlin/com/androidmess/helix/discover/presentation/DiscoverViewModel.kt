@@ -12,7 +12,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
 
 
-class DiscoverPresenter(private val schedulers: SchedulersInjector,
+class DiscoverViewModel(private val schedulers: SchedulersInjector,
                         private val getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase) : ViewModel() {
 
     val scroll = ObservableBoolean()

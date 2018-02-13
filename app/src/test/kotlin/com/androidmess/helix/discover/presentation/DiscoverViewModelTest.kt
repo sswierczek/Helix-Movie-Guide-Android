@@ -14,7 +14,7 @@ import org.junit.Before
 import org.junit.Test
 
 @Suppress("IllegalIdentifier", "MemberVisibilityCanPrivate")
-class DiscoverPresenterTest : BaseTest() {
+class DiscoverViewModelTest : BaseTest() {
 
     val getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase = mock()
 
@@ -22,26 +22,26 @@ class DiscoverPresenterTest : BaseTest() {
 
     val data: MovieResult = mock()
 
-    val presenter: DiscoverPresenter = DiscoverPresenter(testSchedulers, getDiscoverMoviesUseCase)
+    val viewModel: DiscoverViewModel = DiscoverViewModel(testSchedulers, getDiscoverMoviesUseCase)
 
     val dataObservable: PublishSubject<MovieResult> = PublishSubject.create<MovieResult>()
 
     @Before
     fun setUp() {
         whenever(getDiscoverMoviesUseCase.execute(any())).thenReturn(dataObservable)
-        presenter.connect(view)
+        viewModel.connect(view)
     }
 
     @Test
     fun `Should show loading when starting to fetch data`() {
-        presenter.visible(view)
+        viewModel.visible(view)
 
         verify(view).showLoading(true)
     }
 
     @Test
     fun `Should hide loading when data arrived`() {
-        presenter.visible(view)
+        viewModel.visible(view)
 
         dataObservable.onComplete()
 
@@ -51,7 +51,7 @@ class DiscoverPresenterTest : BaseTest() {
     @Test
     fun `Should show error when data loading error occurred`() {
         val error = Throwable("test error")
-        presenter.visible(view)
+        viewModel.visible(view)
 
         dataObservable.onError(error)
 
@@ -60,7 +60,7 @@ class DiscoverPresenterTest : BaseTest() {
 
     @Test
     fun `Should show data in view when finished fetching`() {
-        presenter.visible(view)
+        viewModel.visible(view)
 
         dataObservable.onNext(data)
         dataObservable.onComplete()
@@ -70,14 +70,14 @@ class DiscoverPresenterTest : BaseTest() {
 
     @Test
     fun `Should does nothing when view is invisible`() {
-        presenter.invisible()
+        viewModel.invisible()
 
         verifyZeroInteractions(view)
     }
 
     @Test
     fun `Should send nothing to view when disconnected`() {
-        presenter.disconnect()
+        viewModel.disconnect()
 
         dataObservable.onNext(data)
         dataObservable.onComplete()
@@ -88,10 +88,10 @@ class DiscoverPresenterTest : BaseTest() {
     @Test
     fun `Should load next page when scrolled to bottom`() {
         val nextPage = 2
-        presenter.visible(view)
+        viewModel.visible(view)
         dataObservable.onComplete()
 
-        presenter.scrolledToBottom()
+        viewModel.scrolledToBottom()
 
         verify(getDiscoverMoviesUseCase).execute(nextPage)
     }
@@ -99,9 +99,9 @@ class DiscoverPresenterTest : BaseTest() {
     @Test
     fun `Should not load next page when previous fetch is still in progress`() {
         val firstPage = 1
-        presenter.visible(view)
+        viewModel.visible(view)
 
-        presenter.scrolledToBottom()
+        viewModel.scrolledToBottom()
 
         verify(getDiscoverMoviesUseCase).execute(firstPage)
     }
