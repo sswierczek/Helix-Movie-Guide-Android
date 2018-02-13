@@ -1,12 +1,11 @@
 package com.androidmess.helix.discover.view
 
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import com.androidmess.helix.R
 import com.androidmess.helix.common.activity.CompositeAppCompatActivity
+import com.androidmess.helix.common.databinding.DataBindingActivityPlugin
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
-import com.androidmess.helix.databinding.ActivityDiscoverBinding
 import com.androidmess.helix.discover.presentation.DiscoverViewModel
 import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents
 import dagger.android.AndroidInjection
@@ -28,16 +27,15 @@ class DiscoverActivity : CompositeAppCompatActivity() {
     lateinit var onScrolledToBottomDetector: RecyclerViewOnScrolledToBottomDetector
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
         setupDataBinding()
+        super.onCreate(savedInstanceState)
         setupDataContainer()
         observeData()
     }
 
     private fun setupDataBinding() {
-        val binding: ActivityDiscoverBinding = DataBindingUtil.setContentView(this, R.layout.activity_discover)
-        binding.viewModel = viewModel
+        registerPlugin(DataBindingActivityPlugin(this, viewModel, R.layout.activity_discover))
     }
 
     private fun setupDataContainer() {
