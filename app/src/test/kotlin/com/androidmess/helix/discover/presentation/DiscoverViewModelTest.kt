@@ -1,15 +1,16 @@
 package com.androidmess.helix.discover.presentation
 
 import com.androidmess.helix.BaseTest
+import com.androidmess.helix.common.model.data.Movie
 import com.androidmess.helix.common.model.data.MovieResult
+import com.androidmess.helix.discover.model.data.DiscoverMovieViewModel
 import com.androidmess.helix.discover.usecase.GetDiscoverMoviesUseCase
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.never
 import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.verifyZeroInteractions
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.subjects.PublishSubject
+import org.amshove.kluent.shouldEqual
 import org.junit.Before
 import org.junit.Test
 
@@ -18,7 +19,9 @@ class DiscoverViewModelTest : BaseTest() {
 
     val getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase = mock()
 
-    val view: DiscoverView = mock()
+    val dataItem: Movie = emptyMovie()
+
+    val dataList: List<Movie> = listOf(dataItem)
 
     val data: MovieResult = mock()
 
@@ -29,80 +32,48 @@ class DiscoverViewModelTest : BaseTest() {
     @Before
     fun setUp() {
         whenever(getDiscoverMoviesUseCase.execute(any())).thenReturn(dataObservable)
-        viewModel.connect(view)
+        whenever(data.results).thenReturn(dataList)
     }
 
     @Test
     fun `Should show loading when starting to fetch data`() {
-        viewModel.visible(view)
+        viewModel.startFetchingData()
 
-        verify(view).showLoading(true)
+        viewModel.progress.get() shouldEqual true
     }
 
     @Test
     fun `Should hide loading when data arrived`() {
-        viewModel.visible(view)
+        viewModel.startFetchingData()
 
         dataObservable.onComplete()
 
-        verify(view).showLoading(false)
+        viewModel.progress.get() shouldEqual false
     }
 
     @Test
     fun `Should show error when data loading error occurred`() {
         val error = Throwable("test error")
-        viewModel.visible(view)
+        viewModel.startFetchingData()
 
         dataObservable.onError(error)
 
-        verify(view).showError(error)
+        viewModel.error.get() shouldEqual true
     }
 
-    @Test
-    fun `Should show data in view when finished fetching`() {
-        viewModel.visible(view)
-
-        dataObservable.onNext(data)
-        dataObservable.onComplete()
-
-        verify(view).showMovies(any())
-    }
-
-    @Test
-    fun `Should does nothing when view is invisible`() {
-        viewModel.invisible()
-
-        verifyZeroInteractions(view)
-    }
-
-    @Test
-    fun `Should send nothing to view when disconnected`() {
-        viewModel.disconnect()
-
-        dataObservable.onNext(data)
-        dataObservable.onComplete()
-
-        verify(view, never()).showMovies(any())
-    }
-
-    @Test
-    fun `Should load next page when scrolled to bottom`() {
-        val nextPage = 2
-        viewModel.visible(view)
-        dataObservable.onComplete()
-
-        viewModel.scrolledToBottom()
-
-        verify(getDiscoverMoviesUseCase).execute(nextPage)
-    }
+    // FIXME Introduce state in view model and test scroll events
 
     @Test
     fun `Should not load next page when previous fetch is still in progress`() {
         val firstPage = 1
-        viewModel.visible(view)
+        viewModel.startFetchingData()
 
-        viewModel.scrolledToBottom()
+        viewModel.scroll.notifyChange()
 
         verify(getDiscoverMoviesUseCase).execute(firstPage)
+    }
+
+    fun emptyMovie(): Movie {
+        return Movie("", false, "", "", emptyList(), 0, "", "", "", 0.0, 0, false, 0.0)
     }
 }

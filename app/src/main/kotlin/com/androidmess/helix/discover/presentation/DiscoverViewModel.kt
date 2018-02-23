@@ -58,10 +58,7 @@ class DiscoverViewModel(private val schedulers: SchedulersInjector,
                 .observeOn(schedulers.ui())
                 .doOnSubscribe { progress.set(true) }
                 .doFinally { progress.set(false) }
-                .subscribe({
-                    isLoading = false
-                    data.onNext(it)
-                }, { error.set(true) })
+                .subscribe({ data.onNext(it) }, { error.set(true) }, { isLoading = false })
         disposables.add(discoverDisposable)
     }
 }
