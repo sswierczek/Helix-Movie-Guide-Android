@@ -4,13 +4,12 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.support.v7.widget.GridLayoutManager
 import com.androidmess.helix.R
-import com.androidmess.helix.common.activity.persistance.ActivityPersistence
 import com.androidmess.helix.common.app.getScreenWidth
 import com.androidmess.helix.common.rx.SchedulersInjector
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewItemSizeCalculator
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
 import com.androidmess.helix.di.scopes.ActivityScope
-import com.androidmess.helix.discover.presentation.DiscoverPresenter
+import com.androidmess.helix.discover.presentation.DiscoverViewModel
 import com.androidmess.helix.discover.usecase.GetDiscoverMoviesUseCase
 import com.androidmess.helix.discover.view.DiscoverActivity
 import com.androidmess.helix.discover.view.DiscoverAdapter
@@ -22,21 +21,16 @@ class DiscoverActivityModule {
 
     @ActivityScope
     @Provides
-    fun provideActivityPersistence(activity: DiscoverActivity): ActivityPersistence {
-        return ViewModelProviders.of(activity).get(ActivityPersistence::class.java)
+    fun providesDiscoverViewModelFactory(schedulersInjector: SchedulersInjector,
+                                         getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase): DiscoverViewModelFactory {
+        return DiscoverViewModelFactory(schedulersInjector, getDiscoverMoviesUseCase)
     }
 
     @ActivityScope
     @Provides
-    fun providesDiscoverPresenter(activityPersistence: ActivityPersistence,
-                                  schedulersInjector: SchedulersInjector,
-                                  getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase): DiscoverPresenter {
-        var presenter = activityPersistence.get(DiscoverPresenter::class)
-        if (presenter == null) {
-            presenter = DiscoverPresenter(schedulersInjector, getDiscoverMoviesUseCase)
-            activityPersistence.put(presenter)
-        }
-        return presenter as DiscoverPresenter
+    fun providesDiscoverViewModel(activity: DiscoverActivity,
+                                  factory: DiscoverViewModelFactory): DiscoverViewModel {
+        return ViewModelProviders.of(activity, factory).get(DiscoverViewModel::class.java)
     }
 
     @ActivityScope

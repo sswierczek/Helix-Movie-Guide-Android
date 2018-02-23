@@ -2,24 +2,21 @@ package com.androidmess.helix.discover.view
 
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
-import android.view.View
+import com.androidmess.helix.BR
 import com.androidmess.helix.R
 import com.androidmess.helix.common.activity.CompositeAppCompatActivity
-import com.androidmess.helix.common.debug.L
-import com.androidmess.helix.common.mvp.plugin.PresenterCompositeActivityPlugin
+import com.androidmess.helix.common.databinding.DataBindingActivityPlugin
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
-import com.androidmess.helix.common.ui.view.show
-import com.androidmess.helix.discover.model.data.DiscoverMovieViewModel
-import com.androidmess.helix.discover.presentation.DiscoverPresenter
+import com.androidmess.helix.discover.presentation.DiscoverViewModel
 import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_discover.*
 import javax.inject.Inject
 
-class DiscoverActivity : CompositeAppCompatActivity(), DiscoverView {
+class DiscoverActivity : CompositeAppCompatActivity() {
 
     @Inject
-    lateinit var presenter: DiscoverPresenter
+    lateinit var viewModel: DiscoverViewModel
 
     @Inject
     lateinit var dataAdapter: DiscoverAdapter
@@ -30,39 +27,30 @@ class DiscoverActivity : CompositeAppCompatActivity(), DiscoverView {
     @Inject
     lateinit var onScrolledToBottomDetector: RecyclerViewOnScrolledToBottomDetector
 
-    @Inject
-    lateinit var l: L
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
-        registerPlugin(PresenterCompositeActivityPlugin(this, presenter))
-        setContentView(R.layout.activity_discover)
+        setupDataBinding()
+        super.onCreate(savedInstanceState)
         setupDataContainer()
+        viewModel.startFetchingData()
+    }
+
+    private fun setupDataBinding() {
+        val plugin = DataBindingActivityPlugin(this, viewModel, R.layout.activity_discover)
+        plugin.addBinding(BR.adapter, dataAdapter)
+        registerPlugin(plugin)
     }
 
     private fun setupDataContainer() {
+        // FIXME Move to data binding
         onScrolledToBottomDetector
                 .scrollEvents(discoverDataContainer.scrollEvents())
                 .observe()
                 .subscribe {
-                    l.d("On scrolled to bottom...")
-                    presenter.scrolledToBottom()
+                    viewModel.scroll.notifyChange()
                 }
         discoverDataContainer.setHasFixedSize(true)
         discoverDataContainer.layoutManager = layoutManager
         discoverDataContainer.adapter = dataAdapter
-    }
-
-    override fun showLoading(show: Boolean) {
-        discoverProgress.show(isVisible = show)
-    }
-
-    override fun showMovies(movies: List<DiscoverMovieViewModel>) {
-        dataAdapter.addData(movies)
-    }
-
-    override fun showError(error: Throwable?) {
-        discoverError.visibility = View.VISIBLE
     }
 }
