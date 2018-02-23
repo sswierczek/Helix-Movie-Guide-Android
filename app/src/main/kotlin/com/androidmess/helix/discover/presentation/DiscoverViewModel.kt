@@ -11,7 +11,6 @@ import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
 
-
 class DiscoverViewModel(private val schedulers: SchedulersInjector,
                         private val getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase) : ViewModel() {
 

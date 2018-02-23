@@ -1,4 +1,4 @@
-package com.androidmess.helix.discover.di;
+package com.androidmess.helix.discover.di
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
@@ -6,7 +6,7 @@ import com.androidmess.helix.common.rx.SchedulersInjector
 import com.androidmess.helix.discover.presentation.DiscoverViewModel
 import com.androidmess.helix.discover.usecase.GetDiscoverMoviesUseCase
 
-class DiscoverPresenterFactory(private val schedulers: SchedulersInjector,
+class DiscoverViewModelFactory(private val schedulers: SchedulersInjector,
                                private val getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase)
     : ViewModelProvider.Factory {
 

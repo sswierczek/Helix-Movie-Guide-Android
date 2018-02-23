@@ -1,4 +1,4 @@
-package com.androidmess.helix.common.databinding;
+package com.androidmess.helix.common.databinding
 
 import android.app.Activity
 import android.arch.lifecycle.ViewModel
@@ -16,7 +16,7 @@ class DataBindingActivityPlugin(private val activity: Activity,
     private val bindings: MutableMap<Int, Any> = ArrayMap()
 
     fun addBinding(bindId: Int, objectToBind: Any) {
-        bindings.put(bindId, objectToBind)
+        bindings[bindId] = objectToBind
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

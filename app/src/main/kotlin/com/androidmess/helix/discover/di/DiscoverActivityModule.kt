@@ -21,15 +21,15 @@ class DiscoverActivityModule {
 
     @ActivityScope
     @Provides
-    fun providesDiscoverPresenterFactory(schedulersInjector: SchedulersInjector,
-                                         getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase): DiscoverPresenterFactory {
-        return DiscoverPresenterFactory(schedulersInjector, getDiscoverMoviesUseCase)
+    fun providesDiscoverViewModelFactory(schedulersInjector: SchedulersInjector,
+                                         getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase): DiscoverViewModelFactory {
+        return DiscoverViewModelFactory(schedulersInjector, getDiscoverMoviesUseCase)
     }
 
     @ActivityScope
     @Provides
     fun providesDiscoverViewModel(activity: DiscoverActivity,
-                                  factory: DiscoverPresenterFactory): DiscoverViewModel {
+                                  factory: DiscoverViewModelFactory): DiscoverViewModel {
         return ViewModelProviders.of(activity, factory).get(DiscoverViewModel::class.java)
     }
 
