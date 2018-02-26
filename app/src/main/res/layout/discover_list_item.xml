@@ -10,14 +10,21 @@
 
         <variable
             name="movie"
-            type="com.androidmess.helix.discover.model.data.DiscoverMovieViewModel" />
+            type="com.androidmess.helix.movie.view.data.MovieViewData" />
+
+        <variable
+            name="adapter"
+            type="com.androidmess.helix.discover.view.DiscoverAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/discoverItemView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/discover_item_height"
-        android:background="@null">
+        android:background="@null"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{(view) -> adapter.onMovieClick(movie)}">
 
         <ImageView
             android:id="@+id/discoverItemImage"

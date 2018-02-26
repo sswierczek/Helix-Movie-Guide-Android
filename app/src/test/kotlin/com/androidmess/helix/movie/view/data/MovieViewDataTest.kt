@@ -1,4 +1,4 @@
-package com.androidmess.helix.discover.model.data
+package com.androidmess.helix.movie.view.data
 
 import com.androidmess.helix.BaseTest
 import com.androidmess.helix.common.model.data.Movie

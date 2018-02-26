@@ -9,5 +9,9 @@
     <color name="discover_item_text_background_color">#88607d8b</color>
     <color name="discover_item_text_color">#ffffff</color>
 
+    <color name="movie_details_background_color">#88607d8b</color>
+    <color name="movie_details_title_background_color">#99607d8b</color>
+    <color name="movie_details_text_color">#ffffff</color>
+
     <color name="white">#FFFFFF</color>
 </resources>

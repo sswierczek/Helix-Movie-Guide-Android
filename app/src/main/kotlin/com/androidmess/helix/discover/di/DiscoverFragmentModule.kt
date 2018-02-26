@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.androidmess.helix.R
+import com.androidmess.helix.common.navigation.Navigator
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
 import com.androidmess.helix.discover.view.DiscoverAdapter
 import com.androidmess.helix.discover.view.DiscoverFragment
@@ -19,7 +20,8 @@ class DiscoverFragmentModule {
         scope(named<DiscoverFragment>()) {
             scoped { RecyclerViewOnScrolledToBottomDetector(get(), get()) }
             scoped<LinearLayoutManager> { DiscoverLayoutManagerFactory(get()).create() }
-            scoped { DiscoverAdapter() }
+            scoped { Navigator() }
+            scoped { DiscoverAdapter(get()) }
         }
     }
 

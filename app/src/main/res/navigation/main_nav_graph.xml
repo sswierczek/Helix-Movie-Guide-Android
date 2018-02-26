@@ -7,5 +7,17 @@
     <fragment
         android:id="@+id/discoverFragment"
         android:name="com.androidmess.helix.discover.view.DiscoverFragment"
-        android:label="@string/discover_screen_title" />
+        android:label="@string/discover_screen_title">
+        <action
+            android:id="@+id/action_discoverFragment_to_movieDetailsActivity"
+            app:destination="@id/movieDetailsActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/movieDetailsActivity"
+        android:name="com.androidmess.helix.movie.view.MovieDetailsActivity"
+        android:label="MovieDetailsActivity">
+        <argument
+            android:name="@string/movieDetailsArg"
+            app:argType="com.androidmess.helix.movie.view.data.MovieViewData" />
+    </activity>
 </navigation>

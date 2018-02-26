@@ -6,8 +6,8 @@ import com.androidmess.helix.common.databinding.extensions.addOnPropertyChanged
 import com.androidmess.helix.common.debug.e
 import com.androidmess.helix.common.model.data.MovieResult
 import com.androidmess.helix.common.rx.SchedulersInjector
-import com.androidmess.helix.discover.model.data.DiscoverMovieViewModel
 import com.androidmess.helix.discover.usecase.GetDiscoverMoviesUseCase
+import com.androidmess.helix.movie.view.data.MovieViewData
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
@@ -23,7 +23,7 @@ class DiscoverViewModel(
 
     val error = ObservableBoolean()
 
-    val data: PublishSubject<DiscoverMovieViewModel> = PublishSubject.create()
+    val data: PublishSubject<MovieViewData> = PublishSubject.create()
 
     private var isLoading: Boolean = false // FIXME Introduce state
     private var page: Int = 1
@@ -56,7 +56,7 @@ class DiscoverViewModel(
             .execute(page)
             .subscribeOn(schedulers.io())
             .flatMapIterable(MovieResult::results)
-            .flatMap { Observable.just(DiscoverMovieViewModel.Mapper.fromMovie(it)) }
+            .flatMap { Observable.just(MovieViewData.fromMovie(it)) }
             .observeOn(schedulers.ui())
             .doOnSubscribe { progress.set(true) }
             .doFinally { progress.set(false) }

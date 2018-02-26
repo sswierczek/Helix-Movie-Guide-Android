@@ -8,6 +8,8 @@ import com.androidmess.helix.di.AppModule
 import com.androidmess.helix.discover.di.DiscoverFragmentModule
 import com.androidmess.helix.discover.model.di.DiscoverModelModule
 import com.androidmess.helix.main.di.MainActivityModule
+import com.androidmess.helix.movie.model.di.MovieDetailsModelModule
+import com.androidmess.helix.movie.view.di.MovieDetailsModule
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -28,7 +30,9 @@ class HelixApp : Application() {
                     NetworkModule().create(),
                     MainActivityModule().create(),
                     DiscoverModelModule().create(),
-                    DiscoverFragmentModule().create()
+                    DiscoverFragmentModule().create(),
+                    MovieDetailsModelModule().create(),
+                    MovieDetailsModule().create()
                 )
             )
         }
