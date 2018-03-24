@@ -1,5 +1,6 @@
 apply plugin: 'kotlin'
 apply from: '../quality/ktlint.gradle'
+apply plugin: "com.github.ben-manes.versions"
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"

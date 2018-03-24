@@ -14,34 +14,34 @@ buildscript {
         versions = [
                 kotlin: '1.2.31',
                 inject: '1',
-                dagger: '2.13',
-                rxjava: '2.1.5',
-                gson  : '2.8.0'
+                dagger: '2.15',
+                rxjava: '2.1.12',
+                gson  : '2.8.2'
         ]
 
         androidVersions = [
-                timber            : '4.6.0',
-                rxAndroid         : '2.0.1',
+                timber            : '4.6.1',
+                rxAndroid         : '2.0.2',
                 arch              : '1.1.1',
                 databinding       : '3.0.1',
                 support           : '27.0.2',
                 constraint        : '1.0.2',
-                retrofit          : '2.2.0',
-                loggingInterceptor: '3.6.0',
-                picasso           : '2.5.2',
-                rxbinding         : '2.0.0'
+                retrofit          : '2.4.0',
+                loggingInterceptor: '3.10.0',
+                picasso           : '2.71828',
+                rxbinding         : '2.1.1'
         ]
 
         quality = [
-                jacoco: '0.7.9',
-                ktlint: '0.11.1'
+                jacoco: '0.8.1',
+                ktlint: '0.20.0'
         ]
 
         testVersions = [
                 junit        : '4.12',
-                mockito      : '2.8.47',
+                mockito      : '2.16.0',
                 mockitoKotlin: '1.5.0',
-                kluent       : '1.30'
+                kluent       : '1.35'
         ]
     }
 
@@ -53,8 +53,8 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
         classpath 'be.lukin.poeditor:gradle:0.3.3'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.17.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$project.versions.kotlin"
-
     }
 }
 

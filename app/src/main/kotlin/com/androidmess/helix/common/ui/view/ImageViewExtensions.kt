@@ -6,5 +6,5 @@ import com.squareup.picasso.Picasso
 
 @BindingAdapter("bind:imageUrl")
 fun ImageView.loadImage(path: String) {
-    Picasso.with(context).load(path).into(this)
+    Picasso.get().load(path).into(this)
 }
