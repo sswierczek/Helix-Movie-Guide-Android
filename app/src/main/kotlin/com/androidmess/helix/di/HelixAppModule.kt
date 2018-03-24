@@ -7,8 +7,10 @@ import com.androidmess.helix.common.rx.AppSchedulersInjector
 import com.androidmess.helix.common.rx.SchedulersInjector
 import org.koin.dsl.module.applicationContext
 
-val appModule = applicationContext {
-    bean { AppConfig() }
-    bean { TimberL(get()) as L }
-    bean { AppSchedulersInjector() as SchedulersInjector }
+class AppModule {
+    fun create() = applicationContext {
+        bean { AppConfig() }
+        bean { TimberL(get()) as L }
+        bean { AppSchedulersInjector() as SchedulersInjector }
+    }
 }

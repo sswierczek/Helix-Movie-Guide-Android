@@ -2,10 +2,10 @@ package com.androidmess.helix
 
 import android.app.Application
 import com.androidmess.helix.common.debug.L
-import com.androidmess.helix.common.network.di.networkModule
-import com.androidmess.helix.di.appModule
-import com.androidmess.helix.discover.di.discoverActivityModule
-import com.androidmess.helix.discover.model.di.discoverModelModule
+import com.androidmess.helix.common.network.di.NetworkModule
+import com.androidmess.helix.di.AppModule
+import com.androidmess.helix.discover.di.DiscoverActivityModule
+import com.androidmess.helix.discover.model.di.DiscoverModelModule
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.android.startKoin
 
@@ -17,10 +17,10 @@ class HelixApp : Application() {
         super.onCreate()
         startKoin(
             this, listOf(
-                appModule,
-                networkModule,
-                discoverModelModule,
-                discoverActivityModule
+                AppModule().create(),
+                NetworkModule().create(),
+                DiscoverModelModule().create(),
+                DiscoverActivityModule().create()
             )
         )
         initLibraries()

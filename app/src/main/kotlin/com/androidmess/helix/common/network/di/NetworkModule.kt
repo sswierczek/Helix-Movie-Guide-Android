@@ -9,35 +9,38 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-val networkModule = applicationContext {
-    bean { NetworkConfig() }
-    bean { OkHttpClientFactory(get()).create() }
-    bean { RetrofitFactory(get(), get()).create() }
-}
+class NetworkModule {
 
-private class OkHttpClientFactory(private val appConfig: AppConfig) {
-
-    fun create(): OkHttpClient {
-        val logging = HttpLoggingInterceptor()
-        val levelBody = HttpLoggingInterceptor.Level.BODY
-        val levelNone = HttpLoggingInterceptor.Level.NONE
-        logging.level = if (appConfig.isDebug) levelBody else levelNone
-        return OkHttpClient.Builder()
-            .addInterceptor(logging)
-            .build()
+    fun create() = applicationContext {
+        bean { NetworkConfig() }
+        bean { OkHttpClientFactory(get()).create() }
+        bean { RetrofitFactory(get(), get()).create() }
     }
-}
 
-private class RetrofitFactory(
-    private val okClient: OkHttpClient,
-    private val networkConfig: NetworkConfig
-) {
-    fun create(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(networkConfig.baseUrl)
-            .client(okClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .build()
+    private class OkHttpClientFactory(private val appConfig: AppConfig) {
+
+        fun create(): OkHttpClient {
+            val logging = HttpLoggingInterceptor()
+            val levelBody = HttpLoggingInterceptor.Level.BODY
+            val levelNone = HttpLoggingInterceptor.Level.NONE
+            logging.level = if (appConfig.isDebug) levelBody else levelNone
+            return OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .build()
+        }
+    }
+
+    private class RetrofitFactory(
+        private val okClient: OkHttpClient,
+        private val networkConfig: NetworkConfig
+    ) {
+        fun create(): Retrofit {
+            return Retrofit.Builder()
+                .baseUrl(networkConfig.baseUrl)
+                .client(okClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build()
+        }
     }
 }

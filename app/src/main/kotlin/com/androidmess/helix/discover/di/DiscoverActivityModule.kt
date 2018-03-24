@@ -13,31 +13,33 @@ import com.androidmess.helix.discover.view.DiscoverAdapter
 import org.koin.android.architecture.ext.viewModel
 import org.koin.dsl.module.applicationContext
 
-val discoverActivityModule = applicationContext {
-    context(DiscoverActivity.CONTEXT_NAME) {
-        viewModel { DiscoverViewModel(get(), get()) }
-        bean { RecyclerViewItemSizeCalculatorFactory(get()).create() }
-        bean { DiscoverLayoutManagerFactory(get()).create() as LinearLayoutManager }
-        bean { DiscoverAdapter(get()) }
-        bean { RecyclerViewOnScrolledToBottomDetector(get(), get()) }
+class DiscoverActivityModule {
+    fun create() = applicationContext {
+        context(DiscoverActivity.CONTEXT_NAME) {
+            viewModel { DiscoverViewModel(get(), get()) }
+            bean { RecyclerViewItemSizeCalculatorFactory(get()).create() }
+            bean { DiscoverLayoutManagerFactory(get()).create() as LinearLayoutManager }
+            bean { DiscoverAdapter(get()) }
+            bean { RecyclerViewOnScrolledToBottomDetector(get(), get()) }
+        }
     }
-}
 
-private class RecyclerViewItemSizeCalculatorFactory(val context: Context) {
+    private class RecyclerViewItemSizeCalculatorFactory(val context: Context) {
 
-    fun create(): RecyclerViewItemSizeCalculator {
-        val calculator = RecyclerViewItemSizeCalculator(context.getScreenWidth())
-        calculator.spanCount = context.resources.getInteger(R.integer.discover_view_span_count)
-        return calculator
+        fun create(): RecyclerViewItemSizeCalculator {
+            val calculator = RecyclerViewItemSizeCalculator(context.getScreenWidth())
+            calculator.spanCount = context.resources.getInteger(R.integer.discover_view_span_count)
+            return calculator
+        }
     }
-}
 
-private class DiscoverLayoutManagerFactory(val context: Context) {
+    private class DiscoverLayoutManagerFactory(val context: Context) {
 
-    fun create(): GridLayoutManager {
-        return GridLayoutManager(
-            context,
-            context.resources.getInteger(R.integer.discover_view_span_count)
-        )
+        fun create(): GridLayoutManager {
+            return GridLayoutManager(
+                context,
+                context.resources.getInteger(R.integer.discover_view_span_count)
+            )
+        }
     }
 }
