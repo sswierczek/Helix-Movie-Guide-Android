@@ -2,27 +2,22 @@ package com.androidmess.helix.common.network.di
 
 import com.androidmess.helix.common.app.AppConfig
 import com.androidmess.helix.common.network.NetworkConfig
-import dagger.Module
-import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.dsl.module.applicationContext
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Singleton
 
-@Module
-class NetworkModule {
+val networkModule = applicationContext {
+    bean { NetworkConfig() }
+    bean { OkHttpClientFactory(get()).create() }
+    bean { RetrofitFactory(get(), get()).create() }
+}
 
-    @Provides
-    @Singleton
-    fun provideNetworkConfig(): NetworkConfig {
-        return NetworkConfig()
-    }
+private class OkHttpClientFactory(private val appConfig: AppConfig) {
 
-    @Provides
-    @Singleton
-    fun provideOkHttp(appConfig: AppConfig): OkHttpClient {
+    fun create(): OkHttpClient {
         val logging = HttpLoggingInterceptor()
         val levelBody = HttpLoggingInterceptor.Level.BODY
         val levelNone = HttpLoggingInterceptor.Level.NONE
@@ -31,10 +26,13 @@ class NetworkModule {
             .addInterceptor(logging)
             .build()
     }
+}
 
-    @Provides
-    @Singleton
-    fun provideRetrofit(okClient: OkHttpClient, networkConfig: NetworkConfig): Retrofit {
+private class RetrofitFactory(
+    private val okClient: OkHttpClient,
+    private val networkConfig: NetworkConfig
+) {
+    fun create(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(networkConfig.baseUrl)
             .client(okClient)

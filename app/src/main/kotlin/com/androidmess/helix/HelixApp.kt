@@ -1,34 +1,29 @@
 package com.androidmess.helix
 
-import android.app.Activity
 import android.app.Application
 import com.androidmess.helix.common.debug.L
-import com.androidmess.helix.di.DaggerHelixAppComponent
-import com.androidmess.helix.di.HelixAppModule
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
-import javax.inject.Inject
+import com.androidmess.helix.common.network.di.networkModule
+import com.androidmess.helix.di.appModule
+import com.androidmess.helix.discover.di.discoverActivityModule
+import com.androidmess.helix.discover.model.di.discoverModelModule
+import org.koin.android.ext.android.inject
+import org.koin.android.ext.android.startKoin
 
-class HelixApp : Application(), HasActivityInjector {
+class HelixApp : Application() {
 
-    @Inject
-    lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
-
-    @Inject
-    lateinit var l: L
+    val l: L by inject()
 
     override fun onCreate() {
         super.onCreate()
-        DaggerHelixAppComponent.builder()
-            .helixAppModule(HelixAppModule(this))
-            .build()
-            .inject(this)
+        startKoin(
+            this, listOf(
+                appModule,
+                networkModule,
+                discoverModelModule,
+                discoverActivityModule
+            )
+        )
         initLibraries()
-    }
-
-    override fun activityInjector(): AndroidInjector<Activity> {
-        return dispatchingActivityInjector
     }
 
     private fun initLibraries() {

@@ -1,68 +1,40 @@
 package com.androidmess.helix.discover.di
 
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import com.androidmess.helix.R
 import com.androidmess.helix.common.app.getScreenWidth
-import com.androidmess.helix.common.rx.SchedulersInjector
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewItemSizeCalculator
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
-import com.androidmess.helix.di.scopes.ActivityScope
 import com.androidmess.helix.discover.presentation.DiscoverViewModel
-import com.androidmess.helix.discover.usecase.GetDiscoverMoviesUseCase
 import com.androidmess.helix.discover.view.DiscoverActivity
 import com.androidmess.helix.discover.view.DiscoverAdapter
-import dagger.Module
-import dagger.Provides
+import org.koin.android.architecture.ext.viewModel
+import org.koin.dsl.module.applicationContext
 
-@Module
-class DiscoverActivityModule {
-
-    @ActivityScope
-    @Provides
-    fun providesDiscoverViewModelFactory(
-        schedulersInjector: SchedulersInjector,
-        getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase
-    ): DiscoverViewModelFactory {
-        return DiscoverViewModelFactory(schedulersInjector, getDiscoverMoviesUseCase)
+val discoverActivityModule = applicationContext {
+    context(DiscoverActivity.CONTEXT_NAME) {
+        viewModel { DiscoverViewModel(get(), get()) }
+        bean { RecyclerViewItemSizeCalculatorFactory(get()).create() }
+        bean { DiscoverLayoutManagerFactory(get()).create() as LinearLayoutManager }
+        bean { DiscoverAdapter(get()) }
+        bean { RecyclerViewOnScrolledToBottomDetector(get(), get()) }
     }
+}
 
-    @ActivityScope
-    @Provides
-    fun providesDiscoverViewModel(
-        activity: DiscoverActivity,
-        factory: DiscoverViewModelFactory
-    ): DiscoverViewModel {
-        return ViewModelProviders.of(activity, factory).get(DiscoverViewModel::class.java)
-    }
+private class RecyclerViewItemSizeCalculatorFactory(val context: Context) {
 
-    @ActivityScope
-    @Provides
-    fun provideRecyclerViewItemSizeCalculator(context: Context): RecyclerViewItemSizeCalculator {
+    fun create(): RecyclerViewItemSizeCalculator {
         val calculator = RecyclerViewItemSizeCalculator(context.getScreenWidth())
         calculator.spanCount = context.resources.getInteger(R.integer.discover_view_span_count)
         return calculator
     }
+}
 
-    @ActivityScope
-    @Provides
-    fun provideRecyclerViewOnScrolledToBottomDetector(
-        schedulersInjector: SchedulersInjector,
-        layoutManager: GridLayoutManager
-    ): RecyclerViewOnScrolledToBottomDetector {
-        return RecyclerViewOnScrolledToBottomDetector(schedulersInjector, layoutManager)
-    }
+private class DiscoverLayoutManagerFactory(val context: Context) {
 
-    @ActivityScope
-    @Provides
-    fun provideAdapter(itemSizeCalculator: RecyclerViewItemSizeCalculator): DiscoverAdapter {
-        return DiscoverAdapter(itemSizeCalculator)
-    }
-
-    @ActivityScope
-    @Provides
-    fun provideLayoutManager(context: Context): GridLayoutManager {
+    fun create(): GridLayoutManager {
         return GridLayoutManager(
             context,
             context.resources.getInteger(R.integer.discover_view_span_count)

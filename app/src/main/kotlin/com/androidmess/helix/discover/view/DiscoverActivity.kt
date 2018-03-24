@@ -1,42 +1,44 @@
 package com.androidmess.helix.discover.view
 
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import com.androidmess.helix.BR
 import com.androidmess.helix.R
 import com.androidmess.helix.common.activity.CompositeAppCompatActivity
 import com.androidmess.helix.common.databinding.DataBindingActivityPlugin
+import com.androidmess.helix.common.di.activity.DiActivityPlugin
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
 import com.androidmess.helix.discover.presentation.DiscoverViewModel
 import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents
-import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_discover.*
-import javax.inject.Inject
+import org.koin.android.architecture.ext.viewModel
+import org.koin.android.ext.android.inject
 
 class DiscoverActivity : CompositeAppCompatActivity() {
 
-    @Inject
-    lateinit var viewModel: DiscoverViewModel
+    companion object {
+        const val CONTEXT_NAME = "DiscoverActivityContext"
+    }
 
-    @Inject
-    lateinit var dataAdapter: DiscoverAdapter
-
-    @Inject
-    lateinit var layoutManager: GridLayoutManager
-
-    @Inject
-    lateinit var onScrolledToBottomDetector: RecyclerViewOnScrolledToBottomDetector
+    val discoverViewModel: DiscoverViewModel by viewModel()
+    val dataAdapter: DiscoverAdapter by inject()
+    val layoutManager: LinearLayoutManager by inject()
+    val onScrolledToBottomDetector: RecyclerViewOnScrolledToBottomDetector by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
+        setupDI()
         setupDataBinding()
         super.onCreate(savedInstanceState)
         setupDataContainer()
-        viewModel.startFetchingData()
+        discoverViewModel.startFetchingData()
+    }
+
+    private fun setupDI() {
+        registerPlugin(DiActivityPlugin(this, CONTEXT_NAME))
     }
 
     private fun setupDataBinding() {
-        val plugin = DataBindingActivityPlugin(this, viewModel, R.layout.activity_discover)
+        val plugin = DataBindingActivityPlugin(this, discoverViewModel, R.layout.activity_discover)
         plugin.addBinding(BR.adapter, dataAdapter)
         registerPlugin(plugin)
     }
@@ -47,7 +49,7 @@ class DiscoverActivity : CompositeAppCompatActivity() {
             .scrollEvents(discoverDataContainer.scrollEvents())
             .observe()
             .subscribe {
-                viewModel.scroll.notifyChange()
+                discoverViewModel.scroll.notifyChange()
             }
         discoverDataContainer.setHasFixedSize(true)
         discoverDataContainer.layoutManager = layoutManager

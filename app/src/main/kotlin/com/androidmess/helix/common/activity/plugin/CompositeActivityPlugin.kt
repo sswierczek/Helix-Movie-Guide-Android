@@ -4,15 +4,15 @@ import android.os.Bundle
 
 interface CompositeActivityPlugin {
 
-    fun onCreate(savedInstanceState: Bundle?)
+    fun onCreate(savedInstanceState: Bundle?) {}
 
-    fun onResume()
+    fun onResume() {}
 
-    fun onPause()
+    fun onPause() {}
 
-    fun onStart()
+    fun onStart() {}
 
-    fun onStop(isFinishing: Boolean)
+    fun onStop(isFinishing: Boolean) {}
 
-    fun onDestroy()
+    fun onDestroy() {}
 }
