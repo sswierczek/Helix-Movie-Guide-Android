@@ -13,20 +13,16 @@ import org.amshove.kluent.shouldEqual
 import org.junit.Before
 import org.junit.Test
 
-@Suppress("IllegalIdentifier", "MemberVisibilityCanPrivate")
+@Suppress("IllegalIdentifier", "MemberVisibilityCanBePrivate")
 class DiscoverViewModelTest : BaseTest() {
 
-    val getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase = mock()
+    val getDiscoverMoviesUseCase = mock<GetDiscoverMoviesUseCase>()
+    val dataItem = emptyMovie()
+    val dataList = listOf(dataItem)
+    val data = mock<MovieResult>()
+    val dataObservable = PublishSubject.create<MovieResult>()
 
-    val dataItem: Movie = emptyMovie()
-
-    val dataList: List<Movie> = listOf(dataItem)
-
-    val data: MovieResult = mock()
-
-    val viewModel: DiscoverViewModel = DiscoverViewModel(testSchedulers, getDiscoverMoviesUseCase)
-
-    val dataObservable: PublishSubject<MovieResult> = PublishSubject.create<MovieResult>()
+    val viewModel = DiscoverViewModel(testSchedulers, getDiscoverMoviesUseCase)
 
     @Before
     fun setUp() {

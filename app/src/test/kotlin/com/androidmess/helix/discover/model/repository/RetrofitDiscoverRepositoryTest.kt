@@ -8,7 +8,7 @@ import com.nhaarman.mockito_kotlin.verify
 import org.junit.Test
 import retrofit2.Retrofit
 
-@Suppress("IllegalIdentifier", "MemberVisibilityCanPrivate")
+@Suppress("IllegalIdentifier", "MemberVisibilityCanBePrivate")
 class RetrofitDiscoverRepositoryTest : BaseTest() {
 
     companion object {

@@ -2,22 +2,18 @@ package com.androidmess.helix.discover.model.data
 
 import com.androidmess.helix.BaseTest
 import com.androidmess.helix.common.model.data.Movie
-import com.nhaarman.mockito_kotlin.whenever
-import org.amshove.kluent.mock
+import com.nhaarman.mockito_kotlin.doReturn
+import com.nhaarman.mockito_kotlin.mock
 import org.amshove.kluent.shouldEqual
-import org.junit.Before
 import org.junit.Test
 
-@Suppress("IllegalIdentifier", "MemberVisibilityCanPrivate")
+@Suppress("IllegalIdentifier", "MemberVisibilityCanBePrivate")
 class DiscoverMovieViewModelTest : BaseTest() {
 
-    val movie: Movie = mock()
-
-    @Before
-    fun setUp() {
-        whenever(movie.id).thenReturn(1234)
-        whenever(movie.title).thenReturn("test title")
-        whenever(movie.posterPath).thenReturn("/testPath")
+    val movie = mock<Movie> {
+        on { id } doReturn 1234
+        on { title } doReturn "test title"
+        on { posterPath } doReturn "/testPath"
     }
 
     @Test

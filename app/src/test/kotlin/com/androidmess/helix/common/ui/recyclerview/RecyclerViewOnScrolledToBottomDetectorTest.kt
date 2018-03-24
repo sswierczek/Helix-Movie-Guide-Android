@@ -1,15 +1,15 @@
 package com.androidmess.helix.common.ui.recyclerview
 
-import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
 import com.androidmess.helix.BaseTest
 import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
+import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.subjects.PublishSubject
-import org.junit.Before
 import org.junit.Test
 
-@Suppress("IllegalIdentifier", "MemberVisibilityCanPrivate")
+@Suppress("IllegalIdentifier", "MemberVisibilityCanBePrivate")
 class RecyclerViewOnScrolledToBottomDetectorTest : BaseTest() {
 
     companion object {
@@ -17,19 +17,15 @@ class RecyclerViewOnScrolledToBottomDetectorTest : BaseTest() {
         const val ITEM_COUNT = 10
     }
 
-    val scrollEvents: PublishSubject<RecyclerViewScrollEvent> = PublishSubject.create<RecyclerViewScrollEvent>()
+    val scrollEvents = PublishSubject.create<RecyclerViewScrollEvent>()
+    val sampleScrollEvent = mock<RecyclerViewScrollEvent>()
+    val layoutManager = mock<LinearLayoutManager> {
+        on { itemCount } doReturn ITEM_COUNT
+        on { childCount } doReturn VISIBLE_ITEMS
+    }
 
-    val sampleScrollEvent: RecyclerViewScrollEvent = mock()
-
-    val layoutManager: GridLayoutManager = mock()
-
-    val detector: RecyclerViewOnScrolledToBottomDetector = RecyclerViewOnScrolledToBottomDetector(testSchedulers, layoutManager)
-
-    @Before
-    fun setUp() {
-        whenever(layoutManager.itemCount).thenReturn(ITEM_COUNT)
-        whenever(layoutManager.childCount).thenReturn(VISIBLE_ITEMS)
-        detector.scrollEvents(scrollEvents)
+    val detector = RecyclerViewOnScrolledToBottomDetector(testSchedulers, layoutManager).apply {
+        scrollEvents(scrollEvents)
     }
 
     @Test
