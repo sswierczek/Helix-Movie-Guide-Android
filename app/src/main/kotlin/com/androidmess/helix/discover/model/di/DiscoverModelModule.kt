@@ -14,7 +14,10 @@ class DiscoverModelModule {
 
     @Provides
     @Singleton
-    fun providesRepositoryDiscover(retrofit: Retrofit, networkConfig: NetworkConfig): Repository.Discover {
+    fun providesRepositoryDiscover(
+        retrofit: Retrofit,
+        networkConfig: NetworkConfig
+    ): Repository.Discover {
         return RetrofitDiscoverRepository(retrofit, networkConfig.apiKey)
     }
 

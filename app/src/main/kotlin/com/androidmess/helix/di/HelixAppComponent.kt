@@ -8,12 +8,14 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = arrayOf(
+@Component(
+    modules = arrayOf(
         HelixAppModule::class,
         NetworkModule::class,
         DiscoverModelModule::class,
         DiscoverActivityBinder::class
-))
+    )
+)
 interface HelixAppComponent {
 
     fun inject(application: HelixApp): HelixApp

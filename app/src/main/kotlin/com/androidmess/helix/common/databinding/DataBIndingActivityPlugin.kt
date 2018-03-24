@@ -9,9 +9,11 @@ import android.util.ArrayMap
 import com.androidmess.helix.BR
 import com.androidmess.helix.common.activity.plugin.CompositeActivityPlugin
 
-class DataBindingActivityPlugin(private val activity: Activity,
-                                private val viewModel: ViewModel,
-                                private val resLayoutId: Int) : CompositeActivityPlugin {
+class DataBindingActivityPlugin(
+    private val activity: Activity,
+    private val viewModel: ViewModel,
+    private val resLayoutId: Int
+) : CompositeActivityPlugin {
 
     private val bindings: MutableMap<Int, Any> = ArrayMap()
 

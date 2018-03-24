@@ -44,11 +44,11 @@ class DiscoverActivity : CompositeAppCompatActivity() {
     private fun setupDataContainer() {
         // FIXME Move to data binding
         onScrolledToBottomDetector
-                .scrollEvents(discoverDataContainer.scrollEvents())
-                .observe()
-                .subscribe {
-                    viewModel.scroll.notifyChange()
-                }
+            .scrollEvents(discoverDataContainer.scrollEvents())
+            .observe()
+            .subscribe {
+                viewModel.scroll.notifyChange()
+            }
         discoverDataContainer.setHasFixedSize(true)
         discoverDataContainer.layoutManager = layoutManager
         discoverDataContainer.adapter = dataAdapter

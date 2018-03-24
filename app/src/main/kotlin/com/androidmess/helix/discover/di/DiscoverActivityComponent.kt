@@ -7,9 +7,9 @@ import dagger.android.AndroidInjector
 
 @ActivityScope
 @Subcomponent(
-        modules = arrayOf(
-                DiscoverActivityModule::class
-        )
+    modules = arrayOf(
+        DiscoverActivityModule::class
+    )
 )
 interface DiscoverActivityComponent : AndroidInjector<DiscoverActivity> {
 

@@ -9,8 +9,8 @@ import com.androidmess.helix.common.ui.view.inflate
 import com.androidmess.helix.databinding.DiscoverListItemBinding
 import com.androidmess.helix.discover.model.data.DiscoverMovieViewModel
 
-class DiscoverAdapter(private val itemSizeCalculator: RecyclerViewItemSizeCalculator)
-    : RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
+class DiscoverAdapter(private val itemSizeCalculator: RecyclerViewItemSizeCalculator) :
+    RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
 
     val data: MutableList<DiscoverMovieViewModel> = ArrayList()
 

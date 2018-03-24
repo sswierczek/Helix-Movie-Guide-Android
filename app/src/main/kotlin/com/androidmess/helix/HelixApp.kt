@@ -21,9 +21,9 @@ class HelixApp : Application(), HasActivityInjector {
     override fun onCreate() {
         super.onCreate()
         DaggerHelixAppComponent.builder()
-                .helixAppModule(HelixAppModule(this))
-                .build()
-                .inject(this)
+            .helixAppModule(HelixAppModule(this))
+            .build()
+            .inject(this)
         initLibraries()
     }
 

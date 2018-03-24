@@ -21,15 +21,19 @@ class DiscoverActivityModule {
 
     @ActivityScope
     @Provides
-    fun providesDiscoverViewModelFactory(schedulersInjector: SchedulersInjector,
-                                         getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase): DiscoverViewModelFactory {
+    fun providesDiscoverViewModelFactory(
+        schedulersInjector: SchedulersInjector,
+        getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase
+    ): DiscoverViewModelFactory {
         return DiscoverViewModelFactory(schedulersInjector, getDiscoverMoviesUseCase)
     }
 
     @ActivityScope
     @Provides
-    fun providesDiscoverViewModel(activity: DiscoverActivity,
-                                  factory: DiscoverViewModelFactory): DiscoverViewModel {
+    fun providesDiscoverViewModel(
+        activity: DiscoverActivity,
+        factory: DiscoverViewModelFactory
+    ): DiscoverViewModel {
         return ViewModelProviders.of(activity, factory).get(DiscoverViewModel::class.java)
     }
 
@@ -43,8 +47,10 @@ class DiscoverActivityModule {
 
     @ActivityScope
     @Provides
-    fun provideRecyclerViewOnScrolledToBottomDetector(schedulersInjector: SchedulersInjector,
-                                                      layoutManager: GridLayoutManager): RecyclerViewOnScrolledToBottomDetector {
+    fun provideRecyclerViewOnScrolledToBottomDetector(
+        schedulersInjector: SchedulersInjector,
+        layoutManager: GridLayoutManager
+    ): RecyclerViewOnScrolledToBottomDetector {
         return RecyclerViewOnScrolledToBottomDetector(schedulersInjector, layoutManager)
     }
 
@@ -57,6 +63,9 @@ class DiscoverActivityModule {
     @ActivityScope
     @Provides
     fun provideLayoutManager(context: Context): GridLayoutManager {
-        return GridLayoutManager(context, context.resources.getInteger(R.integer.discover_view_span_count))
+        return GridLayoutManager(
+            context,
+            context.resources.getInteger(R.integer.discover_view_span_count)
+        )
     }
 }

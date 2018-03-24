@@ -28,18 +28,18 @@ class NetworkModule {
         val levelNone = HttpLoggingInterceptor.Level.NONE
         logging.level = if (appConfig.isDebug) levelBody else levelNone
         return OkHttpClient.Builder()
-                .addInterceptor(logging)
-                .build()
+            .addInterceptor(logging)
+            .build()
     }
 
     @Provides
     @Singleton
     fun provideRetrofit(okClient: OkHttpClient, networkConfig: NetworkConfig): Retrofit {
         return Retrofit.Builder()
-                .baseUrl(networkConfig.baseUrl)
-                .client(okClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build()
+            .baseUrl(networkConfig.baseUrl)
+            .client(okClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
     }
 }

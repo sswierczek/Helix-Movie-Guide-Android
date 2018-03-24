@@ -8,9 +8,10 @@ import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import java.util.concurrent.TimeUnit
 
-class RecyclerViewOnScrolledToBottomDetector(private val schedulersInjector: SchedulersInjector,
-                                             private val layoutManager: LinearLayoutManager)
-    : RecyclerView.OnScrollListener() {
+class RecyclerViewOnScrolledToBottomDetector(
+    private val schedulersInjector: SchedulersInjector,
+    private val layoutManager: LinearLayoutManager
+) : RecyclerView.OnScrollListener() {
 
     private companion object {
         const val DEBOUNCE_TIME_MS = 200L
@@ -20,20 +21,20 @@ class RecyclerViewOnScrolledToBottomDetector(private val schedulersInjector: Sch
 
     fun scrollEvents(onScrollEvents: Observable<RecyclerViewScrollEvent>): RecyclerViewOnScrolledToBottomDetector {
         onScrollEvents
-                .debounce(DEBOUNCE_TIME_MS, TimeUnit.MILLISECONDS, schedulersInjector.computation())
-                .subscribe {
-                    val visibleItemCount = layoutManager.childCount
-                    val pastVisibleItems = layoutManager.findFirstVisibleItemPosition()
-                    val totalItemCount = layoutManager.itemCount
-                    if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
-                        onScrolledToBottom.onNext(Any())
-                    }
+            .debounce(DEBOUNCE_TIME_MS, TimeUnit.MILLISECONDS, schedulersInjector.computation())
+            .subscribe {
+                val visibleItemCount = layoutManager.childCount
+                val pastVisibleItems = layoutManager.findFirstVisibleItemPosition()
+                val totalItemCount = layoutManager.itemCount
+                if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
+                    onScrolledToBottom.onNext(Any())
                 }
+            }
         return this
     }
 
     fun observe(): Observable<Any> {
         return onScrolledToBottom
-                .observeOn(schedulersInjector.ui())
+            .observeOn(schedulersInjector.ui())
     }
 }
