@@ -4,7 +4,7 @@ import android.databinding.BindingAdapter
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
 
-@BindingAdapter("bind:imageUrl")
+@BindingAdapter("imageUrl")
 fun ImageView.loadImage(path: String) {
     Picasso.get().load(path).into(this)
 }

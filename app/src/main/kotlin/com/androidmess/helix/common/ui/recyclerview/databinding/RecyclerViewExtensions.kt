@@ -4,7 +4,7 @@ import android.databinding.BindingAdapter
 import android.support.v7.widget.RecyclerView
 import io.reactivex.Observable
 
-@BindingAdapter("bind:adapterData", "bind:modelData")
+@BindingAdapter("adapterData", "modelData")
 fun <T> RecyclerView.bindDataToRecyclerView(adapterData: MutableList<T>, modelData: Observable<T>) {
     modelData.subscribe {
         adapterData.add(it)

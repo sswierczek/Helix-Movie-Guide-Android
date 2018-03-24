@@ -2,7 +2,6 @@
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -29,8 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            bind:adapterData="@{adapter.data}"
-            bind:modelData="@{viewModel.data}" />
+            app:adapterData="@{adapter.data}"
+            app:modelData="@{viewModel.data}" />
 
         <TextView
             android:id="@+id/discoverError"
@@ -42,7 +41,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            bind:show="@{viewModel.error}"
+            app:show="@{viewModel.error}"
             tools:visibility="visible" />
 
         <ProgressBar
@@ -54,7 +53,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            bind:show="@{viewModel.progress}"
+            app:show="@{viewModel.progress}"
             tools:visibility="visible" />
 
     </android.support.constraint.ConstraintLayout>
