@@ -23,8 +23,7 @@ class RecyclerViewOnScrolledToBottomDetectorTest : BaseTest() {
 
     val layoutManager: GridLayoutManager = mock()
 
-    val detector: RecyclerViewOnScrolledToBottomDetector
-            = RecyclerViewOnScrolledToBottomDetector(testSchedulers, layoutManager)
+    val detector: RecyclerViewOnScrolledToBottomDetector = RecyclerViewOnScrolledToBottomDetector(testSchedulers, layoutManager)
 
     @Before
     fun setUp() {
