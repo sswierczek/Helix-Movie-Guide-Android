@@ -17,10 +17,11 @@ class DiscoverActivityModule {
     fun create() = applicationContext {
         context(DiscoverActivity.CONTEXT_NAME) {
             viewModel { DiscoverViewModel(get(), get()) }
-            bean { RecyclerViewItemSizeCalculatorFactory(get()).create() }
-            bean { DiscoverLayoutManagerFactory(get()).create() as LinearLayoutManager }
-            bean { DiscoverAdapter(get()) }
-            bean { RecyclerViewOnScrolledToBottomDetector(get(), get()) }
+
+            factory { RecyclerViewOnScrolledToBottomDetector(get(), get()) }
+            factory { DiscoverLayoutManagerFactory(get()).create() as LinearLayoutManager }
+            factory { RecyclerViewItemSizeCalculatorFactory(get()).create() }
+            factory { DiscoverAdapter(get()) }
         }
     }
 
