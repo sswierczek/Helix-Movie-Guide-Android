@@ -66,7 +66,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$androidVersions.rxAndroid"
 
     implementation "android.arch.lifecycle:extensions:$androidVersions.arch"
-    kapt "com.android.databinding:compiler:3.0.1"
+    kapt "com.android.databinding:compiler:$androidVersions.databinding"
 
     implementation "com.android.support:support-v4:$androidVersions.support"
     implementation "com.android.support:appcompat-v7:$androidVersions.support"
