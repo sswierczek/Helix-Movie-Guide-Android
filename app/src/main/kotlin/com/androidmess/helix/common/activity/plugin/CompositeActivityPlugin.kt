@@ -14,5 +14,5 @@ interface CompositeActivityPlugin {
 
     fun onStop(isFinishing: Boolean) {}
 
-    fun onDestroy() {}
+    fun onDestroy(isFinishing: Boolean) {}
 }

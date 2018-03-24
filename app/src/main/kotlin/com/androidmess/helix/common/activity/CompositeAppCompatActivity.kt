@@ -43,6 +43,6 @@ open class CompositeAppCompatActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        plugins.forEach { it.onDestroy() }
+        plugins.forEach { it.onDestroy(isFinishing) }
     }
 }

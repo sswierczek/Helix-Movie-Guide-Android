@@ -28,19 +28,4 @@ class DataBindingActivityPlugin(
             binding.setVariable(key, value)
         }
     }
-
-    override fun onResume() {
-    }
-
-    override fun onPause() {
-    }
-
-    override fun onStart() {
-    }
-
-    override fun onStop(isFinishing: Boolean) {
-    }
-
-    override fun onDestroy() {
-    }
 }

@@ -14,4 +14,8 @@ class DiActivityPlugin(
             activity.releaseContext(contextName)
         }
     }
+
+    override fun onDestroy(isFinishing: Boolean) {
+        activity.releaseContext(contextName)
+    }
 }
