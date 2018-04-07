@@ -19,7 +19,7 @@ buildscript {
 
         androidVersions = [
                 koin              : '0.9.1',
-                timber            : '4.6.1',
+                timber            : '4.7.0',
                 rxAndroid         : '2.0.2',
                 arch              : '1.1.1',
                 support           : '27.1.1',
