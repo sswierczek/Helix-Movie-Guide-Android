@@ -2,9 +2,9 @@ package com.androidmess.helix.common.ui.view
 
 import android.databinding.BindingAdapter
 import android.widget.ImageView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 
 @BindingAdapter("imageUrl")
 fun ImageView.loadImage(path: String) {
-    Picasso.get().load(path).into(this)
+    Glide.with(context).load(path).into(this)
 }
