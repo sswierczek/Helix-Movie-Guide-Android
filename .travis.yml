@@ -22,9 +22,3 @@ before_install:
 - yes | sdkmanager "platforms;android-27"
 script:
 - "./gradlew clean build"
-- "./gradlew codeCoverageReport"
-after_success:
-- bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
-env:
-  global:
-    secure: BjRR1bGaeamdhaOXoa1BZf6/2epFvWpD+2llvX5eHZiiRrO5ePRS/LSjGt20E8gyghbacxkySxeK0gREnYIxUjM6icHDx+ZUCAwG9tYLDs7cQoChG7++avbnBXRHe2ue/EXelxkdi3ULeJtJhq0dTpSAaJETYWyI/vRoMaevLsUWGAKsojTP7ktkO0U6GK5axiJ0m8w8uZkvNY1cWMArqO17B6lfBPPFUtYq7K7COS+IY9yGZ2DH4c8HNS2Dqw/3+pi0K3Ae+rPd8W6hr+KY3crQFgR1gSskFbzM/lgNV0RwGJCzgpWVc5dJbHKbjIdCEM+i7P/+GvUoT4UHMgUEcStgAEyj3rOr9MjNnA7JgUfApf6y8sEjjfsqz1c7dsds+EKtSZBEallganggumiZhF+e+Xu1PtXxA0RIPYeK3IQMaZfJBqET4U9mxXadNEnYePDE274mG0CqQfbLlb8je9DLles1I5gwRTwm733KkqA2RnQlQtFL7PIRY4+pXpJ8qn0SiEVgCRtVtnsndSyu6pzLgXVGuKXwRTNm0bNfnX1XKoYt6xQIZLrVZzZAk8plmMID6weomBB6C6GBQcG6CkP7QRFsTZp3vPn232PNXZ++i6QbsWqSOjw015sgIDqtUaGJvCOcIn6MoVyS/pGp/uB8Ci7PgafsCj80kRuyATY=

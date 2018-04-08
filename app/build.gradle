@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'poeditor'
 apply plugin: "com.github.ben-manes.versions"
-apply from: '../quality/jacoco.gradle'
 apply from: '../quality/ktlint.gradle'
 
 android {

@@ -31,7 +31,6 @@ buildscript {
         ]
 
         quality = [
-                jacoco: '0.8.1',
                 ktlint: '0.20.0'
         ]
 
