@@ -11,6 +11,13 @@ ext {
 buildscript {
 
     ext {
+        pluginsVersions = [
+                gradle        : '3.1.0',
+                poeditor      : '0.3.3',
+                gradleVersions: '0.17.0',
+                ktlint        : '3.2.0'
+        ]
+
         versions = [
                 kotlin: '1.2.31',
                 rxjava: '2.1.12',
@@ -30,10 +37,6 @@ buildscript {
                 rxbinding         : '2.1.1'
         ]
 
-        quality = [
-                ktlint: '0.20.0'
-        ]
-
         testVersions = [
                 junit        : '4.12',
                 mockito      : '2.16.0',
@@ -45,13 +48,18 @@ buildscript {
     repositories {
         jcenter()
         google()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.0'
-        classpath 'be.lukin.poeditor:gradle:0.3.3'
-        classpath 'com.github.ben-manes:gradle-versions-plugin:0.17.0'
+        classpath "com.android.tools.build:gradle:$project.pluginsVersions.gradle"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$project.versions.kotlin"
+
+        classpath "be.lukin.poeditor:gradle:$project.pluginsVersions.poeditor"
+        classpath "com.github.ben-manes:gradle-versions-plugin:$project.pluginsVersions.gradleVersions"
+        classpath "gradle.plugin.org.jlleitschuh.gradle:ktlint-gradle:$project.pluginsVersions.ktlint"
     }
 }
 
