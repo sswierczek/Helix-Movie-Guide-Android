@@ -4,7 +4,6 @@ import com.androidmess.helix.BaseTest
 import org.amshove.kluent.shouldEqual
 import org.junit.Test
 
-@Suppress("IllegalIdentifier", "MemberVisibilityCanBePrivate")
 class RecyclerViewItemSizeCalculatorTest : BaseTest() {
 
     companion object {

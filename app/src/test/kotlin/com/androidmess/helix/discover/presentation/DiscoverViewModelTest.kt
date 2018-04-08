@@ -13,11 +13,10 @@ import org.amshove.kluent.shouldEqual
 import org.junit.Before
 import org.junit.Test
 
-@Suppress("IllegalIdentifier", "MemberVisibilityCanBePrivate")
 class DiscoverViewModelTest : BaseTest() {
 
     val getDiscoverMoviesUseCase = mock<GetDiscoverMoviesUseCase>()
-    val dataItem = emptyMovie()
+    val dataItem = mock<Movie>()
     val dataList = listOf(dataItem)
     val data = mock<MovieResult>()
     val dataObservable = PublishSubject.create<MovieResult>()
@@ -66,9 +65,5 @@ class DiscoverViewModelTest : BaseTest() {
         viewModel.scroll.notifyChange()
 
         verify(getDiscoverMoviesUseCase).execute(firstPage)
-    }
-
-    fun emptyMovie(): Movie {
-        return Movie("", false, "", "", emptyList(), 0, "", "", "", 0.0, 0, false, 0.0)
     }
 }

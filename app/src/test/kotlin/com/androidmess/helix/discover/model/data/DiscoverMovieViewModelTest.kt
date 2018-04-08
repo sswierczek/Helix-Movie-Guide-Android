@@ -7,7 +7,6 @@ import com.nhaarman.mockito_kotlin.mock
 import org.amshove.kluent.shouldEqual
 import org.junit.Test
 
-@Suppress("IllegalIdentifier", "MemberVisibilityCanBePrivate")
 class DiscoverMovieViewModelTest : BaseTest() {
 
     val movie = mock<Movie> {

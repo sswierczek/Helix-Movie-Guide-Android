@@ -9,7 +9,6 @@ import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.subjects.PublishSubject
 import org.junit.Test
 
-@Suppress("IllegalIdentifier", "MemberVisibilityCanBePrivate")
 class RecyclerViewOnScrolledToBottomDetectorTest : BaseTest() {
 
     companion object {
