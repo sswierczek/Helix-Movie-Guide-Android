@@ -15,7 +15,8 @@ buildscript {
                 gradle        : '3.1.0',
                 poeditor      : '0.3.3',
                 gradleVersions: '0.17.0',
-                ktlint        : '3.2.0'
+                ktlint        : '3.2.0',
+                detekt        : '1.0.0.RC6-4'
         ]
 
         versions = [
@@ -60,8 +61,11 @@ buildscript {
         classpath "be.lukin.poeditor:gradle:$project.pluginsVersions.poeditor"
         classpath "com.github.ben-manes:gradle-versions-plugin:$project.pluginsVersions.gradleVersions"
         classpath "gradle.plugin.org.jlleitschuh.gradle:ktlint-gradle:$project.pluginsVersions.ktlint"
+        classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$project.pluginsVersions.detekt"
     }
 }
+
+apply plugin: "io.gitlab.arturbosch.detekt"
 
 allprojects {
     repositories {

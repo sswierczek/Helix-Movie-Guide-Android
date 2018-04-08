@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.androidmess.helix.BR
 import com.androidmess.helix.R
 import com.androidmess.helix.common.activity.CompositeAppCompatActivity
-import com.androidmess.helix.common.databinding.DataBindingActivityPlugin
+import com.androidmess.helix.common.databinding.DataBindingCompositeActivityPlugin
 import com.androidmess.helix.common.di.activity.DiActivityPlugin
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
 import com.androidmess.helix.discover.presentation.DiscoverViewModel
@@ -38,7 +38,7 @@ class DiscoverActivity : CompositeAppCompatActivity() {
     }
 
     private fun setupDataBinding() {
-        val plugin = DataBindingActivityPlugin(this, discoverViewModel, R.layout.activity_discover)
+        val plugin = DataBindingCompositeActivityPlugin(this, discoverViewModel, R.layout.activity_discover)
         plugin.addBinding(BR.adapter, dataAdapter)
         registerPlugin(plugin)
     }

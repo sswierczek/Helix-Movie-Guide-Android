@@ -9,7 +9,7 @@ import android.util.ArrayMap
 import com.androidmess.helix.BR
 import com.androidmess.helix.common.activity.plugin.CompositeActivityPlugin
 
-class DataBindingActivityPlugin(
+class DataBindingCompositeActivityPlugin(
     private val activity: Activity,
     private val viewModel: ViewModel,
     private val resLayoutId: Int
