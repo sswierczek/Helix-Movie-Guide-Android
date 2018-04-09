@@ -12,7 +12,7 @@ buildscript {
 
     ext {
         pluginsVersions = [
-                gradle        : '3.1.0',
+                gradle        : '3.1.1',
                 poeditor      : '0.3.3',
                 gradleVersions: '0.17.0',
                 ktlint        : '3.2.0',
