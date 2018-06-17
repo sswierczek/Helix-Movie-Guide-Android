@@ -20,21 +20,21 @@ buildscript {
         ]
 
         versions = [
-                kotlin: '1.2.31',
-                rxjava: '2.1.12',
-                gson  : '2.8.2'
+                kotlin: '1.2.50',
+                rxjava: '2.1.14',
+                gson  : '2.8.5'
         ]
 
         androidVersions = [
-                koin              : '0.9.1',
+                koin              : '0.9.3',
                 timber            : '4.7.0',
                 rxAndroid         : '2.0.2',
                 arch              : '1.1.1',
                 support           : '27.1.1',
-                constraint        : '1.0.2',
+                constraint        : '1.1.0',
                 retrofit          : '2.4.0',
                 loggingInterceptor: '3.10.0',
-                glide             : '4.6.1',
+                glide             : '4.7.1',
                 rxbinding         : '2.1.1'
         ]
 
