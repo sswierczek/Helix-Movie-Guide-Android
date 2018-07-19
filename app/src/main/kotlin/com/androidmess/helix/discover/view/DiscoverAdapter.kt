@@ -4,20 +4,19 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import com.androidmess.helix.R
-import com.androidmess.helix.common.ui.recyclerview.RecyclerViewItemSizeCalculator
 import com.androidmess.helix.common.ui.view.inflate
 import com.androidmess.helix.databinding.DiscoverListItemBinding
 import com.androidmess.helix.discover.model.data.DiscoverMovieViewModel
 
-class DiscoverAdapter(private val itemSizeCalculator: RecyclerViewItemSizeCalculator) :
-    RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
+class DiscoverAdapter() :
+        RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
 
     val data: MutableList<DiscoverMovieViewModel> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = parent.inflate(R.layout.discover_list_item, false)
-        val viewParams = view.layoutParams
-        viewParams.width = itemSizeCalculator.itemWidth
+//        val viewParams = view.layoutParams
+//        viewParams.width = itemSizeCalculator.itemWidth
         return ViewHolder(view)
     }
 
