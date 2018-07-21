@@ -9,10 +9,11 @@ import android.util.ArrayMap
 import com.androidmess.helix.BR
 import com.androidmess.helix.common.activity.plugin.CompositeActivityPlugin
 
-class DataBindingCompositeActivityPlugin(
-    private val activity: Activity,
-    private val viewModel: ViewModel,
-    private val resLayoutId: Int
+class DataBindingActivityPlugin<T : ViewDataBinding>(
+        private val activity: Activity,
+        private val viewModel: ViewModel,
+        private val resLayoutId: Int,
+        private val useBindings: (T) -> Unit
 ) : CompositeActivityPlugin {
 
     private val bindings: MutableMap<Int, Any> = ArrayMap()
@@ -22,10 +23,13 @@ class DataBindingCompositeActivityPlugin(
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val binding: ViewDataBinding = DataBindingUtil.setContentView(activity, resLayoutId)
-        binding.setVariable(BR.viewModel, viewModel)
-        for ((key, value) in bindings) {
-            binding.setVariable(key, value)
+        val binding = DataBindingUtil.setContentView(activity, resLayoutId) as T
+        binding.run {
+            setVariable(BR.viewModel, viewModel)
+            for ((key, value) in bindings) {
+                setVariable(key, value)
+            }
+            useBindings.invoke(this)
         }
     }
 }

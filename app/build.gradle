@@ -67,6 +67,13 @@ dependencies {
     implementation "com.android.support:support-media-compat:$androidVersions.support"
     implementation "com.android.support.constraint:constraint-layout:$androidVersions.constraint"
     implementation "com.android.support:recyclerview-v7:$androidVersions.support"
+    implementation "com.android.support:design:$androidVersions.support"
+
+    implementation "android.arch.navigation:navigation-ui:$androidVersions.navigation"
+    implementation "android.arch.navigation:navigation-fragment:$androidVersions.navigation"
+    implementation "android.arch.navigation:navigation-common-ktx:$androidVersions.navigation"
+    implementation "android.arch.navigation:navigation-ui-ktx:$androidVersions.navigation"
+    implementation "android.arch.navigation:navigation-fragment-ktx:$androidVersions.navigation"
 
     implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:$androidVersions.rxbinding"
     implementation "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$androidVersions.rxbinding"
@@ -79,6 +86,8 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$androidVersions.glide"
 
     // to override any possible test dependencies conflicts
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
     testImplementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
 
     testImplementation "junit:junit:$testVersions.junit"
@@ -92,6 +101,6 @@ poeditor {
     projectId '94421'
     type 'android_strings'
 
-    trans 'en', 'App/src/main/res/values/strings.xml'
-    trans 'pl', 'App/src/main/res/values-pl/strings.xml'
+    trans 'en', 'app/src/main/res/values/strings.xml'
+    trans 'pl', 'app/src/main/res/values-pl/strings.xml'
 }

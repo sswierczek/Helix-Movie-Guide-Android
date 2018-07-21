@@ -11,24 +11,24 @@ class TimberL(private val appConfig: AppConfig) : L {
             Timber.plant(DebugTree())
         }
     }
+}
 
-    override fun v(message: String) {
-        Timber.v(message)
-    }
+fun Any.v(message: String) {
+    Timber.v(message)
+}
 
-    override fun d(message: String) {
-        Timber.d(message)
-    }
+fun Any.d(message: String) {
+    Timber.d(message)
+}
 
-    override fun w(message: String) {
-        Timber.w(message)
-    }
+fun Any.w(message: String) {
+    Timber.w(message)
+}
 
-    override fun e(message: String) {
-        Timber.e(message)
-    }
+fun Any.e(message: String) {
+    Timber.e(message)
+}
 
-    override fun e(throwable: Throwable) {
-        Timber.e(throwable)
-    }
+fun Any.e(throwable: Throwable) {
+    Timber.e(throwable)
 }

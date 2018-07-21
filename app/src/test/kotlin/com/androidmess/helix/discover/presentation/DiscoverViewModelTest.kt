@@ -4,6 +4,7 @@ import com.androidmess.helix.BaseTest
 import com.androidmess.helix.common.model.data.Movie
 import com.androidmess.helix.common.model.data.MovieResult
 import com.androidmess.helix.discover.usecase.GetDiscoverMoviesUseCase
+import com.androidmess.helix.discover.view.DiscoverViewModel
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
@@ -31,14 +32,14 @@ class DiscoverViewModelTest : BaseTest() {
 
     @Test
     fun `Should show loading when starting to fetch data`() {
-        viewModel.startFetchingData()
+        viewModel.viewReady()
 
         viewModel.progress.get() shouldEqual true
     }
 
     @Test
     fun `Should hide loading when data arrived`() {
-        viewModel.startFetchingData()
+        viewModel.viewReady()
 
         dataObservable.onComplete()
 
@@ -48,7 +49,7 @@ class DiscoverViewModelTest : BaseTest() {
     @Test
     fun `Should show error when data loading error occurred`() {
         val error = Throwable("test error")
-        viewModel.startFetchingData()
+        viewModel.viewReady()
 
         dataObservable.onError(error)
 
@@ -60,7 +61,7 @@ class DiscoverViewModelTest : BaseTest() {
     @Test
     fun `Should not load next page when previous fetch is still in progress`() {
         val firstPage = 1
-        viewModel.startFetchingData()
+        viewModel.viewReady()
 
         viewModel.scroll.notifyChange()
 

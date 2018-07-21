@@ -5,15 +5,15 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import com.androidmess.helix.R
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
-import com.androidmess.helix.discover.presentation.DiscoverViewModel
-import com.androidmess.helix.discover.view.DiscoverActivity
 import com.androidmess.helix.discover.view.DiscoverAdapter
+import com.androidmess.helix.discover.view.DiscoverFragment
+import com.androidmess.helix.discover.view.DiscoverViewModel
 import org.koin.android.architecture.ext.viewModel
 import org.koin.dsl.module.applicationContext
 
-class DiscoverActivityModule {
+class DiscoverFragmentModule {
     fun create() = applicationContext {
-        context(DiscoverActivity.CONTEXT_NAME) {
+        context(DiscoverFragment.CONTEXT_NAME) {
             viewModel { DiscoverViewModel(get(), get()) }
 
             bean { RecyclerViewOnScrolledToBottomDetector(get(), get()) }

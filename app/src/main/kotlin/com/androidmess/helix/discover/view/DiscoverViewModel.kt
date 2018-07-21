@@ -1,8 +1,9 @@
-package com.androidmess.helix.discover.presentation
+package com.androidmess.helix.discover.view
 
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import com.androidmess.helix.common.databinding.extensions.addOnPropertyChanged
+import com.androidmess.helix.common.debug.e
 import com.androidmess.helix.common.model.data.MovieResult
 import com.androidmess.helix.common.rx.SchedulersInjector
 import com.androidmess.helix.discover.model.data.DiscoverMovieViewModel
@@ -12,8 +13,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
 
 class DiscoverViewModel(
-    private val schedulers: SchedulersInjector,
-    private val getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase
+        private val schedulers: SchedulersInjector,
+        private val getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase
 ) : ViewModel() {
 
     val scroll = ObservableBoolean()
@@ -32,7 +33,7 @@ class DiscoverViewModel(
         disposables.add(scroll.addOnPropertyChanged { scrolledToBottom() })
     }
 
-    fun startFetchingData() {
+    fun viewReady() {
         fetchPage(page)
     }
 
@@ -52,14 +53,21 @@ class DiscoverViewModel(
     private fun fetchPage(page: Int) {
         isLoading = true
         val discoverDisposable = getDiscoverMoviesUseCase
-            .execute(page)
-            .subscribeOn(schedulers.io())
-            .flatMapIterable(MovieResult::results)
-            .flatMap { Observable.just(DiscoverMovieViewModel.Mapper.fromMovie(it)) }
-            .observeOn(schedulers.ui())
-            .doOnSubscribe { progress.set(true) }
-            .doFinally { progress.set(false) }
-            .subscribe({ data.onNext(it) }, { error.set(true) }, { isLoading = false })
+                .execute(page)
+                .subscribeOn(schedulers.io())
+                .flatMapIterable(MovieResult::results)
+                .flatMap { Observable.just(DiscoverMovieViewModel.Mapper.fromMovie(it)) }
+                .observeOn(schedulers.ui())
+                .doOnSubscribe { progress.set(true) }
+                .doFinally { progress.set(false) }
+                .subscribe({
+                    data.onNext(it)
+                }, {
+                    e(it)
+                    error.set(true)
+                }, {
+                    isLoading = false
+                })
         disposables.add(discoverDisposable)
     }
 }

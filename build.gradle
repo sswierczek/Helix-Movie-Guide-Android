@@ -35,7 +35,8 @@ buildscript {
                 retrofit          : '2.4.0',
                 loggingInterceptor: '3.10.0',
                 glide             : '4.7.1',
-                rxbinding         : '2.1.1'
+                rxbinding         : '2.1.1',
+                navigation        : '1.0.0-alpha04'
         ]
 
         testVersions = [

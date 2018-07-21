@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/discoverFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_discover"
+        android:title="@string/discover_screen_title"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/moviesFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_movies"
+        android:title="@string/movies_screen_title"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/userFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_user"
+        android:title="@string/user_screen_title"
+        app:showAsAction="ifRoom" />
+</menu>
