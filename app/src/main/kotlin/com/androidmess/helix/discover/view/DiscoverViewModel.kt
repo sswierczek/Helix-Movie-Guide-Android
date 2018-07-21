@@ -13,8 +13,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.PublishSubject
 
 class DiscoverViewModel(
-        private val schedulers: SchedulersInjector,
-        private val getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase
+    private val schedulers: SchedulersInjector,
+    private val getDiscoverMoviesUseCase: GetDiscoverMoviesUseCase
 ) : ViewModel() {
 
     val scroll = ObservableBoolean()
@@ -53,21 +53,21 @@ class DiscoverViewModel(
     private fun fetchPage(page: Int) {
         isLoading = true
         val discoverDisposable = getDiscoverMoviesUseCase
-                .execute(page)
-                .subscribeOn(schedulers.io())
-                .flatMapIterable(MovieResult::results)
-                .flatMap { Observable.just(DiscoverMovieViewModel.Mapper.fromMovie(it)) }
-                .observeOn(schedulers.ui())
-                .doOnSubscribe { progress.set(true) }
-                .doFinally { progress.set(false) }
-                .subscribe({
-                    data.onNext(it)
-                }, {
-                    e(it)
-                    error.set(true)
-                }, {
-                    isLoading = false
-                })
+            .execute(page)
+            .subscribeOn(schedulers.io())
+            .flatMapIterable(MovieResult::results)
+            .flatMap { Observable.just(DiscoverMovieViewModel.Mapper.fromMovie(it)) }
+            .observeOn(schedulers.ui())
+            .doOnSubscribe { progress.set(true) }
+            .doFinally { progress.set(false) }
+            .subscribe({
+                data.onNext(it)
+            }, {
+                e(it)
+                error.set(true)
+            }, {
+                isLoading = false
+            })
         disposables.add(discoverDisposable)
     }
 }
