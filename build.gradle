@@ -22,7 +22,8 @@ buildscript {
         versions = [
                 kotlin: '1.2.51',
                 rxjava: '2.1.16',
-                gson  : '2.8.5'
+                gson  : '2.8.5',
+                ktlint: '0.24.0',
         ]
 
         androidVersions = [
