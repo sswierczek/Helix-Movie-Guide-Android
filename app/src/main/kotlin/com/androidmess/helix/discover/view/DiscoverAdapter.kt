@@ -15,8 +15,6 @@ class DiscoverAdapter() :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = parent.inflate(R.layout.discover_list_item, false)
-//        val viewParams = view.layoutParams
-//        viewParams.width = itemSizeCalculator.itemWidth
         return ViewHolder(view)
     }
 
