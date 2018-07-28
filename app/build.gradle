@@ -59,6 +59,8 @@ dependencies {
     implementation "org.koin:koin-android:$androidVersions.koin"
     implementation "org.koin:koin-android-architecture:$androidVersions.koin"
 
+    implementation "io.reactivex.rxjava2:rxjava:$versions.rxjava"
+    implementation "io.reactivex.rxjava2:rxkotlin:$versions.rxKotlin"
     implementation "io.reactivex.rxjava2:rxandroid:$androidVersions.rxAndroid"
 
     implementation "android.arch.lifecycle:extensions:$androidVersions.arch"
@@ -77,6 +79,8 @@ dependencies {
 
     implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:$androidVersions.rxbinding"
     implementation "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$androidVersions.rxbinding"
+
+    implementation "com.google.code.gson:gson:$versions.gson"
 
     implementation "com.squareup.retrofit2:retrofit:$androidVersions.retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$androidVersions.retrofit"

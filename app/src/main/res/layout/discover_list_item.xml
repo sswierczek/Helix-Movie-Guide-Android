@@ -21,27 +21,33 @@
 
         <ImageView
             android:id="@+id/discoverItemImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:scaleType="centerCrop"
             app:imageUrl="@{movie.imagePath}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:src="@mipmap/ic_launcher" />
 
         <TextView
             android:id="@+id/discoverItemText"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="@dimen/discover_item_text_height"
             android:background="@color/discover_item_text_background_color"
             android:ellipsize="end"
             android:gravity="start|center_vertical"
             android:maxLines="1"
-            android:paddingBottom="@dimen/discover_item_text_padding"
-            android:paddingEnd="@dimen/discover_item_text_padding"
             android:paddingStart="@dimen/discover_item_text_padding"
+            android:paddingEnd="@dimen/discover_item_text_padding"
+            android:paddingBottom="@dimen/discover_item_text_padding"
             android:text="@{movie.title}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/discover_item_text_color"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             tools:text="Some video title" />
 
     </android.support.constraint.ConstraintLayout>
