@@ -13,21 +13,19 @@ import com.androidmess.helix.R
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
 import com.androidmess.helix.databinding.DiscoverFragmentBinding
 import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents
-import org.koin.android.ext.android.inject
-import org.koin.android.ext.android.releaseContext
+import org.koin.android.scope.currentScope
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class DiscoverFragment : Fragment() {
 
     companion object {
-        const val CONTEXT_NAME = "DiscoverFragment"
         fun newInstance() = DiscoverFragment()
     }
 
     val discoverViewModel: DiscoverViewModel by viewModel()
-    val dataAdapter: DiscoverAdapter by inject()
-    val discoverLayoutManager: LinearLayoutManager by inject()
-    val onScrolledToBottomDetector: RecyclerViewOnScrolledToBottomDetector by inject()
+    val dataAdapter: DiscoverAdapter by currentScope.inject()
+    val discoverLayoutManager: LinearLayoutManager by currentScope.inject()
+    val onScrolledToBottomDetector: RecyclerViewOnScrolledToBottomDetector by currentScope.inject()
     var binding: DiscoverFragmentBinding? = null
 
     override fun onCreateView(
@@ -48,12 +46,6 @@ class DiscoverFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupDataContainer(binding?.discoverDataContainer)
         discoverViewModel.viewReady()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        // TODO Create DI fragments plugins
-        releaseContext(CONTEXT_NAME)
     }
 
     // FIXME Move to data binding

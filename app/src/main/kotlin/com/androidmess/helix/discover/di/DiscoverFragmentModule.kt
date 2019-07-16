@@ -8,17 +8,18 @@ import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBott
 import com.androidmess.helix.discover.view.DiscoverAdapter
 import com.androidmess.helix.discover.view.DiscoverFragment
 import com.androidmess.helix.discover.view.DiscoverViewModel
-import org.koin.android.viewmodel.ext.koin.viewModel
-import org.koin.dsl.module.applicationContext
+import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
 class DiscoverFragmentModule {
-    fun create() = applicationContext {
-        context(DiscoverFragment.CONTEXT_NAME) {
-            viewModel { DiscoverViewModel(get(), get()) }
+    fun create() = module {
+        viewModel { DiscoverViewModel(get(), get()) }
 
-            bean { RecyclerViewOnScrolledToBottomDetector(get(), get()) }
-            bean { DiscoverLayoutManagerFactory(get()).create() as LinearLayoutManager }
-            bean { DiscoverAdapter() }
+        scope(named<DiscoverFragment>()) {
+            scoped { RecyclerViewOnScrolledToBottomDetector(get(), get()) }
+            scoped<LinearLayoutManager> { DiscoverLayoutManagerFactory(get()).create() }
+            scoped { DiscoverAdapter() }
         }
     }
 

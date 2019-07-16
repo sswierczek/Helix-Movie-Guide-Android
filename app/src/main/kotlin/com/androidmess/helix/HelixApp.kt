@@ -9,24 +9,28 @@ import com.androidmess.helix.discover.di.DiscoverFragmentModule
 import com.androidmess.helix.discover.model.di.DiscoverModelModule
 import com.androidmess.helix.main.di.MainActivityModule
 import org.koin.android.ext.android.inject
-import org.koin.android.ext.android.startKoin
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
 
 class HelixApp : Application() {
 
     val l: L by inject()
-
     override fun onCreate() {
         super.onCreate()
         MultiDex.install(this)
-        startKoin(
-                this, listOf(
-                AppModule().create(),
-                NetworkModule().create(),
-                MainActivityModule().create(),
-                DiscoverModelModule().create(),
-                DiscoverFragmentModule().create()
-        )
-        )
+        startKoin {
+            androidLogger()
+            androidContext(this@HelixApp)
+            modules(
+                    listOf(
+                            AppModule().create(),
+                            NetworkModule().create(),
+                            MainActivityModule().create(),
+                            DiscoverModelModule().create(),
+                            DiscoverFragmentModule().create())
+            )
+        }
         initLibraries()
     }
 

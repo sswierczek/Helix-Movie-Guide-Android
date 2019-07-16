@@ -59,7 +59,7 @@ dependencies {
 
     implementation "com.jakewharton.timber:timber:$androidVersions.timber"
 
-    implementation "org.koin:koin-android:$androidVersions.koin"
+    implementation "org.koin:koin-android-scope:$androidVersions.koin"
     implementation "org.koin:koin-android-viewmodel:$androidVersions.koin"
 
     implementation "io.reactivex.rxjava2:rxjava:$versions.rxjava"

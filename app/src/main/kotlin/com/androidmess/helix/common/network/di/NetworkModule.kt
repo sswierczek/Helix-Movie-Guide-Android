@@ -4,17 +4,17 @@ import com.androidmess.helix.common.app.AppConfig
 import com.androidmess.helix.common.network.NetworkConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.dsl.module.applicationContext
+import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class NetworkModule {
 
-    fun create() = applicationContext {
-        bean { NetworkConfig() }
-        bean { OkHttpClientFactory(get()).create() }
-        bean { RetrofitFactory(get(), get()).create() }
+    fun create() = module {
+        single { NetworkConfig() }
+        single { OkHttpClientFactory(get()).create() }
+        single { RetrofitFactory(get(), get()).create() }
     }
 
     private class OkHttpClientFactory(private val appConfig: AppConfig) {
@@ -25,22 +25,22 @@ class NetworkModule {
             val levelNone = HttpLoggingInterceptor.Level.NONE
             logging.level = if (appConfig.isDebug) levelBody else levelNone
             return OkHttpClient.Builder()
-                .addInterceptor(logging)
-                .build()
+                    .addInterceptor(logging)
+                    .build()
         }
     }
 
     private class RetrofitFactory(
-        private val okClient: OkHttpClient,
-        private val networkConfig: NetworkConfig
+            private val okClient: OkHttpClient,
+            private val networkConfig: NetworkConfig
     ) {
         fun create(): Retrofit {
             return Retrofit.Builder()
-                .baseUrl(networkConfig.baseUrl)
-                .client(okClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build()
+                    .baseUrl(networkConfig.baseUrl)
+                    .client(okClient)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .build()
         }
     }
 }
