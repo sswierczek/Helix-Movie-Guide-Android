@@ -5,10 +5,10 @@ import com.androidmess.helix.common.model.data.Movie
 import com.androidmess.helix.common.model.data.MovieResult
 import com.androidmess.helix.discover.usecase.GetDiscoverMoviesUseCase
 import com.androidmess.helix.discover.view.DiscoverViewModel
-import com.nhaarman.mockito_kotlin.any
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.verify
-import com.nhaarman.mockito_kotlin.whenever
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.subjects.PublishSubject
 import org.amshove.kluent.shouldEqual
 import org.junit.Before

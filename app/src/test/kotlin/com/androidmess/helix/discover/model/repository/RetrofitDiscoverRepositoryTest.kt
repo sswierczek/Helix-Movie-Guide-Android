@@ -2,9 +2,9 @@ package com.androidmess.helix.discover.model.repository
 
 import com.androidmess.helix.BaseTest
 import com.androidmess.helix.common.network.NetworkConfig
-import com.nhaarman.mockito_kotlin.doReturn
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.verify
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
 import org.junit.Test
 import retrofit2.Retrofit
 

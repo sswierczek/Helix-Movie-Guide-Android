@@ -2,8 +2,8 @@ package com.androidmess.helix.discover.model.data
 
 import com.androidmess.helix.BaseTest
 import com.androidmess.helix.common.model.data.Movie
-import com.nhaarman.mockito_kotlin.doReturn
-import com.nhaarman.mockito_kotlin.mock
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.mock
 import org.amshove.kluent.shouldEqual
 import org.junit.Test
 

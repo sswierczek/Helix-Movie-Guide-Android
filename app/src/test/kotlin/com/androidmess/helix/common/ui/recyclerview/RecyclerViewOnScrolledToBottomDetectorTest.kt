@@ -2,9 +2,9 @@ package com.androidmess.helix.common.ui.recyclerview
 
 import com.androidmess.helix.BaseTest
 import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
-import com.nhaarman.mockito_kotlin.doReturn
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.whenever
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.subjects.PublishSubject
 import org.junit.Test
 
