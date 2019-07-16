@@ -21,5 +21,4 @@ class Navigator {
             startActivity(movieDetailsIntent(movie))
         }
     }
-
 }

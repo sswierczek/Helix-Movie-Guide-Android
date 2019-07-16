@@ -7,7 +7,7 @@ import com.nhaarman.mockitokotlin2.mock
 import org.amshove.kluent.shouldEqual
 import org.junit.Test
 
-class DiscoverMovieViewModelTest : BaseTest() {
+class MovieViewDataTest : BaseTest() {
 
     val movie = mock<Movie> {
         on { id } doReturn 1234
@@ -17,21 +17,21 @@ class DiscoverMovieViewModelTest : BaseTest() {
 
     @Test
     fun `Should have the same id as model`() {
-        val movieViewModel = DiscoverMovieViewModel.fromMovie(movie)
+        val movieViewModel = MovieViewData.fromMovie(movie)
 
         movieViewModel.id shouldEqual movie.id
     }
 
     @Test
     fun `Should have the same title as model`() {
-        val movieViewModel = DiscoverMovieViewModel.fromMovie(movie)
+        val movieViewModel = MovieViewData.fromMovie(movie)
 
         movieViewModel.title shouldEqual movie.title
     }
 
     @Test
     fun `Should have full image path from model's poster path`() {
-        val movieViewModel = DiscoverMovieViewModel.fromMovie(movie)
+        val movieViewModel = MovieViewData.fromMovie(movie)
 
         movieViewModel.imagePath shouldEqual "https://image.tmdb.org/t/p/w500${movie.posterPath}"
     }

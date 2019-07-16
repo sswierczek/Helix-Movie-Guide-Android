@@ -9,6 +9,8 @@ import retrofit2.http.Query
 interface RetrofitMovieDetailsService {
 
     @GET("movie/{movie_id}")
-    fun fetchMovieDetails(@Path("movie_id") id: Int,
-                          @Query("api_key") apiKey: String): Observable<MovieDetailsData>
+    fun fetchMovieDetails(
+        @Path("movie_id") id: Int,
+        @Query("api_key") apiKey: String
+    ): Observable<MovieDetailsData>
 }

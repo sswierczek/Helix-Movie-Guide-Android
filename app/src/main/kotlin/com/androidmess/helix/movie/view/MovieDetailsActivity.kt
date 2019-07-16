@@ -46,7 +46,6 @@ class MovieDetailsActivity : CompositeAppCompatActivity() {
         intent?.extras?.getParcelable<MovieViewData>(getString(R.string.movieDetailsArg))
 }
 
-
 fun Activity.movieDetailsIntent(movieViewData: MovieViewData): Intent {
     return Intent(this, MovieDetailsActivity::class.java).apply {
         putExtra(getString(R.string.movieDetailsArg), movieViewData)
