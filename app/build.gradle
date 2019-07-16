@@ -108,7 +108,3 @@ poeditor {
     trans 'en', 'app/src/main/res/values/strings.xml'
     trans 'pl', 'app/src/main/res/values-pl/strings.xml'
 }
-
-ktlint {
-    version = versions.ktlint
-}

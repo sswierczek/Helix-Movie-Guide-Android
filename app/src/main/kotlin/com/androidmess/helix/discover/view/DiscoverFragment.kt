@@ -29,9 +29,9 @@ class DiscoverFragment : Fragment() {
     var binding: DiscoverFragmentBinding? = null
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // TODO Create databinding fragments plugins
         binding = DataBindingUtil.inflate(inflater, R.layout.discover_fragment, container, false)
@@ -52,11 +52,11 @@ class DiscoverFragment : Fragment() {
     private fun setupDataContainer(discoverDataContainer: RecyclerView?) {
         discoverDataContainer?.run {
             onScrolledToBottomDetector
-                    .scrollEvents(scrollEvents())
-                    .observe()
-                    .subscribe {
-                        discoverViewModel.scroll.notifyChange()
-                    }
+                .scrollEvents(scrollEvents())
+                .observe()
+                .subscribe {
+                    discoverViewModel.scroll.notifyChange()
+                }
             setHasFixedSize(true)
             layoutManager = discoverLayoutManager
             adapter = dataAdapter

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<string name="feed_fetch_error">"Błąd pobierania danych"</string>
-<string name="simple_error_action_button_text">"OK"</string>
-<string name="discover_screen_title">"Odkrywaj"</string>
-<string name="discover_search_hint">"Szukaj…"</string>
-<string name="details_cannot_load_trailers">"Błąd podczas pobierania zwiastunów filmu"</string>
-<string name="app_name">"Helix Movie Guide"</string>
-<string name="movies_screen_title">"Filmy"</string>
-<string name="user_screen_title">"Moje"</string>
+    <string name="feed_fetch_error">"Błąd pobierania danych"</string>
+    <string name="simple_error_action_button_text">"OK"</string>
+    <string name="discover_screen_title">"Odkrywaj"</string>
+    <string name="discover_search_hint">"Szukaj…"</string>
+    <string name="details_cannot_load_trailers">"Błąd podczas pobierania zwiastunów filmu"</string>
+    <string name="app_name">"Helix Movie Guide"</string>
+    <string name="movies_screen_title">"Filmy"</string>
+    <string name="user_screen_title">"Moje"</string>
 </resources>

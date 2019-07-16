@@ -13,7 +13,3 @@ dependencies {
 
     testImplementation "org.jetbrains.kotlin:kotlin-test:$versions.kotlin"
 }
-
-ktlint {
-    version = versions.ktlint
-}

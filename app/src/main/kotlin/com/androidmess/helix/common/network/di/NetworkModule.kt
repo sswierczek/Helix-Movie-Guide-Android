@@ -25,22 +25,22 @@ class NetworkModule {
             val levelNone = HttpLoggingInterceptor.Level.NONE
             logging.level = if (appConfig.isDebug) levelBody else levelNone
             return OkHttpClient.Builder()
-                    .addInterceptor(logging)
-                    .build()
+                .addInterceptor(logging)
+                .build()
         }
     }
 
     private class RetrofitFactory(
-            private val okClient: OkHttpClient,
-            private val networkConfig: NetworkConfig
+        private val okClient: OkHttpClient,
+        private val networkConfig: NetworkConfig
     ) {
         fun create(): Retrofit {
             return Retrofit.Builder()
-                    .baseUrl(networkConfig.baseUrl)
-                    .client(okClient)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .build()
+                .baseUrl(networkConfig.baseUrl)
+                .client(okClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build()
         }
     }
 }

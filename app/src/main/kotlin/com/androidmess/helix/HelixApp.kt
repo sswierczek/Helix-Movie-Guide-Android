@@ -23,12 +23,13 @@ class HelixApp : Application() {
             androidLogger()
             androidContext(this@HelixApp)
             modules(
-                    listOf(
-                            AppModule().create(),
-                            NetworkModule().create(),
-                            MainActivityModule().create(),
-                            DiscoverModelModule().create(),
-                            DiscoverFragmentModule().create())
+                listOf(
+                    AppModule().create(),
+                    NetworkModule().create(),
+                    MainActivityModule().create(),
+                    DiscoverModelModule().create(),
+                    DiscoverFragmentModule().create()
+                )
             )
         }
         initLibraries()

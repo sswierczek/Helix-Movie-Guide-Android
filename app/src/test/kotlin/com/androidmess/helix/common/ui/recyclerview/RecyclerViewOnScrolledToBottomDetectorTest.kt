@@ -1,6 +1,5 @@
 package com.androidmess.helix.common.ui.recyclerview
 
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.androidmess.helix.BaseTest
 import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
 import com.nhaarman.mockito_kotlin.doReturn

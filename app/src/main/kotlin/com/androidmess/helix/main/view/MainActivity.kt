@@ -15,21 +15,21 @@ class MainActivity : CompositeAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         registerPlugin(
-                DataBindingActivityPlugin<ActivityMainBinding>(
-                        this,
-                        mainViewModel,
-                        R.layout.activity_main
-                ) {
-                    it.mainToolbar.title = getString(R.string.app_name)
-                    setSupportActionBar(it.mainToolbar)
-                    it.mainToolbar.setupWithNavController(navController())
-                })
+            DataBindingActivityPlugin<ActivityMainBinding>(
+                this,
+                mainViewModel,
+                R.layout.activity_main
+            ) {
+                it.mainToolbar.title = getString(R.string.app_name)
+                setSupportActionBar(it.mainToolbar)
+                it.mainToolbar.setupWithNavController(navController())
+            })
         super.onCreate(savedInstanceState)
     }
 
     override fun onSupportNavigateUp() =
-            navController().navigateUp()
+        navController().navigateUp()
 
     private fun CompositeAppCompatActivity.navController() =
-            findNavController(this, R.id.nav_host_fragment)
+        findNavController(this, R.id.nav_host_fragment)
 }

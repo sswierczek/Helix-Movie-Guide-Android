@@ -27,8 +27,8 @@ class DiscoverFragmentModule {
 
         fun create(): GridLayoutManager {
             return GridLayoutManager(
-                    context,
-                    context.resources.getInteger(R.integer.discover_view_span_count)
+                context,
+                context.resources.getInteger(R.integer.discover_view_span_count)
             )
         }
     }
