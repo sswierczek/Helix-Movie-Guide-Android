@@ -1,14 +1,14 @@
 package com.androidmess.helix.discover.di
 
 import android.content.Context
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.androidmess.helix.R
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
 import com.androidmess.helix.discover.view.DiscoverAdapter
 import com.androidmess.helix.discover.view.DiscoverFragment
 import com.androidmess.helix.discover.view.DiscoverViewModel
-import org.koin.android.architecture.ext.viewModel
+import org.koin.android.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.applicationContext
 
 class DiscoverFragmentModule {

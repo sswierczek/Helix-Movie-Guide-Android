@@ -1,6 +1,7 @@
 package com.androidmess.helix
 
 import android.app.Application
+import androidx.multidex.MultiDex
 import com.androidmess.helix.common.debug.L
 import com.androidmess.helix.common.network.di.NetworkModule
 import com.androidmess.helix.di.AppModule
@@ -16,6 +17,7 @@ class HelixApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        MultiDex.install(this)
         startKoin(
                 this, listOf(
                 AppModule().create(),

@@ -1,7 +1,7 @@
 package com.androidmess.helix.discover.view
 
-import android.arch.lifecycle.ViewModel
-import android.databinding.ObservableBoolean
+import androidx.databinding.ObservableBoolean
+import androidx.lifecycle.ViewModel
 import com.androidmess.helix.common.databinding.extensions.addOnPropertyChanged
 import com.androidmess.helix.common.debug.e
 import com.androidmess.helix.common.model.data.MovieResult

@@ -1,9 +1,9 @@
 package com.androidmess.helix.common.databinding
 
 import android.app.Activity
-import android.arch.lifecycle.ViewModel
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
+import androidx.lifecycle.ViewModel
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import android.os.Bundle
 import android.util.ArrayMap
 import com.androidmess.helix.BR

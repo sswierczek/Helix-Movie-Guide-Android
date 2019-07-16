@@ -1,7 +1,6 @@
 package com.androidmess.helix.common.ui.recyclerview
 
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.androidmess.helix.common.rx.SchedulersInjector
 import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
 import io.reactivex.Observable
@@ -10,7 +9,7 @@ import java.util.concurrent.TimeUnit
 
 class RecyclerViewOnScrolledToBottomDetector(
     private val schedulersInjector: SchedulersInjector,
-    private val layoutManager: LinearLayoutManager
+    private val layoutManager: androidx.recyclerview.widget.LinearLayoutManager
 ) : RecyclerView.OnScrollListener() {
 
     private companion object {

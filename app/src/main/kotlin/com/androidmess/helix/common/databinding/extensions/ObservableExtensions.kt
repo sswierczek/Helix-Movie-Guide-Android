@@ -1,6 +1,6 @@
 package com.androidmess.helix.common.databinding.extensions
 
-import android.databinding.Observable
+import androidx.databinding.Observable
 import io.reactivex.disposables.Disposable
 import io.reactivex.disposables.Disposables
 

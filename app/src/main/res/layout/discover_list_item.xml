@@ -13,7 +13,7 @@
             type="com.androidmess.helix.discover.model.data.DiscoverMovieViewModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/discoverItemView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/discover_item_height"
@@ -50,6 +50,6 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Some video title" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

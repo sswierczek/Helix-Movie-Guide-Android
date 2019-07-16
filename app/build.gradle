@@ -7,16 +7,16 @@ apply plugin: 'org.jlleitschuh.gradle.ktlint'
 apply plugin: 'com.github.ben-manes.versions'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "com.androidmess.helix"
         minSdkVersion 19
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
 
         buildConfigField 'String', 'BASE_URL', "\"$config.baseUrl\""
         buildConfigField 'String', 'API_KEY', "\"$config.apiKey\""
@@ -51,31 +51,34 @@ android {
 
 dependencies {
     implementation project(':core')
+
+    implementation "androidx.multidex:multidex:$androidVersions.multidex"
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
 
     implementation "com.jakewharton.timber:timber:$androidVersions.timber"
 
     implementation "org.koin:koin-android:$androidVersions.koin"
-    implementation "org.koin:koin-android-architecture:$androidVersions.koin"
+    implementation "org.koin:koin-android-viewmodel:$androidVersions.koin"
 
     implementation "io.reactivex.rxjava2:rxjava:$versions.rxjava"
     implementation "io.reactivex.rxjava2:rxkotlin:$versions.rxKotlin"
     implementation "io.reactivex.rxjava2:rxandroid:$androidVersions.rxAndroid"
 
-    implementation "android.arch.lifecycle:extensions:$androidVersions.arch"
+    implementation "androidx.lifecycle:lifecycle-extensions:$androidVersions.androidxLifecycle"
 
-    implementation "com.android.support:appcompat-v7:$androidVersions.support"
-    implementation "com.android.support:support-media-compat:$androidVersions.support"
-    implementation "com.android.support.constraint:constraint-layout:$androidVersions.constraint"
-    implementation "com.android.support:recyclerview-v7:$androidVersions.support"
-    implementation "com.android.support:design:$androidVersions.support"
+    implementation "androidx.appcompat:appcompat:$androidVersions.androidx"
+    implementation "androidx.media:media:$androidVersions.androidx"
+    implementation "androidx.constraintlayout:constraintlayout:$androidVersions.constraint"
+    implementation "androidx.recyclerview:recyclerview:$androidVersions.androidx"
+    implementation "com.google.android.material:material:$androidVersions.androidx"
 
-    implementation "android.arch.navigation:navigation-ui:$androidVersions.navigation"
-    implementation "android.arch.navigation:navigation-fragment:$androidVersions.navigation"
-    implementation "android.arch.navigation:navigation-common-ktx:$androidVersions.navigation"
-    implementation "android.arch.navigation:navigation-ui-ktx:$androidVersions.navigation"
-    implementation "android.arch.navigation:navigation-fragment-ktx:$androidVersions.navigation"
+    implementation "androidx.navigation:navigation-ui:$androidVersions.navigation"
+    implementation "androidx.navigation:navigation-fragment:$androidVersions.navigation"
+    implementation "androidx.navigation:navigation-common-ktx:$androidVersions.navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$androidVersions.navigation"
+    implementation "androidx.navigation:navigation-fragment-ktx:$androidVersions.navigation"
 
     implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:$androidVersions.rxbinding"
     implementation "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$androidVersions.rxbinding"
@@ -89,19 +92,12 @@ dependencies {
 
     implementation "com.github.bumptech.glide:glide:$androidVersions.glide"
 
-    // to override any possible test dependencies conflicts
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'android.arch.lifecycle:extensions:1.1.1'
-
     testImplementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
     testImplementation "org.jetbrains.kotlin:kotlin-test:$versions.kotlin"
 
     testImplementation "junit:junit:$testVersions.junit"
-    testImplementation "org.mockito:mockito-core:$testVersions.mockito"
-    testImplementation "com.nhaarman:mockito-kotlin:$testVersions.mockitoKotlin"
-    testImplementation("org.amshove.kluent:kluent-android:$testVersions.kluent") {
-        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
-    }
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$testVersions.mockitoKotlin"
+    testImplementation "org.amshove.kluent:kluent-android:$testVersions.kluent"
 }
 
 poeditor {

@@ -1,6 +1,6 @@
 package com.androidmess.helix.common.ui.recyclerview
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.androidmess.helix.BaseTest
 import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
 import com.nhaarman.mockito_kotlin.doReturn
@@ -18,7 +18,7 @@ class RecyclerViewOnScrolledToBottomDetectorTest : BaseTest() {
 
     val scrollEvents = PublishSubject.create<RecyclerViewScrollEvent>()
     val sampleScrollEvent = mock<RecyclerViewScrollEvent>()
-    val layoutManager = mock<LinearLayoutManager> {
+    val layoutManager = mock<androidx.recyclerview.widget.LinearLayoutManager> {
         on { itemCount } doReturn ITEM_COUNT
         on { childCount } doReturn VISIBLE_ITEMS
     }

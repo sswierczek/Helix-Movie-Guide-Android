@@ -1,5 +1,5 @@
 package com.androidmess.helix.main.view
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel()

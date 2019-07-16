@@ -8,7 +8,7 @@ import com.androidmess.helix.common.activity.CompositeAppCompatActivity
 import com.androidmess.helix.common.databinding.DataBindingActivityPlugin
 import com.androidmess.helix.common.di.activity.DiActivityPlugin
 import com.androidmess.helix.databinding.ActivityMainBinding
-import org.koin.android.architecture.ext.viewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : CompositeAppCompatActivity() {
 

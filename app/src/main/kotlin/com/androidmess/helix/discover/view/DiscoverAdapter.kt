@@ -1,15 +1,14 @@
 package com.androidmess.helix.discover.view
 
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.androidmess.helix.R
 import com.androidmess.helix.common.ui.view.inflate
 import com.androidmess.helix.databinding.DiscoverListItemBinding
 import com.androidmess.helix.discover.model.data.DiscoverMovieViewModel
 
-class DiscoverAdapter() :
-        RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
+class DiscoverAdapter : RecyclerView.Adapter<DiscoverAdapter.ViewHolder>() {
 
     val data: MutableList<DiscoverMovieViewModel> = ArrayList()
 

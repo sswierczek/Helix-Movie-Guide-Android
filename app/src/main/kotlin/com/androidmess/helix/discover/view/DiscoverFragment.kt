@@ -1,21 +1,21 @@
 package com.androidmess.helix.discover.view
 
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.androidmess.helix.BR
 import com.androidmess.helix.R
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
 import com.androidmess.helix.databinding.DiscoverFragmentBinding
 import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents
-import org.koin.android.architecture.ext.viewModel
 import org.koin.android.ext.android.inject
 import org.koin.android.ext.android.releaseContext
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class DiscoverFragment : Fragment() {
 
@@ -31,9 +31,9 @@ class DiscoverFragment : Fragment() {
     var binding: DiscoverFragmentBinding? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // TODO Create databinding fragments plugins
         binding = DataBindingUtil.inflate(inflater, R.layout.discover_fragment, container, false)
@@ -60,11 +60,11 @@ class DiscoverFragment : Fragment() {
     private fun setupDataContainer(discoverDataContainer: RecyclerView?) {
         discoverDataContainer?.run {
             onScrolledToBottomDetector
-                .scrollEvents(scrollEvents())
-                .observe()
-                .subscribe {
-                    discoverViewModel.scroll.notifyChange()
-                }
+                    .scrollEvents(scrollEvents())
+                    .observe()
+                    .subscribe {
+                        discoverViewModel.scroll.notifyChange()
+                    }
             setHasFixedSize(true)
             layoutManager = discoverLayoutManager
             adapter = dataAdapter
