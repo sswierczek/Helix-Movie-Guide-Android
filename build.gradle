@@ -45,6 +45,7 @@ buildscript {
         testVersions = [
                 junit        : '4.13.2',
                 mockitoKotlin: '2.2.0',
+                androidx     : '2.1.+',
                 kluent       : '1.52'
         ]
     }

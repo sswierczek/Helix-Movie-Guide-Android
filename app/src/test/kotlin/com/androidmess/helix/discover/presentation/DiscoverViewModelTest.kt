@@ -1,5 +1,6 @@
 package com.androidmess.helix.discover.presentation
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.androidmess.helix.BaseTest
 import com.androidmess.helix.common.model.data.Movie
 import com.androidmess.helix.common.model.data.MovieResult
@@ -12,9 +13,13 @@ import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.subjects.PublishSubject
 import org.amshove.kluent.shouldEqual
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 
 class DiscoverViewModelTest : BaseTest() {
+
+    @get:Rule
+    val instantExecutorRule: InstantTaskExecutorRule = InstantTaskExecutorRule()
 
     val getDiscoverMoviesUseCase = mock<GetDiscoverMoviesUseCase>()
     val dataItem = mock<Movie>()
@@ -34,7 +39,7 @@ class DiscoverViewModelTest : BaseTest() {
     fun `Should show loading when starting to fetch data`() {
         viewModel.viewReady()
 
-        viewModel.progress.get() shouldEqual true
+        viewModel.progress.value shouldEqual true
     }
 
     @Test
@@ -43,7 +48,7 @@ class DiscoverViewModelTest : BaseTest() {
 
         dataObservable.onComplete()
 
-        viewModel.progress.get() shouldEqual false
+        viewModel.progress.value shouldEqual false
     }
 
     @Test
@@ -53,7 +58,7 @@ class DiscoverViewModelTest : BaseTest() {
 
         dataObservable.onError(error)
 
-        viewModel.error.get() shouldEqual true
+        viewModel.error.value shouldEqual true
     }
 
     // FIXME Introduce state in view model and test scroll events
@@ -63,7 +68,7 @@ class DiscoverViewModelTest : BaseTest() {
         val firstPage = 1
         viewModel.viewReady()
 
-        viewModel.scroll.notifyChange()
+        viewModel.onLoadNextData()
 
         verify(getDiscoverMoviesUseCase).execute(firstPage)
     }

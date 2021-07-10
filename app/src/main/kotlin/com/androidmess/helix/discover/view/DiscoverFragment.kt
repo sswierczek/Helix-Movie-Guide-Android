@@ -38,6 +38,7 @@ class DiscoverFragment : ScopeFragment() {
         // TODO Create databinding fragments plugins
         binding = DataBindingUtil.inflate(inflater, R.layout.discover_fragment, container, false)
         binding?.run {
+            lifecycleOwner = this@DiscoverFragment.activity
             setVariable(BR.viewModel, discoverViewModel)
             setVariable(BR.adapter, dataAdapter)
         }
@@ -67,9 +68,7 @@ class DiscoverFragment : ScopeFragment() {
             onScrolledToBottomDetector
                 .scrollEvents(scrollEvents())
                 .observe()
-                .subscribe {
-                    discoverViewModel.scroll.notifyChange()
-                }
+                .subscribe { discoverViewModel.onLoadNextData() }
             setHasFixedSize(true)
             layoutManager = discoverLayoutManager
             adapter = dataAdapter

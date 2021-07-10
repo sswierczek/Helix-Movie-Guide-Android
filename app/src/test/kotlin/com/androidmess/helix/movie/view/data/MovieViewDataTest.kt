@@ -17,21 +17,21 @@ class MovieViewDataTest : BaseTest() {
 
     @Test
     fun `Should have the same id as model`() {
-        val movieViewModel = MovieViewData.fromMovie(movie)
+        val movieViewModel = movie.viewData()
 
         movieViewModel.id shouldEqual movie.id
     }
 
     @Test
     fun `Should have the same title as model`() {
-        val movieViewModel = MovieViewData.fromMovie(movie)
+        val movieViewModel = movie.viewData()
 
         movieViewModel.title shouldEqual movie.title
     }
 
     @Test
     fun `Should have full image path from model's poster path`() {
-        val movieViewModel = MovieViewData.fromMovie(movie)
+        val movieViewModel = movie.viewData()
 
         movieViewModel.imagePath shouldEqual "https://image.tmdb.org/t/p/w500${movie.posterPath}"
     }

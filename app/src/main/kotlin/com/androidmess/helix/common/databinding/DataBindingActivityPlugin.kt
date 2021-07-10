@@ -13,7 +13,7 @@ class DataBindingActivityPlugin<T : ViewDataBinding>(
     private val activity: AppCompatActivity,
     private val viewModel: ViewModel,
     private val resLayoutId: Int,
-    private val useBindings: (T) -> Unit
+    private val useBindings: (T) -> Unit = {}
 ) : CompositeActivityPlugin {
 
     private val bindings: MutableMap<Int, Any> = ArrayMap()

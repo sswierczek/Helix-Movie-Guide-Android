@@ -29,8 +29,8 @@ class MovieDetailsActivity : CompositeAppCompatActivity() {
                 this,
                 detailsViewModel,
                 R.layout.activity_movie_details
-            ) {
-            })
+            )
+        )
     }
 
     private fun movieFromIntent() =
