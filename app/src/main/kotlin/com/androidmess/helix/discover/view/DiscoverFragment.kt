@@ -40,7 +40,6 @@ class DiscoverFragment : ScopeFragment() {
         binding?.run {
             lifecycleOwner = this@DiscoverFragment.activity
             setVariable(BR.viewModel, discoverViewModel)
-            setVariable(BR.adapter, dataAdapter)
         }
         return binding?.root
     }

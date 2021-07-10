@@ -39,7 +39,6 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@null"
-            app:adapterData="@{adapter.data}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -55,9 +54,5 @@
         <variable
             name="viewModel"
             type="com.androidmess.helix.discover.view.DiscoverViewModel" />
-
-        <variable
-            name="adapter"
-            type="com.androidmess.helix.discover.view.DiscoverAdapter" />
     </data>
 </layout>

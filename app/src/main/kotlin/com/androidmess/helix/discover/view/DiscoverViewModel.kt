@@ -55,8 +55,9 @@ class DiscoverViewModel(
             .toList()
             .doOnSubscribe { progress.postValue(true) }
             .doFinally { progress.postValue(false) }
-            .subscribe({
-                data.postValue(it)
+            .subscribe({ newList ->
+                val newData = data.value.orEmpty() + newList
+                data.postValue(newData)
                 isLoading = false
             }, {
                 e(it)
