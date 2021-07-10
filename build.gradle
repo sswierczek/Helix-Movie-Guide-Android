@@ -2,7 +2,7 @@ def apiProperties = rootProject.file('secure/api.properties')
 
 ext {
     config = [
-            baseUrl       : "http://api.themoviedb.org/3/",
+            baseUrl       : "https://api.themoviedb.org/3/",
             apiKey        : getProperty('apiKey', apiProperties),
             poeditorApiKey: getProperty('poeditorApiKey', apiProperties)
     ]

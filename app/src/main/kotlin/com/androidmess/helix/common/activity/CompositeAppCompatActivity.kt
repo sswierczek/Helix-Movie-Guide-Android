@@ -1,10 +1,10 @@
 package com.androidmess.helix.common.activity
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.androidmess.helix.common.activity.plugin.CompositeActivityPlugin
-import org.koin.androidx.scope.ScopeActivity
 
-open class CompositeAppCompatActivity : ScopeActivity() {
+open class CompositeAppCompatActivity : AppCompatActivity() {
 
     private val plugins = HashSet<CompositeActivityPlugin>()
 
