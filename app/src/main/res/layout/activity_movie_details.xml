@@ -5,15 +5,6 @@
     xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <import type="android.view.View" />
-
-        <variable
-            name="movie"
-            type="com.androidmess.helix.movie.view.data.MovieViewData" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,8 +19,37 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            bind:imageUrl="@{movie.imagePath}"
+            bind:backgroundImageUrl="@{viewModel.data.imagePath}"
             bind:srcCompat="@color/movie_details_background_color" />
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="128dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:background="@color/movie_details_background_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movieDetailsTitle">
+
+            <ImageView
+                android:id="@+id/movieDetailsStar"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/ic_star"
+                app:tint="@color/movie_details_star_color" />
+
+            <TextView
+                android:id="@+id/movieDetailsRate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@{viewModel.data.vote}"
+                android:textColor="@color/movie_details_text_color"
+                android:textSize="64sp"
+                tools:text="8.8" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/movieDetailsTitle"
@@ -39,13 +59,21 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:padding="16dp"
-            android:text="@{movie.title}"
+            android:text="@{viewModel.data.title}"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:textColor="@color/movie_details_text_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Some movie title" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.androidmess.helix.movie.viewmodel.MovieDetailsViewModel" />
+    </data>
 
 </layout>

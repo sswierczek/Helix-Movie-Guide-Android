@@ -1,8 +1,8 @@
 package com.androidmess.helix.common.databinding
 
-import android.app.Activity
 import android.os.Bundle
 import android.util.ArrayMap
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
@@ -10,7 +10,7 @@ import com.androidmess.helix.BR
 import com.androidmess.helix.common.activity.plugin.CompositeActivityPlugin
 
 class DataBindingActivityPlugin<T : ViewDataBinding>(
-    private val activity: Activity,
+    private val activity: AppCompatActivity,
     private val viewModel: ViewModel,
     private val resLayoutId: Int,
     private val useBindings: (T) -> Unit
@@ -25,6 +25,7 @@ class DataBindingActivityPlugin<T : ViewDataBinding>(
     override fun onCreate(savedInstanceState: Bundle?) {
         val binding = DataBindingUtil.setContentView(activity, resLayoutId) as T
         binding.run {
+            lifecycleOwner = activity
             setVariable(BR.viewModel, viewModel)
             for ((key, value) in bindings) {
                 setVariable(key, value)

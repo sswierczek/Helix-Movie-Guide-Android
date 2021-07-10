@@ -4,19 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <import type="android.view.View" />
-
-        <variable
-            name="movie"
-            type="com.androidmess.helix.movie.view.data.MovieViewData" />
-
-        <variable
-            name="adapter"
-            type="com.androidmess.helix.discover.view.DiscoverAdapter" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/discoverItemView"
         android:layout_width="match_parent"
@@ -58,5 +45,18 @@
             tools:text="Some video title" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="movie"
+            type="com.androidmess.helix.movie.view.data.MovieViewData" />
+
+        <variable
+            name="adapter"
+            type="com.androidmess.helix.discover.view.DiscoverAdapter" />
+    </data>
 
 </layout>
