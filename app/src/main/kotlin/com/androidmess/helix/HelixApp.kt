@@ -17,7 +17,7 @@ import org.koin.core.context.startKoin
 
 class HelixApp : Application() {
 
-    val l: L by inject()
+    private val l: L by inject()
     override fun onCreate() {
         super.onCreate()
         MultiDex.install(this)
