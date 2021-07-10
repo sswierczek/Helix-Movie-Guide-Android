@@ -1,5 +1,5 @@
 # Helix Movie Guide (Android)
-[![Build Status](https://travis-ci.org/sswierczek/Helix-Movie-Guide-Android.svg?branch=master)](https://travis-ci.org/sswierczek/Helix-Movie-Guide-Android) [![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/sswierczek/Helix-Movie-Guide-Android/master/LICENSE) [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
+[![Build Status](https://travis-ci.com/sswierczek/Helix-Movie-Guide-Android.svg?branch=master)](https://travis-ci.com/sswierczek/Helix-Movie-Guide-Android) [![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/sswierczek/Helix-Movie-Guide-Android/master/LICENSE) [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
 
 
