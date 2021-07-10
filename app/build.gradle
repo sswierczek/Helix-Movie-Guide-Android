@@ -1,18 +1,18 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
 apply plugin: 'poeditor'
 apply plugin: 'org.jlleitschuh.gradle.ktlint'
 apply plugin: 'com.github.ben-manes.versions'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
 
     defaultConfig {
         applicationId "com.androidmess.helix"
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -22,8 +22,8 @@ android {
         buildConfigField 'String', 'API_KEY', "\"$config.apiKey\""
     }
 
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
 
     buildTypes {
@@ -49,10 +49,6 @@ android {
     }
 }
 
-androidExtensions {
-    experimental = true
-}
-
 dependencies {
     implementation project(':core')
 
@@ -63,8 +59,8 @@ dependencies {
 
     implementation "com.jakewharton.timber:timber:$androidVersions.timber"
 
-    implementation "org.koin:koin-android-scope:$androidVersions.koin"
-    implementation "org.koin:koin-android-viewmodel:$androidVersions.koin"
+    implementation "io.insert-koin:koin-core:$androidVersions.koin"
+    implementation "io.insert-koin:koin-android:$androidVersions.koin"
 
     implementation "io.reactivex.rxjava2:rxjava:$versions.rxjava"
     implementation "io.reactivex.rxjava2:rxkotlin:$versions.rxKotlin"
@@ -75,11 +71,11 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$androidVersions.androidx"
     implementation "androidx.media:media:$androidVersions.androidx"
     implementation "androidx.constraintlayout:constraintlayout:$androidVersions.constraint"
-    implementation "androidx.recyclerview:recyclerview:$androidVersions.androidx"
-    implementation "com.google.android.material:material:$androidVersions.androidx"
+    implementation "androidx.recyclerview:recyclerview:$androidVersions.recyclerview"
+    implementation "com.google.android.material:material:$androidVersions.material"
 
-    implementation "androidx.navigation:navigation-ui:$androidVersions.navigation"
-    implementation "androidx.navigation:navigation-fragment:$androidVersions.navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$androidVersions.navigation"
+    implementation "androidx.navigation:navigation-fragment-ktx:$androidVersions.navigation"
     implementation "androidx.navigation:navigation-common-ktx:$androidVersions.navigation"
     implementation "androidx.navigation:navigation-ui-ktx:$androidVersions.navigation"
     implementation "androidx.navigation:navigation-fragment-ktx:$androidVersions.navigation"

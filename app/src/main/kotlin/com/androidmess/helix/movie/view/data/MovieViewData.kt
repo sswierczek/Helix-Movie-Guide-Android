@@ -2,7 +2,7 @@ package com.androidmess.helix.movie.view.data
 
 import android.os.Parcelable
 import com.androidmess.helix.common.model.data.Movie
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  * View data of movie item.

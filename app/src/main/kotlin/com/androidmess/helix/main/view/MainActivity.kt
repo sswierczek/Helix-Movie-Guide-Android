@@ -1,17 +1,17 @@
 package com.androidmess.helix.main.view
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.androidmess.helix.R
 import com.androidmess.helix.common.activity.CompositeAppCompatActivity
 import com.androidmess.helix.common.databinding.DataBindingActivityPlugin
 import com.androidmess.helix.databinding.ActivityMainBinding
-import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : CompositeAppCompatActivity() {
 
-    private val mainViewModel: MainViewModel by viewModel()
+    private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         registerPlugin(

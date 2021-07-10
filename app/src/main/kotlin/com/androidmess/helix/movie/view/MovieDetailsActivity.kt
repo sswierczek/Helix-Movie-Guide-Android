@@ -10,7 +10,7 @@ import com.androidmess.helix.common.databinding.DataBindingActivityPlugin
 import com.androidmess.helix.databinding.ActivityMovieDetailsBinding
 import com.androidmess.helix.movie.view.data.MovieViewData
 import com.androidmess.helix.movie.viewmodel.MovieDetailsViewModel
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieDetailsActivity : CompositeAppCompatActivity() {
 

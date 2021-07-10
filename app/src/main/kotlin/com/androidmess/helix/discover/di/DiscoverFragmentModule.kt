@@ -9,7 +9,7 @@ import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBott
 import com.androidmess.helix.discover.view.DiscoverAdapter
 import com.androidmess.helix.discover.view.DiscoverFragment
 import com.androidmess.helix.discover.view.DiscoverViewModel
-import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 

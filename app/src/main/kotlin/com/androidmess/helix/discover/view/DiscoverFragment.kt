@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidmess.helix.BR
@@ -15,20 +14,20 @@ import com.androidmess.helix.common.navigation.Navigator
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
 import com.androidmess.helix.databinding.DiscoverFragmentBinding
 import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents
-import org.koin.android.scope.currentScope
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.scope.ScopeFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DiscoverFragment : Fragment() {
+class DiscoverFragment : ScopeFragment() {
 
     companion object {
         fun newInstance() = DiscoverFragment()
     }
 
     val discoverViewModel: DiscoverViewModel by viewModel()
-    val navigator: Navigator by currentScope.inject()
-    val dataAdapter: DiscoverAdapter by currentScope.inject()
-    val discoverLayoutManager: LinearLayoutManager by currentScope.inject()
-    val onScrolledToBottomDetector: RecyclerViewOnScrolledToBottomDetector by currentScope.inject()
+    val navigator: Navigator by scope.inject()
+    val dataAdapter: DiscoverAdapter by scope.inject()
+    val discoverLayoutManager: LinearLayoutManager by scope.inject()
+    val onScrolledToBottomDetector: RecyclerViewOnScrolledToBottomDetector by scope.inject()
     var binding: DiscoverFragmentBinding? = null
 
     override fun onCreateView(
