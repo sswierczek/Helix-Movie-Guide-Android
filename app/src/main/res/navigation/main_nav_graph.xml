@@ -4,6 +4,14 @@
     android:id="@+id/main_nav_graph"
     app:startDestination="@id/discoverFragment">
 
+    <activity
+        android:id="@+id/movieDetailsActivity"
+        android:name="com.androidmess.helix.movie.view.MovieDetailsActivity"
+        android:label="MovieDetailsActivity">
+        <argument
+            android:name="movieDetails"
+            app:argType="com.androidmess.helix.movie.view.data.MovieViewData" />
+    </activity>
     <fragment
         android:id="@+id/discoverFragment"
         android:name="com.androidmess.helix.discover.view.DiscoverFragment"
@@ -12,12 +20,4 @@
             android:id="@+id/action_discoverFragment_to_movieDetailsActivity"
             app:destination="@id/movieDetailsActivity" />
     </fragment>
-    <activity
-        android:id="@+id/movieDetailsActivity"
-        android:name="com.androidmess.helix.movie.view.MovieDetailsActivity"
-        android:label="MovieDetailsActivity">
-        <argument
-            android:name="@string/movieDetailsArg"
-            app:argType="com.androidmess.helix.movie.view.data.MovieViewData" />
-    </activity>
 </navigation>

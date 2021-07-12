@@ -39,7 +39,7 @@ buildscript {
                 loggingInterceptor: '4.9.0',
                 glide             : '4.12.0',
                 rxbinding         : '2.1.1',
-                navigation        : '2.4.+'
+                navigation        : '2.3.+'
         ]
 
         testVersions = [
@@ -61,6 +61,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$project.pluginsVersions.gradle"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$project.versions.kotlin"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$project.androidVersions.navigation"
 
         classpath "be.lukin.poeditor:gradle:$project.pluginsVersions.poeditor"
         classpath "com.github.ben-manes:gradle-versions-plugin:$project.pluginsVersions.gradleVersions"

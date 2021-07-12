@@ -1,6 +1,5 @@
 package com.androidmess.helix.discover.view
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidmess.helix.BR
 import com.androidmess.helix.R
-import com.androidmess.helix.common.navigation.Navigator
 import com.androidmess.helix.common.ui.recyclerview.RecyclerViewOnScrolledToBottomDetector
 import com.androidmess.helix.databinding.DiscoverFragmentBinding
 import com.jakewharton.rxbinding2.support.v7.widget.scrollEvents
@@ -24,7 +22,6 @@ class DiscoverFragment : ScopeFragment() {
     }
 
     val discoverViewModel: DiscoverViewModel by viewModel()
-    val navigator: Navigator by scope.inject()
     val dataAdapter: DiscoverAdapter by scope.inject()
     val discoverLayoutManager: LinearLayoutManager by scope.inject()
     val onScrolledToBottomDetector: RecyclerViewOnScrolledToBottomDetector by scope.inject()
@@ -48,17 +45,6 @@ class DiscoverFragment : ScopeFragment() {
         super.onViewCreated(view, savedInstanceState)
         setupDataContainer(binding?.discoverDataContainer)
         discoverViewModel.viewReady()
-    }
-
-    // FIXME Remove when navigator use android navigation
-    override fun onAttach(activity: Activity) {
-        super.onAttach(activity)
-        navigator.attach(activity)
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        navigator.detach()
     }
 
     // FIXME Move to data binding

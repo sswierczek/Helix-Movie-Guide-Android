@@ -24,8 +24,8 @@ class DiscoverAdapter(
         holder.bind(getItem(position))
     }
 
-    fun onMovieClick(movie: MovieViewData) {
-        navigator.onMovieClick(movie)
+    fun onMovieClick(view: View, movie: MovieViewData) {
+        navigator.onMovieClick(view, movie)
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
