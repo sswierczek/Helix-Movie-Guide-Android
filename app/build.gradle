@@ -92,6 +92,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$androidVersions.loggingInterceptor"
 
     implementation "com.github.bumptech.glide:glide:$androidVersions.glide"
+    implementation "com.pierfrancescosoffritti.androidyoutubeplayer:core:$androidVersions.youtubePlayer"
 
     testImplementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
     testImplementation "org.jetbrains.kotlin:kotlin-test:$versions.kotlin"

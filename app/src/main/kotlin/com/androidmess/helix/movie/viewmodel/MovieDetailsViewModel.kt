@@ -21,6 +21,7 @@ class MovieDetailsViewModel(
     val data = MutableLiveData<MovieDetailsViewData>()
     val showProgress = MutableLiveData<Boolean>()
     val showError = MutableLiveData<String>()
+    val trailerId = MutableLiveData<String>()
 
     private var disposables: CompositeDisposable = CompositeDisposable()
 
@@ -41,7 +42,12 @@ class MovieDetailsViewModel(
             .map { it.viewData() }
             .doOnSubscribe { showProgress.postValue(true) }
             .doFinally { showProgress.postValue(false) }
-            .subscribe({ data.postValue(it) }, {
+            .subscribe({
+                data.postValue(it)
+                if (it.youTubeVideosIds.isNotEmpty()) {
+                    trailerId.postValue(it.youTubeVideosIds.first())
+                }
+            }, {
                 showError.postValue(it.message) // FIXME Add mapping to R.string
                 l.e("Error fetching movie details, " + it.message)
             })

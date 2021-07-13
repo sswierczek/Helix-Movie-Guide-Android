@@ -17,7 +17,7 @@ class MovieDetailsActivity : CompositeAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setupDataBinding()
         super.onCreate(savedInstanceState)
-        detailsViewModel.viewReady(movie = args.movieDetails)
+        detailsViewModel.viewReady(movie = args.movieViewData)
     }
 
     private fun setupDataBinding() {
@@ -26,7 +26,10 @@ class MovieDetailsActivity : CompositeAppCompatActivity() {
                 this,
                 detailsViewModel,
                 R.layout.activity_movie_details
-            )
+            ) {
+                val playerView = it.movieDetailsYouTubePlayerView
+                lifecycle.addObserver(playerView)
+            }
         )
     }
 }

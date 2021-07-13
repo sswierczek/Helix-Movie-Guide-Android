@@ -39,7 +39,8 @@ buildscript {
                 loggingInterceptor: '4.9.0',
                 glide             : '4.12.0',
                 rxbinding         : '2.1.1',
-                navigation        : '2.3.+'
+                navigation        : '2.3.+',
+                youtubePlayer     : '10.0.5'
         ]
 
         testVersions = [
