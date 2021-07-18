@@ -1,4 +1,4 @@
-package com.androidmess.helix.main.di
+package com.androidmess.helix.main.view.di
 
 import com.androidmess.helix.main.view.MainViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel

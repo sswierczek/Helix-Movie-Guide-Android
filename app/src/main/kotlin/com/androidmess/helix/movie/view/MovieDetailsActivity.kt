@@ -17,7 +17,7 @@ class MovieDetailsActivity : CompositeAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setupDataBinding()
         super.onCreate(savedInstanceState)
-        detailsViewModel.viewReady(movie = args.movieViewData)
+        detailsViewModel.viewReady(movie = args.movieData)
     }
 
     private fun setupDataBinding() {

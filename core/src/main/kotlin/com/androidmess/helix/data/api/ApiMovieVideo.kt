@@ -1,11 +1,11 @@
-package com.androidmess.helix.common.model.data
+package com.androidmess.helix.data.api
 
 import com.google.gson.annotations.SerializedName
 
 /**
  * Movie video model. More information here https://developers.themoviedb.org/3/movies/get-movie-videos
  */
-data class Video(
+data class ApiMovieVideo(
     @SerializedName("key")
     val videoKey: String,
     @SerializedName("site")

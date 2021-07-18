@@ -2,11 +2,11 @@ package com.androidmess.helix.common.network.di
 
 import com.androidmess.helix.common.app.AppConfig
 import com.androidmess.helix.common.network.NetworkConfig
+import com.haroldadmin.cnradapter.NetworkResponseAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class NetworkModule {
@@ -39,7 +39,7 @@ class NetworkModule {
                 .baseUrl(networkConfig.baseUrl)
                 .client(okClient)
                 .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(NetworkResponseAdapterFactory())
                 .build()
         }
     }

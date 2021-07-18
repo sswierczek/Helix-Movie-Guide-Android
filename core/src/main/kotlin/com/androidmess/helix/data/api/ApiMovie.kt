@@ -1,11 +1,11 @@
-package com.androidmess.helix.common.model.data
+package com.androidmess.helix.data.api
 
 import com.google.gson.annotations.SerializedName
 
 /**
  * Movie model. More information here https://developers.themoviedb.org/3/companies/get-movies
  */
-data class Movie(
+data class ApiMovie(
     @SerializedName("poster_path")
     val posterPath: String,
     @SerializedName("adult")

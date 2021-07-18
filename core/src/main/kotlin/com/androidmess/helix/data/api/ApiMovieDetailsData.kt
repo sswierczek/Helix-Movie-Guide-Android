@@ -1,36 +1,36 @@
-package com.androidmess.helix.movie.model.data
+package com.androidmess.helix.data.api
 
 import com.google.gson.annotations.SerializedName
 
-data class MovieSpokenLanguagesItem(
+data class ApiMovieSpokenLanguagesItem(
     @SerializedName("name")
     val name: String = "",
     @SerializedName("iso_639_1")
     val iso: String = ""
 )
 
-data class MovieGenresItem(
+data class ApiMovieGenresItem(
     @SerializedName("name")
     val name: String = "",
     @SerializedName("id")
     val id: Int = 0
 )
 
-data class MovieProductionCountriesItem(
+data class ApiMovieProductionCountriesItem(
     @SerializedName("iso_3166_1")
     val iso: String = "",
     @SerializedName("name")
     val name: String = ""
 )
 
-data class MovieProductionCompaniesItem(
+data class ApiMovieProductionCompaniesItem(
     @SerializedName("name")
     val name: String = "",
     @SerializedName("id")
     val id: Int = 0
 )
 
-data class MovieDetailsData(
+data class ApiMovieDetails(
     @SerializedName("original_language")
     val originalLanguage: String = "",
     @SerializedName("imdb_id")
@@ -44,11 +44,11 @@ data class MovieDetailsData(
     @SerializedName("revenue")
     val revenue: Int = 0,
     @SerializedName("genres")
-    val genres: List<MovieGenresItem>?,
+    val genres: List<ApiMovieGenresItem>?,
     @SerializedName("popularity")
     val popularity: Double = 0.0,
     @SerializedName("production_countries")
-    val productionCountries: List<MovieProductionCountriesItem>?,
+    val productionCountryApis: List<ApiMovieProductionCountriesItem>?,
     @SerializedName("id")
     val id: Int = 0,
     @SerializedName("vote_count")
@@ -64,9 +64,9 @@ data class MovieDetailsData(
     @SerializedName("poster_path")
     val posterPath: String = "",
     @SerializedName("spoken_languages")
-    val spokenLanguages: List<MovieSpokenLanguagesItem>?,
+    val spokenLanguageApis: List<ApiMovieSpokenLanguagesItem>?,
     @SerializedName("production_companies")
-    val productionCompanies: List<MovieProductionCompaniesItem>?,
+    val productionCompanyApis: List<ApiMovieProductionCompaniesItem>?,
     @SerializedName("release_date")
     val releaseDate: String = "",
     @SerializedName("vote_average")

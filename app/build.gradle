@@ -54,21 +54,15 @@ dependencies {
     implementation project(':core')
 
     implementation "androidx.multidex:multidex:$androidVersions.multidex"
+    implementation "com.jakewharton.timber:timber:$androidVersions.timber"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
 
-    implementation "com.jakewharton.timber:timber:$androidVersions.timber"
-
     implementation "io.insert-koin:koin-core:$androidVersions.koin"
     implementation "io.insert-koin:koin-android:$androidVersions.koin"
 
-    implementation "io.reactivex.rxjava2:rxjava:$versions.rxjava"
-    implementation "io.reactivex.rxjava2:rxkotlin:$versions.rxKotlin"
-    implementation "io.reactivex.rxjava2:rxandroid:$androidVersions.rxAndroid"
-
     implementation "androidx.lifecycle:lifecycle-extensions:$androidVersions.androidxLifecycle"
-
     implementation "androidx.appcompat:appcompat:$androidVersions.androidx"
     implementation "androidx.media:media:$androidVersions.androidx"
     implementation "androidx.constraintlayout:constraintlayout:$androidVersions.constraint"
@@ -81,17 +75,14 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$androidVersions.navigation"
     implementation "androidx.navigation:navigation-fragment-ktx:$androidVersions.navigation"
 
-    implementation "com.jakewharton.rxbinding2:rxbinding-kotlin:$androidVersions.rxbinding"
-    implementation "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$androidVersions.rxbinding"
-
-    implementation "com.google.code.gson:gson:$versions.gson"
-
     implementation "com.squareup.retrofit2:retrofit:$androidVersions.retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$androidVersions.retrofit"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$androidVersions.retrofit"
     implementation "com.squareup.okhttp3:logging-interceptor:$androidVersions.loggingInterceptor"
+    implementation "com.github.haroldadmin:NetworkResponseAdapter:$androidVersions.networkResponse"
+    implementation "com.google.code.gson:gson:$versions.gson"
 
     implementation "com.github.bumptech.glide:glide:$androidVersions.glide"
+
     implementation "com.pierfrancescosoffritti.androidyoutubeplayer:core:$androidVersions.youtubePlayer"
 
     testImplementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"

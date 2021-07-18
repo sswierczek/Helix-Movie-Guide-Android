@@ -1,15 +1,15 @@
 package com.androidmess.helix.discover.usecase
 
-import com.androidmess.helix.common.model.data.MovieResult
-import com.androidmess.helix.common.model.repository.Repository
-import io.reactivex.Observable
+import com.androidmess.helix.data.models.Movie
+import com.androidmess.helix.data.models.Response
+import com.androidmess.helix.data.repository.Repository
 
 /**
  * Use case for providing movies discover data.
  */
 class GetDiscoverMoviesUseCase(val repository: Repository.Discover) {
 
-    fun execute(page: Int): Observable<MovieResult> {
-        return repository.discoverMovies(page)
+    suspend fun execute(page: Int): Response<List<Movie>> {
+        return repository.discover(page)
     }
 }

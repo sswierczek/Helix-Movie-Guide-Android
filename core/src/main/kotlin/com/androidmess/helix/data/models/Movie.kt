@@ -1,18 +1,18 @@
-package com.androidmess.helix.movie.view.data
+package com.androidmess.helix.data.models
 
 import android.os.Parcelable
-import com.androidmess.helix.common.model.data.Movie
+import com.androidmess.helix.data.api.ApiMovie
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class MovieViewData(
+data class Movie(
     val id: Int,
     val title: String,
     val imagePath: String
-) : Parcelable
+): Parcelable
 
-fun Movie.viewData(): MovieViewData =
-    MovieViewData(
+fun ApiMovie.map(): Movie =
+    Movie(
         id,
         title,
         "https://image.tmdb.org/t/p/w500$posterPath"

@@ -9,8 +9,8 @@
         android:name="com.androidmess.helix.movie.view.MovieDetailsActivity"
         android:label="MovieDetailsActivity">
         <argument
-            android:name="movieViewData"
-            app:argType="com.androidmess.helix.movie.view.data.MovieViewData" />
+            android:name="movieData"
+            app:argType="com.androidmess.helix.data.models.Movie" />
     </activity>
     <fragment
         android:id="@+id/discoverFragment"

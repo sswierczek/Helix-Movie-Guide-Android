@@ -1,12 +1,12 @@
 package com.androidmess.helix.movie.usecase
 
-import com.androidmess.helix.common.model.repository.Repository
-import com.androidmess.helix.movie.model.data.MovieDetailsCombined
-import io.reactivex.Observable
+import com.androidmess.helix.data.models.MovieDetails
+import com.androidmess.helix.data.models.Response
+import com.androidmess.helix.data.repository.Repository
 
-class GetMovieDetailsUseCase(val repository: Repository.MovieDetails) {
+class GetMovieDetailsUseCase(val repository: Repository.Details) {
 
-    fun execute(id: Int): Observable<MovieDetailsCombined> {
-        return repository.fetchMovieDetailsCombined(id)
+    suspend fun execute(id: Int): Response<MovieDetails> {
+        return repository.fetch(id)
     }
 }

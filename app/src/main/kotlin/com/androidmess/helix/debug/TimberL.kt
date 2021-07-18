@@ -1,4 +1,4 @@
-package com.androidmess.helix.common.debug
+package com.androidmess.helix.debug
 
 import com.androidmess.helix.common.app.AppConfig
 import timber.log.Timber

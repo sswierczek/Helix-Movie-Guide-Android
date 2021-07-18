@@ -1,15 +1,16 @@
 package com.androidmess.helix.discover.model.repository
 
-import com.androidmess.helix.common.model.data.MovieResult
-import io.reactivex.Observable
+import com.androidmess.helix.data.api.ApiErrorResponse
+import com.androidmess.helix.data.api.ApiMovieResult
+import com.haroldadmin.cnradapter.NetworkResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface RetrofitDiscoverService {
 
     @GET("discover/movie")
-    fun discoverMovies(
+    suspend fun discoverMovies(
         @Query("api_key") apiKey: String,
         @Query("page") page: Int
-    ): Observable<MovieResult>
+    ): NetworkResponse<ApiMovieResult, ApiErrorResponse>
 }

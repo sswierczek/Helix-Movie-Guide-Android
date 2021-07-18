@@ -2,12 +2,12 @@ package com.androidmess.helix
 
 import android.app.Application
 import androidx.multidex.MultiDex
-import com.androidmess.helix.common.debug.L
 import com.androidmess.helix.common.network.di.NetworkModule
+import com.androidmess.helix.debug.L
 import com.androidmess.helix.di.AppModule
-import com.androidmess.helix.discover.di.DiscoverFragmentModule
 import com.androidmess.helix.discover.model.di.DiscoverModelModule
-import com.androidmess.helix.main.di.MainActivityModule
+import com.androidmess.helix.discover.view.di.DiscoverFragmentModule
+import com.androidmess.helix.main.view.di.MainActivityModule
 import com.androidmess.helix.movie.model.di.MovieDetailsModelModule
 import com.androidmess.helix.movie.view.di.MovieDetailsModule
 import org.koin.android.ext.android.inject

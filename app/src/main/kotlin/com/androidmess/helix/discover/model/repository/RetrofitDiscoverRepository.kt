@@ -1,10 +1,14 @@
 package com.androidmess.helix.discover.model.repository
 
-import com.androidmess.helix.common.model.data.MovieResult
-import com.androidmess.helix.common.model.repository.Repository
 import com.androidmess.helix.common.network.NetworkConfig
-
-import io.reactivex.Observable
+import com.androidmess.helix.data.models.Movie
+import com.androidmess.helix.data.models.Response
+import com.androidmess.helix.data.models.map
+import com.androidmess.helix.data.models.unknownError
+import com.androidmess.helix.data.repository.Repository
+import com.haroldadmin.cnradapter.NetworkResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 
 // FIXME Implement cache
@@ -16,7 +20,17 @@ class RetrofitDiscoverRepository(
     private val service: RetrofitDiscoverService =
         retrofit.create(RetrofitDiscoverService::class.java)
 
-    override fun discoverMovies(page: Int): Observable<MovieResult> {
-        return service.discoverMovies(page = page, apiKey = networkConfig.apiKey)
-    }
+    override suspend fun discover(page: Int): Response<List<Movie>> =
+        withContext(Dispatchers.IO) {
+            when (val response =
+                service.discoverMovies(page = page, apiKey = networkConfig.apiKey)) {
+                is NetworkResponse.Success -> {
+                    Response.Success(response.body.results.map { it.map() })
+                }
+                is NetworkResponse.Error -> {
+                    Response.Error(response.error.message, response.error)
+                }
+                else -> unknownError()
+            }
+        }
 }

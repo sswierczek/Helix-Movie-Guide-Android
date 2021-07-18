@@ -2,54 +2,47 @@ package com.androidmess.helix.movie.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.androidmess.helix.common.debug.L
-import com.androidmess.helix.common.debug.e
-import com.androidmess.helix.common.rx.SchedulersInjector
+import androidx.lifecycle.viewModelScope
+import com.androidmess.helix.data.models.Movie
+import com.androidmess.helix.data.models.MovieDetails
+import com.androidmess.helix.data.models.Response
+import com.androidmess.helix.debug.L
 import com.androidmess.helix.movie.usecase.GetMovieDetailsUseCase
-import com.androidmess.helix.movie.view.data.MovieDetailsViewData
-import com.androidmess.helix.movie.view.data.MovieViewData
-import com.androidmess.helix.movie.view.data.viewData
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.plusAssign
+import kotlinx.coroutines.launch
 
 class MovieDetailsViewModel(
-    private val schedulers: SchedulersInjector,
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
     private val l: L
 ) : ViewModel() {
 
-    val data = MutableLiveData<MovieDetailsViewData>()
-    val showProgress = MutableLiveData<Boolean>()
-    val showError = MutableLiveData<String>()
+    val data = MutableLiveData<MovieDetails?>()
+    val progress = MutableLiveData<Boolean>()
+    val error = MutableLiveData<String>()
     val trailerId = MutableLiveData<String>()
 
-    private var disposables: CompositeDisposable = CompositeDisposable()
-
-    fun viewReady(movie: MovieViewData) {
+    fun viewReady(movie: Movie) {
         fetchDetails(movie)
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        disposables.clear()
-    }
+    private fun fetchDetails(movie: Movie) {
+        viewModelScope.launch {
+            progress.postValue(true)
 
-    private fun fetchDetails(movie: MovieViewData) {
-        disposables += getMovieDetailsUseCase
-            .execute(movie.id)
-            .subscribeOn(schedulers.io())
-            .observeOn(schedulers.ui())
-            .map { it.viewData() }
-            .doOnSubscribe { showProgress.postValue(true) }
-            .doFinally { showProgress.postValue(false) }
-            .subscribe({
-                data.postValue(it)
-                if (it.youTubeVideosIds.isNotEmpty()) {
-                    trailerId.postValue(it.youTubeVideosIds.first())
+            when (val response = getMovieDetailsUseCase.execute(movie.id)) {
+                is Response.Success -> {
+                    data.postValue(response.data)
+                    val videos = response.data.youTubeVideosIds
+                    if (videos.isNotEmpty()) {
+                        trailerId.postValue(videos.first())
+                    }
                 }
-            }, {
-                showError.postValue(it.message) // FIXME Add mapping to R.string
-                l.e("Error fetching movie details, " + it.message)
-            })
+                is Response.Error -> {
+                    error.postValue(response.message ?: "")
+                    l.e("Error fetching movie details, ${response.message}")
+                }
+            }
+
+            progress.postValue(false)
+        }
     }
 }

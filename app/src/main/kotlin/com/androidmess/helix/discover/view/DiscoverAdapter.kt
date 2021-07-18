@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.androidmess.helix.R
 import com.androidmess.helix.common.navigation.Navigator
 import com.androidmess.helix.common.ui.view.inflate
+import com.androidmess.helix.data.models.Movie
 import com.androidmess.helix.databinding.DiscoverListItemBinding
-import com.androidmess.helix.movie.view.data.MovieViewData
 
 class DiscoverAdapter(
     private val navigator: Navigator
-) : ListAdapter<MovieViewData, DiscoverAdapter.ViewHolder>(DIFF_UTIL) {
+) : ListAdapter<Movie, DiscoverAdapter.ViewHolder>(DIFF_UTIL) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = parent.inflate(R.layout.discover_list_item, false)
@@ -24,7 +24,7 @@ class DiscoverAdapter(
         holder.bind(getItem(position))
     }
 
-    fun onMovieClick(view: View, movie: MovieViewData) {
+    fun onMovieClick(view: View, movie: Movie) {
         navigator.onMovieClick(view, movie)
     }
 
@@ -32,20 +32,20 @@ class DiscoverAdapter(
 
         private var binding: DiscoverListItemBinding = DiscoverListItemBinding.bind(view)
 
-        fun bind(movieData: MovieViewData) {
+        fun bind(movieData: Movie) {
             binding.movie = movieData
             binding.adapter = this@DiscoverAdapter
         }
     }
 
     companion object {
-        val DIFF_UTIL = object : ItemCallback<MovieViewData>() {
-            override fun areItemsTheSame(oldItem: MovieViewData, newItem: MovieViewData): Boolean =
+        val DIFF_UTIL = object : ItemCallback<Movie>() {
+            override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean =
                 oldItem.id == newItem.id
 
             override fun areContentsTheSame(
-                oldItem: MovieViewData,
-                newItem: MovieViewData
+                oldItem: Movie,
+                newItem: Movie
             ): Boolean = oldItem.id == newItem.id
         }
     }

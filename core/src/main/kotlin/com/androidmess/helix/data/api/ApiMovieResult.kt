@@ -1,15 +1,15 @@
-package com.androidmess.helix.common.model.data
+package com.androidmess.helix.data.api
 
 import com.google.gson.annotations.SerializedName
 
 /**
  * Movie response model. More information here https://developers.themoviedb.org/3/companies/get-movies
  */
-data class MovieResult(
+data class ApiMovieResult(
     @SerializedName("page")
     val page: Int,
     @SerializedName("results")
-    val results: List<Movie>,
+    val results: List<ApiMovie>,
     @SerializedName("total_results")
     val totalResults: Int,
     @SerializedName("total_pages")

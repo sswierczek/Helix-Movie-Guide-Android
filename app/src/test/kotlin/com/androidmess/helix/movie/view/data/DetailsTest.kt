@@ -9,7 +9,7 @@ import com.nhaarman.mockitokotlin2.mock
 import org.amshove.kluent.shouldEqual
 import org.junit.Test
 
-class MovieDetailsViewDataTest : BaseTest() {
+class DetailsTest : BaseTest() {
 
     val movieDetailsData = mock<MovieDetailsData> {
         on { id } doReturn 1234
