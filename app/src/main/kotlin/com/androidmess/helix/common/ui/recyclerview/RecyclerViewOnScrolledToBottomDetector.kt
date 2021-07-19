@@ -1,17 +1,17 @@
 package com.androidmess.helix.common.ui.recyclerview
 
 // FIXME Migrate to FlowBinding
-//import androidx.recyclerview.widget.RecyclerView
-//import com.androidmess.helix.common.rx.SchedulersInjector
-//import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
-//import io.reactivex.Observable
-//import io.reactivex.subjects.PublishSubject
-//import java.util.concurrent.TimeUnit
+// import androidx.recyclerview.widget.RecyclerView
+// import com.androidmess.helix.common.rx.SchedulersInjector
+// import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
+// import io.reactivex.Observable
+// import io.reactivex.subjects.PublishSubject
+// import java.util.concurrent.TimeUnit
 //
-//class RecyclerViewOnScrolledToBottomDetector(
+// class RecyclerViewOnScrolledToBottomDetector(
 //    private val schedulersInjector: SchedulersInjector,
 //    private val layoutManager: androidx.recyclerview.widget.LinearLayoutManager
-//) : RecyclerView.OnScrollListener() {
+// ) : RecyclerView.OnScrollListener() {
 //
 //    private companion object {
 //        const val DEBOUNCE_TIME_MS = 200L
@@ -37,4 +37,4 @@ package com.androidmess.helix.common.ui.recyclerview
 //        return onScrolledToBottom
 //            .observeOn(schedulersInjector.ui())
 //    }
-//}
+// }

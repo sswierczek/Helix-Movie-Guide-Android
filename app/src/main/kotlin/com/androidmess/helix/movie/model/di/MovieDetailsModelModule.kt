@@ -1,8 +1,8 @@
 package com.androidmess.helix.movie.model.di
 
-import com.androidmess.helix.data.repository.Repository
+import com.androidmess.helix.core.data.repository.Repository
 import com.androidmess.helix.movie.model.repository.RetrofitDetailsRepository
-import com.androidmess.helix.movie.usecase.GetMovieDetailsUseCase
+import com.androidmess.helix.core.movie.usecase.GetMovieDetailsUseCase
 import org.koin.dsl.module
 
 class MovieDetailsModelModule {

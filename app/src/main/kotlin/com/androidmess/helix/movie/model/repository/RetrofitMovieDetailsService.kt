@@ -1,8 +1,8 @@
 package com.androidmess.helix.movie.model.repository
 
-import com.androidmess.helix.data.api.ApiErrorResponse
-import com.androidmess.helix.data.api.ApiMovieDetails
-import com.androidmess.helix.data.api.ApiMovieVideosResult
+import com.androidmess.helix.core.data.api.ApiErrorResponse
+import com.androidmess.helix.core.data.api.ApiMovieDetails
+import com.androidmess.helix.core.data.api.ApiMovieVideosResult
 import com.haroldadmin.cnradapter.NetworkResponse
 import retrofit2.http.GET
 import retrofit2.http.Path

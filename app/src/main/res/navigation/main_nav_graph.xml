@@ -10,7 +10,7 @@
         android:label="MovieDetailsActivity">
         <argument
             android:name="movieData"
-            app:argType="com.androidmess.helix.data.models.Movie" />
+            app:argType="com.androidmess.helix.core.data.models.Movie" />
     </activity>
     <fragment
         android:id="@+id/discoverFragment"

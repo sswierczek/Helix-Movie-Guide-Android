@@ -3,7 +3,7 @@ package com.androidmess.helix
 import android.app.Application
 import androidx.multidex.MultiDex
 import com.androidmess.helix.common.network.di.NetworkModule
-import com.androidmess.helix.debug.L
+import com.androidmess.helix.core.debug.L
 import com.androidmess.helix.di.AppModule
 import com.androidmess.helix.discover.model.di.DiscoverModelModule
 import com.androidmess.helix.discover.view.di.DiscoverFragmentModule

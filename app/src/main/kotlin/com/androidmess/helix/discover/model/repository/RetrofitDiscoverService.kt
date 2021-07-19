@@ -1,7 +1,7 @@
 package com.androidmess.helix.discover.model.repository
 
-import com.androidmess.helix.data.api.ApiErrorResponse
-import com.androidmess.helix.data.api.ApiMovieResult
+import com.androidmess.helix.core.data.api.ApiErrorResponse
+import com.androidmess.helix.core.data.api.ApiMovieResult
 import com.haroldadmin.cnradapter.NetworkResponse
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -6,6 +6,6 @@ import org.koin.dsl.module
 
 class MovieDetailsModule {
     fun create() = module {
-        viewModel { MovieDetailsViewModel(get(), get()) }
+        viewModel { MovieDetailsViewModel(get()) }
     }
 }

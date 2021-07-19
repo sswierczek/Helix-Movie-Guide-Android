@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.androidmess.helix.R
 import com.androidmess.helix.common.navigation.Navigator
 import com.androidmess.helix.common.ui.view.inflate
-import com.androidmess.helix.data.models.Movie
+import com.androidmess.helix.core.data.models.Movie
 import com.androidmess.helix.databinding.DiscoverListItemBinding
 
 class DiscoverAdapter(

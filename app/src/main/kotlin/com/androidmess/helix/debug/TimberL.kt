@@ -1,6 +1,7 @@
 package com.androidmess.helix.debug
 
 import com.androidmess.helix.common.app.AppConfig
+import com.androidmess.helix.core.debug.L
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 

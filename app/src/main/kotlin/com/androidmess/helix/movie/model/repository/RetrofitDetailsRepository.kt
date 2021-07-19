@@ -1,11 +1,11 @@
 package com.androidmess.helix.movie.model.repository
 
 import com.androidmess.helix.common.network.NetworkConfig
-import com.androidmess.helix.data.models.MovieDetails
-import com.androidmess.helix.data.models.Response
-import com.androidmess.helix.data.models.map
-import com.androidmess.helix.data.models.unknownError
-import com.androidmess.helix.data.repository.Repository
+import com.androidmess.helix.core.data.models.MovieDetails
+import com.androidmess.helix.core.data.models.Response
+import com.androidmess.helix.core.data.models.map
+import com.androidmess.helix.core.data.models.unknownError
+import com.androidmess.helix.core.data.repository.Repository
 import com.haroldadmin.cnradapter.NetworkResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

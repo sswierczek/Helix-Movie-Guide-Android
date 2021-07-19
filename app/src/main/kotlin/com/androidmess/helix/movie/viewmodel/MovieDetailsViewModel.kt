@@ -3,16 +3,14 @@ package com.androidmess.helix.movie.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.androidmess.helix.data.models.Movie
-import com.androidmess.helix.data.models.MovieDetails
-import com.androidmess.helix.data.models.Response
-import com.androidmess.helix.debug.L
-import com.androidmess.helix.movie.usecase.GetMovieDetailsUseCase
+import com.androidmess.helix.core.data.models.Movie
+import com.androidmess.helix.core.data.models.MovieDetails
+import com.androidmess.helix.core.data.models.Response
+import com.androidmess.helix.core.movie.usecase.GetMovieDetailsUseCase
 import kotlinx.coroutines.launch
 
 class MovieDetailsViewModel(
-    private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
-    private val l: L
+    private val getMovieDetailsUseCase: GetMovieDetailsUseCase
 ) : ViewModel() {
 
     val data = MutableLiveData<MovieDetails?>()
@@ -38,7 +36,6 @@ class MovieDetailsViewModel(
                 }
                 is Response.Error -> {
                     error.postValue(response.message ?: "")
-                    l.e("Error fetching movie details, ${response.message}")
                 }
             }
 
