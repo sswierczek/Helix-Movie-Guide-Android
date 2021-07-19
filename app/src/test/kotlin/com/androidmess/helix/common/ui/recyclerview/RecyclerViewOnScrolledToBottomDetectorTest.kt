@@ -1,5 +1,5 @@
 package com.androidmess.helix.common.ui.recyclerview
-
+/**
 import com.androidmess.helix.BaseTest
 import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
 import com.nhaarman.mockitokotlin2.doReturn
@@ -52,3 +52,4 @@ class RecyclerViewOnScrolledToBottomDetectorTest : BaseTest() {
         testSubscriber.assertEmpty()
     }
 }
+**/

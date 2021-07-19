@@ -1,25 +1,23 @@
 package com.androidmess.helix.discover.model.repository
 
-import com.androidmess.helix.BaseTest
 import com.androidmess.helix.common.network.NetworkConfig
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
+import io.mockk.coVerify
+import io.mockk.every
+import io.mockk.mockk
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import retrofit2.Retrofit
 
-class RetrofitDiscoverRepositoryTest : BaseTest() {
+val TEST_API_KEY = "test_api_key1234"
 
-    companion object {
-        const val TEST_API_KEY = "test_api_key1234"
-    }
+class RetrofitDiscoverRepositoryTest {
 
-    val retrofitService = mock<RetrofitDiscoverService>()
-    val retrofit = mock<Retrofit> {
-        on { create(RetrofitDiscoverService::class.java) } doReturn retrofitService
+    val retrofitService = mockk<RetrofitDiscoverService>(relaxed = true)
+    val retrofit = mockk<Retrofit> {
+        every { create(RetrofitDiscoverService::class.java) } returns retrofitService
     }
-    val networkConfig = mock<NetworkConfig> {
-        on { apiKey } doReturn TEST_API_KEY
+    val networkConfig = mockk<NetworkConfig> {
+        every { apiKey } returns TEST_API_KEY
     }
 
     val repository = RetrofitDiscoverRepository(retrofit, networkConfig)
@@ -28,8 +26,8 @@ class RetrofitDiscoverRepositoryTest : BaseTest() {
     fun `When discover movies request called should use page with given api key`() {
         val testPage = 1
 
-        repository.discoverMovies(testPage)
+        runBlocking { repository.discover(testPage) }
 
-        verify(retrofitService).discoverMovies(TEST_API_KEY, testPage)
+        coVerify { retrofitService.discoverMovies(TEST_API_KEY, testPage) }
     }
 }
