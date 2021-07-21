@@ -1,55 +1,62 @@
 package com.androidmess.helix.common.ui.recyclerview
-/**
-import com.androidmess.helix.BaseTest
-import com.jakewharton.rxbinding2.support.v7.widget.RecyclerViewScrollEvent
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
-import io.reactivex.subjects.PublishSubject
-import org.junit.Test
 
-class RecyclerViewOnScrolledToBottomDetectorTest : BaseTest() {
+import app.cash.turbine.test
+import io.mockk.every
+import io.mockk.mockk
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.TestCoroutineScope
+import kotlinx.coroutines.test.runBlockingTest
+import org.amshove.kluent.shouldEqual
+import org.junit.Test
+import reactivecircus.flowbinding.recyclerview.RecyclerViewScrollEvent
+import kotlin.time.ExperimentalTime
+
+@ExperimentalTime
+class RecyclerViewOnScrolledToBottomDetectorTest {
 
     companion object {
         const val VISIBLE_ITEMS = 2
         const val ITEM_COUNT = 10
     }
 
-    val scrollEvents = PublishSubject.create<RecyclerViewScrollEvent>()
-    val sampleScrollEvent = mock<RecyclerViewScrollEvent>()
-    val layoutManager = mock<androidx.recyclerview.widget.LinearLayoutManager> {
-        on { itemCount } doReturn ITEM_COUNT
-        on { childCount } doReturn VISIBLE_ITEMS
+    val sampleScrollEvent = mockk<RecyclerViewScrollEvent>()
+    val layoutManager = mockk<androidx.recyclerview.widget.LinearLayoutManager> {
+        every { itemCount } returns ITEM_COUNT
+        every { childCount } returns VISIBLE_ITEMS
     }
 
-    val detector = RecyclerViewOnScrolledToBottomDetector(testSchedulers, layoutManager).apply {
-        scrollEvents(scrollEvents)
+    val detector = RecyclerViewOnScrolledToBottomDetector(layoutManager)
+
+    @Test
+    fun `When no scroll events does nothing`() = runBlockingTest {
+        detector.onScrolledToBottom.test {
+            expectNoEvents()
+        }
     }
 
     @Test
-    fun `When no scroll events does nothing`() {
-        detector.observe().test().assertEmpty()
+    fun `When scrolled to bottom send on scrolled to bottom event`() = runBlockingTest {
+        every { layoutManager.findFirstVisibleItemPosition() } returns ITEM_COUNT - VISIBLE_ITEMS
+
+        detector.onScrolledToBottom.test {
+            val testScope = TestCoroutineScope()
+            detector.scrollEvents(onScrollEvents = flowOf(sampleScrollEvent), testScope)
+            testScope.runCurrent()
+
+            expectItem() shouldEqual Unit
+        }
     }
 
     @Test
-    fun `When scrolled to bottom send on scrolled to bottom event`() {
-        whenever(layoutManager.findFirstVisibleItemPosition()).thenReturn(ITEM_COUNT - VISIBLE_ITEMS)
+    fun `When scrolled but bottom is not reached does nothing`() = runBlockingTest {
+        every { layoutManager.findFirstVisibleItemPosition() } returns VISIBLE_ITEMS
 
-        val testSubscriber = detector.observe().test()
-        scrollEvents.onNext(sampleScrollEvent)
+        detector.onScrolledToBottom.test {
+            val testScope = TestCoroutineScope()
+            detector.scrollEvents(onScrollEvents = flowOf(sampleScrollEvent), testScope)
+            testScope.runCurrent()
 
-        testSubscriber.assertNoErrors()
-        testSubscriber.assertValueCount(1)
-    }
-
-    @Test
-    fun `When scrolled but bottom is not reached does nothing`() {
-        whenever(layoutManager.findFirstVisibleItemPosition()).thenReturn(VISIBLE_ITEMS)
-
-        val testSubscriber = detector.observe().test()
-        scrollEvents.onNext(sampleScrollEvent)
-
-        testSubscriber.assertEmpty()
+            expectNoEvents()
+        }
     }
 }
-**/

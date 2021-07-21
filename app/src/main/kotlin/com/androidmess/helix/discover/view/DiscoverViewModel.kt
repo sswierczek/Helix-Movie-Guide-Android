@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.androidmess.helix.core.data.models.Movie
 import com.androidmess.helix.core.data.models.Response
-import com.androidmess.helix.debug.e
 import com.androidmess.helix.core.discover.usecase.GetDiscoverMoviesUseCase
+import com.androidmess.helix.debug.e
 import kotlinx.coroutines.launch
 
 class DiscoverViewModel(
